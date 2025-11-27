@@ -1,77 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adult Content</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* Page-specific overrides for adult-content.html only */
-    body.adult-page .adult-title {
-      background: transparent !important; /* remove the background box */
-      border: none !important; /* remove any border (safety) */
-      border-radius: 0 !important; /* remove rounded corner */
-      box-shadow: none !important; /* remove shadow */
-      padding: 0 !important; /* remove internal button-like padding */
-      display: block; /* ensure it occupies full width so margin:auto can center */
-      margin: 2.5rem auto 1rem; /* vertical spacing and centered horizontally */
-      text-align: center; /* center its contents */
-      font-size:3rem; /* ensure large font size */
-      color: #fff; /* ensure contrast on dark bg */
-    }
-    /* Melimtx-specific hover preview image */
-    .melimtx-wrapper { position: relative; display: inline-block; }
-    .melimtx-hover-img {
-      position: absolute;
-      left: 50%;
-      top: calc(100% + 8px);
-      transform: translateX(-50%) translateY(6px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 200ms ease, transform 200ms ease;
-      /* reduce size to be a bit smaller and more compact */
-      max-width: 280px;
-      width: min(280px, 80vw);
-      border-radius: 8px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      z-index: 5;
-    }
-    /* smaller preview on very small screens */
-    @media (max-width: 420px) {
-      .melimtx-hover-img { max-width: 220px; width: 80vw; }
-    }
-    .melimtx-wrapper:hover .melimtx-hover-img,
-    .melimtx-wrapper:focus-within .melimtx-hover-img {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Adult Content</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="adult-page">
-  <!-- Top-left home icon (site-wide style is in style.css) -->
-  <a href="index.html" class="site-home-icon" aria-label="Back to homepage" title="Back to homepage">
-    <!-- Simple house icon SVG (white fill on orange background) -->
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z" />
-    </svg>
-  </a>
+<!-- Top-left home icon -->
+<a href="index.html" class="site-home-icon" aria-label="Back to homepage" title="Back to homepage">
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z" />
+</svg>
+</a>
 
-  <main>
-    <h1 class="adult-title">LustSphere</h1>
+<main>
+<h1 class="adult-title">LustSphere</h1>
 
 <div class="section-divider"></div>
 
-    <div class="page-links">
-      <div class="melimtx-wrapper">
-        <a href="Melimtx.html" class="btn adult-btn" role="button" aria-label="Open Melimtx page">Melimtx</a>
-        <img src="images/melimtx-banner.webp" alt="Melimtx banner" class="melimtx-hover-img" aria-hidden="true" loading="lazy">
-      </div>
-    </div>
+<div class="page-links">
+<div class="melimtx-wrapper">
+<a href="Melimtx.html" class="btn adult-btn" role="button" aria-label="Open Melimtx page">Melimtx</a>
+<img src="images/melimtx-banner.webp" alt="Melimtx banner" class="melimtx-hover-img" aria-hidden="true" loading="lazy">
+</div>
+</div>
 
-    <div class="section-divider"></div>
+<div class="section-divider"></div>
 
-    <!-- removed duplicated 'Back to Homepage' link in favor of top-left home icon -->
-  </main>
+</main>
 
+<!-- Shared adult warning modal (if user hasn't acknowledged) -->
+<div id="adultWarningModal" class="adult-warning-modal" aria-hidden="true" role="dialog" aria-modal="true">
+<div class="adult-warning-content" role="document">
+<h2>⚠️ Adult Content Warning</h2>
+<p>This website contains adult themes or mature content intended for viewers 18 and older. Viewer discretion is advised.</p>
+<button id="adult-warning-continue">I Understand</button>
+</div>
+</div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
+

@@ -1,399 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Melimtx Collections</title>
-  <style>
-    /* Page-scoped styles for Melimtx 'Back' (top-right orange arrow) */
-    body.melimtx-page .melimtx-back-btn {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      width: 44px;
-      height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #ff7b00;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      z-index: 10001;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
-      border: 1px solid rgba(0,0,0,0.08);
-      transition: transform 140ms ease, box-shadow 140ms ease;
-    }
-    body.melimtx-page .melimtx-back-btn svg { width: 18px; height: 18px; fill: #fff; }
-    /* Ensure page heading is 3rem on Melimtx page */
-    body.melimtx-page .page-title { font-size: 3rem !important; }
-    body.melimtx-page .melimtx-back-btn:hover,
-    body.melimtx-page .melimtx-back-btn:focus { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
-    body.melimtx-page .melimtx-back-btn:focus { outline: 3px solid rgba(255,123,0,0.18); outline-offset: 4px; }
-    @media (max-width: 420px) { body.melimtx-page .melimtx-back-btn { width:40px; height:40px; top:10px; right:10px; } }
-    /* Collection tab layout (anchor overlay for right-click copy) */
-    .collection-tab { position: relative; }
-    .collection-link-overlay { position: absolute; inset: 0; display: block; background: transparent; z-index: 3; }
-    @media (max-width: 420px) { .collection-link-overlay { inset: 0; } }
-    /* Page controls styling */
-    .page-controls { display: inline-flex; gap: 8px; margin: 0 auto 8px; align-items: center; justify-content: center; }
-    /* Position the page selection controls fixed at bottom center of viewport */
-    .page-controls {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 18px;
-      z-index: 10002;
-      display: inline-flex; /* keep inline-flex layout */
-      gap: 8px;
-      background: rgba(0,0,0,0.35);
-      padding: 6px 10px;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.04);
-      box-shadow: 0 8px 18px rgba(0,0,0,0.5);
-    }
-    @media (max-width: 420px) { .page-controls { bottom: 12px; padding: 4px 8px; } }
-    .page-controls .page-btn { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.06); padding: 6px 10px; border-radius: 6px; cursor: pointer; }
-    .page-controls .page-btn.active { background: #ff7b00; border-color: #ff7b00; color: #000; }
-    /* remove copy tooltip CSS (no share icon) -- overlays rely on right-click context menu for copying links */
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Melimtx Collections</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body class="melimtx-page">
-  <!-- Top-left home icon (site-wide style is in style.css) -->
-  <a href="index.html" class="site-home-icon" aria-label="Back to homepage" title="Back to homepage">
-    <!-- Simple house icon SVG (white fill on orange background) -->
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z" />
-    </svg>
-  </a>
-  <main> 
-    <a href="adult-content.html" class="btn melimtx-back-btn" aria-label="Back to Adult Content" title="Back to Adult Content">
-      <!-- left-pointing arrow icon (white on orange) -->
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-      </svg>
-    </a>
-    <h1 class="page-title">
-      <span class="title-text">Melimtx</span>
-    </h1>
-    <div class="section-divider"></div>
+<!-- Top-left home icon -->
+<a href="index.html" class="site-home-icon" aria-label="Back to homepage" title="Back to homepage">
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z" />
+</svg>
+</a>
 
-    <!-- 🔸 Ad Zone 1: Header Banner -->
-    <section class="ad-banner" id="ad-zone-1">
-      <div class="ad-wrapper">
-        <!-- JuicyAds v3.0 (kept as you had it) -->
-        <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-        <ins id="1105044" data-width="908" data-height="258" class="juicyads-spot"></ins>
-        <script type="text/javascript" data-cfasync="false" async>
-          (adsbyjuicy = window.adsbyjuicy || []).push({ 'adzone': 1105044 });
-        </script>
-      </div>
-    </section>
+<main>
+<a href="adult-content.html" class="btn melimtx-back-btn" aria-label="Back to Adult Content" title="Back to Adult Content">
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+</svg>
+</a>
 
-    <div class="section-divider"></div>
+<h1 class="page-title">
+<span class="title-text">Melimtx</span>
+</h1>
 
-    <section class="collections">
-      <!-- Page controls: allow switching between collection pages (page 1 / page 2) -->
-      <div class="page-controls" aria-hidden="false">
-        <button class="page-btn active" data-target-page="1" aria-pressed="true">1</button>
-        <button class="page-btn" data-target-page="2" aria-pressed="false">2</button>
-      </div>
+<div class="section-divider"></div>
 
-      <div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
+<!-- 🔸 Ad Zone 1: Header Banner -->
+<section class="ad-banner" id="ad-zone-1">
+<div class="ad-wrapper">
+<!-- JuicyAds v3.0 (kept as you had it) -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1105044" data-width="908" data-height="258" class="juicyads-spot"></ins>
+<script type="text/javascript" data-cfasync="false" async>
+(adsbyjuicy = window.adsbyjuicy || []).push({ 'adzone': 1105044 });
+</script>
+</div>
+</section>
 
-      <div class="collections-container page-1" aria-live="polite" aria-hidden="false">
-        <!-- Each .collection-tab has a data-link attribute -->
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/yfZ2AaoQ#zTF7PfZWA76b4xEXkzsOFw" role="button" tabindex="0" aria-label="Open Collection 1">
-          <img src="images/melimtx-C1-preview.webp" alt="Collection 1" class="hover-img" />
-          <p>Collection 1</p>
-        </div>
+<div class="section-divider"></div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/TfB1yJoK#Syn3y_p-VGQ43D99TPiJ1g" role="button" tabindex="0" aria-label="Open Collection 2">
-          <img src="images/MTX-C2-Cover.webp" alt="Collection 2" class="hover-img" />
-          <p>Collection 2</p>
-        </div>
+<section class="collections" aria-label="Collections Page 1">
+<!-- Page controls: allow switching between collection pages (page 1 / page 2) -->
+<div class="page-controls" aria-hidden="false">
+<button class="page-btn active" data-target-page="1" aria-pressed="true">1</button>
+<button class="page-btn" data-target-page="2" aria-pressed="false">2</button>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/CWgAmSpS#Tw4s30Hg6Yiw_BrmSj9zJA" role="button" tabindex="0" aria-label="Open Collection 3">
-          <img src="images/MTX-C3-Cover.webp" alt="Collection 3" class="hover-img" />
-          <p>Collection 3</p>
-        </div>
+<div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/DXg3yIrZ#uqXVAUjtjdWuNeYJeBzOrA" role="button" tabindex="0" aria-label="Open Collection 4">
-          <img src="images/MTX-C4-cover.webp" alt="Collection 4" class="hover-img" />
-          <p>Collection 4</p>
-        </div>
+<div class="collections-container page-1" aria-live="polite" aria-hidden="false">
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/yfZ2AaoQ#zTF7PfZWA76b4xEXkzsOFw" role="button" tabindex="0" aria-label="Open Collection 1">
+<img src="images/melimtx-C1-preview.webp" alt="Collection 1" class="hover-img" />
+<p>Collection 1</p>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/PKJQEDhK#Dcp7IfThNt1LyZG5yqI-Eg" role="button" tabindex="0" aria-label="Open Collection 5">
-          <img src="images/MTX-C5-cover.webp" alt="Collection 5" class="hover-img" />
-          <p>Collection 5</p>
-        </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/TfB1yJoK#Syn3y_p-VGQ43D99TPiJ1g" role="button" tabindex="0" aria-label="Open Collection 2">
+<img src="images/MTX-C2-Cover.webp" alt="Collection 2" class="hover-img" />
+<p>Collection 2</p>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/qLJhlZaY#GHokgrQWUwgxrITUvj0yHg" role="button" tabindex="0" aria-label="Open Collection 6">
-          <img src="images/MTX-C6-cover.webp" alt="Collection 6" class="hover-img" />
-          <p>Collection 6</p>
-        </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/CWgAmSpS#Tw4s30Hg6Yiw_BrmSj9zJA" role="button" tabindex="0" aria-label="Open Collection 3">
+<img src="images/MTX-C3-Cover.webp" alt="Collection 3" class="hover-img" />
+<p>Collection 3</p>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/6DpTTDYI#I2vX9ITM6g4jdg588M50rQ" role="button" tabindex="0" aria-label="Open Collection 7">
-          <img src="images/MTX-C7-cover.webp" alt="Collection 7" class="hover-img" />
-          <p>Collection 7</p>
-        </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/DXg3yIrZ#uqXVAUjtjdWuNeYJeBzOrA" role="button" tabindex="0" aria-label="Open Collection 4">
+<img src="images/MTX-C4-cover.webp" alt="Collection 4" class="hover-img" />
+<p>Collection 4</p>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/LbowTBTY#IiMDk54kU6ezraACqWS4NQ" role="button" tabindex="0" aria-label="Open Collection 8">
-          <img src="images/MTX-C8-cover.webp" alt="Collection 8" class="hover-img" />
-          <p>Collection 8</p>
-        </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/PKJQEDhK#Dcp7IfThNt1LyZG5yqI-Eg" role="button" tabindex="0" aria-label="Open Collection 5">
+<img src="images/MTX-C5-cover.webp" alt="Collection 5" class="hover-img" />
+<p>Collection 5</p>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/iKoXASwR#oN92zfZK7I1ZespC3Hj0Sg" role="button" tabindex="0" aria-label="Open Collection 9">
-          <img src="images/MTX-C9-cover.webp" alt="Collection 9" class="hover-img" />
-          <p>Collection 9</p>
-        </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/qLJhlZaY#GHokgrQWUwgxrITUvj0yHg" role="button" tabindex="0" aria-label="Open Collection 6">
+<img src="images/MTX-C6-cover.webp" alt="Collection 6" class="hover-img" />
+<p>Collection 6</p>
+</div>
 
-        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/rP5kADLJ#0JaCHCcUR7R6TH72EVKB_Q" role="button" tabindex="0" aria-label="Open Collection 10">
-          <img src="images/MTX-C10-cover.webp" alt="Collection 10" class="hover-img" />
-          <p>Collection 10</p>
-        </div>
-      </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/6DpTTDYI#I2vX9ITM6g4jdg588M50rQ" role="button" tabindex="0" aria-label="Open Collection 7">
+<img src="images/MTX-C7-cover.webp" alt="Collection 7" class="hover-img" />
+<p>Collection 7</p>
+</div>
 
-      <!-- Second page container for more collections -->
-      <div class="collections-container page-2" aria-live="polite" style="display:none;" aria-hidden="true">
-        <!-- Page 2 collections removed (container left in place). -->
-      </div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/LbowTBTY#IiMDk54kU6ezraACqWS4NQ" role="button" tabindex="0" aria-label="Open Collection 8">
+<img src="images/MTX-C8-cover.webp" alt="Collection 8" class="hover-img" />
+<p>Collection 8</p>
+</div>
 
-      <div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
-    </section>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/iKoXASwR#oN92zfZK7I1ZespC3Hj0Sg" role="button" tabindex="0" aria-label="Open Collection 9">
+<img src="images/MTX-C9-cover.webp" alt="Collection 9" class="hover-img" />
+<p>Collection 9</p>
+</div>
 
-    <div class="section-divider"></div>
+<div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/rP5kADLJ#0JaCHCcUR7R6TH72EVKB_Q" role="button" tabindex="0" aria-label="Open Collection 10">
+<img src="images/MTX-C10-cover.webp" alt="Collection 10" class="hover-img" />
+<p>Collection 10</p>
+</div>
+</div>
 
-    <!-- 🔸 Ad Zone 2: Mid-page Rectangle -->
-    <section class="ad-banner" id="ad-zone-2">
-      <div class="ad-wrapper">
-        <!-- JuicyAds v3.0 (kept as you had it) -->
-        <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-        <ins id="1104981" data-width="908" data-height="258" class="juicyads-spot"></ins>
-        <script type="text/javascript" data-cfasync="false" async>
-          (adsbyjuicy = window.adsbyjuicy || []).push({ 'adzone': 1104981 });
-        </script>
-      </div>
-    </section>
+<!-- Second page container for more collections -->
+<div class="collections-container page-2 hidden" aria-live="polite" aria-hidden="true" style="display:none;">
+<!-- empty on purpose; page-2 will be visible when user clicks '2' button -->
+</div>
 
-    <div class="section-divider"></div>
-
-    <section class="collections">
-      <div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
-
-      
-      <div class="collections-container" aria-live="polite">
-        <!-- Each .collection-tab has a data-link attribute -->
-        <div class="collection-tab" data-link="https://mega.nz/folder/bPYiTS7L#AIThylzRS__aOh9ZHidbYA" role="button" tabindex="0" aria-label="Open Collection 11">
-          <img src="images/MTX-C11-cover.webp" alt="Collection 11" class="hover-img" />
-          <p>Collection 11</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/OO40EBCI#7K4Se1hdl2Zf7GRMlqjr6g" role="button" tabindex="0" aria-label="Open Collection 12">
-          <img src="images/MTX-C12-cover.webp" alt="Collection 12" class="hover-img" />
-          <p>Collection 12</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/maoGCJ5T#3GuAjYu1iNCAmER36G7jAA" role="button" tabindex="0" aria-label="Open Collection 13">
-          <img src="images/MTX-C13-cover.webp" alt="Collection 13" class="hover-img" />
-          <p>Collection 13</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/HTQiCbbZ#wiUlm4GWj9-WJAlfNuoV1g" role="button" tabindex="0" aria-label="Open Collection 14">
-          <img src="images/MTX-C14-cover.webp" alt="Collection 14" class="hover-img" />
-          <p>Collection 14</p>
-        </div>
-
-         <div class="collection-tab" data-link="https://mega.nz/folder/LOpkRL5C#vNaNtlryGwdMllzC2d6Ffw" role="button" tabindex="0" aria-label="Open Collection 15">
-          <img src="images/MTX-C15-cover-.webp" alt="Collection 15" class="hover-img" />
-          <p>Collection 15</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/jTpAEZpa#cYdz1T7L7NC7Wu4C7WFOCw" role="button" tabindex="0" aria-label="Open Collection 16">
-          <img src="images/MTX-C16-cover-.webp" alt="Collection 16" class="hover-img" />
-          <p>Collection 16</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/jDIjVSRB#urVe6volYnEHyWoiLPt54w" role="button" tabindex="0" aria-label="Open Collection 17">
-          <img src="images/MTX-C17-cover.webp" alt="Collection 17" class="hover-img" />
-          <p>Collection 17</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/nfYklTDK#1-icli-LGJNs7oKvaYjkbA" role="button" tabindex="0" aria-label="Open Collection 18">
-          <img src="images/MTX-C18-cover.webp" alt="Collection 18" class="hover-img" />
-          <p>Collection 18</p>
-        </div>
-
-        <div class="collection-tab" data-link="https://mega.nz/folder/rKRCQZIR#Gv06q744FBUlIDSofm2l9g" role="button" tabindex="0" aria-label="Open Collection 19">
-          <img src="images/MTX-C19-cover.webp" alt="Collection 19" class="hover-img" />
-          <p>Collection 19</p>
-        </div>
-
-<div class="collection-tab" data-link="https://mega.nz/folder/CSJWjKqR#gplCPHhNepxsJlr0AwjiPQ" role="button" tabindex="0" aria-label="Open Collection 20">
-          <img src="images/MTX-C20-cover.webp" alt="Collection 20" class="hover-img" />
-          <p>Collection 20</p>
-        </div>
-
-      </div>
-
-
-      <div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
-    </section>
+<div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
+</section>
 
 <div class="section-divider"></div>
 
 <!-- 🔸 Ad Zone 2: Mid-page Rectangle -->
-    <section class="ad-banner" id="ad-zone-2">
-      <div class="ad-wrapper">
-        <!-- JuicyAds v3.0 -->
+<section class="ad-banner" id="ad-zone-2">
+<div class="ad-wrapper">
 <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
-<ins id="1105565" data-width="908" data-height="258"></ins>
+<ins id="1104981" data-width="908" data-height="258" class="juicyads-spot"></ins>
+<script type="text/javascript" data-cfasync="false" async>
+(adsbyjuicy = window.adsbyjuicy || []).push({ 'adzone': 1104981 });
+</script>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="collections" aria-label="Collections Page 2">
+<div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
+
+<div class="collections-container" aria-live="polite">
+<div class="collection-tab" data-link="https://mega.nz/folder/bPYiTS7L#AIThylzRS__aOh9ZHidbYA" role="button" tabindex="0" aria-label="Open Collection 11">
+<img src="images/MTX-C11-cover.webp" alt="Collection 11" class="hover-img" />
+<p>Collection 11</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/OO40EBCI#7K4Se1hdl2Zf7GRMlqjr6g" role="button" tabindex="0" aria-label="Open Collection 12">
+<img src="images/MTX-C12-cover.webp" alt="Collection 12" class="hover-img" />
+<p>Collection 12</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/maoGCJ5T#3GuAjYu1iNCAmER36G7jAA" role="button" tabindex="0" aria-label="Open Collection 13">
+<img src="images/MTX-C13-cover.webp" alt="Collection 13" class="hover-img" />
+<p>Collection 13</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/HTQiCbbZ#wiUlm4GWj9-WJAlfNuoV1g" role="button" tabindex="0" aria-label="Open Collection 14">
+<img src="images/MTX-C14-cover.webp" alt="Collection 14" class="hover-img" />
+<p>Collection 14</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/LOpkRL5C#vNaNtlryGwdMllzC2d6Ffw" role="button" tabindex="0" aria-label="Open Collection 15">
+<img src="images/MTX-C15-cover-.webp" alt="Collection 15" class="hover-img" />
+<p>Collection 15</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/jTpAEZpa#cYdz1T7L7NC7Wu4C7WFOCw" role="button" tabindex="0" aria-label="Open Collection 16">
+<img src="images/MTX-C16-cover-.webp" alt="Collection 16" class="hover-img" />
+<p>Collection 16</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/jDIjVSRB#urVe6volYnEHyWoiLPt54w" role="button" tabindex="0" aria-label="Open Collection 17">
+<img src="images/MTX-C17-cover.webp" alt="Collection 17" class="hover-img" />
+<p>Collection 17</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/nfYklTDK#1-icli-LGJNs7oKvaYjkbA" role="button" tabindex="0" aria-label="Open Collection 18">
+<img src="images/MTX-C18-cover.webp" alt="Collection 18" class="hover-img" />
+<p>Collection 18</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/rKRCQZIR#Gv06q744FBUlIDSofm2l9g" role="button" tabindex="0" aria-label="Open Collection 19">
+<img src="images/MTX-C19-cover.webp" alt="Collection 19" class="hover-img" />
+<p>Collection 19</p>
+</div>
+
+<div class="collection-tab" data-link="https://mega.nz/folder/CSJWjKqR#gplCPHhNepxsJlr0AwjiPQ" role="button" tabindex="0" aria-label="Open Collection 20">
+<img src="images/MTX-C20-cover.webp" alt="Collection 20" class="hover-img" />
+<p>Collection 20</p>
+</div>
+
+</div>
+
+<div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 🔸 Ad Zone 3: Mid-page Rectangle -->
+<section class="ad-banner" id="ad-zone-3">
+<div class="ad-wrapper">
+<!-- JuicyAds v3.0 -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1105565" data-width="908" data-height="258" class="juicyads-spot"></ins>
 <script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1105565});</script>
-<!--JuicyAds END-->
-      </div>
-    </section>
+</div>
+</section>
 
 <div class="section-divider"></div>
 
-<section class="collections">
-      <div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
+<section class="collections" aria-label="Collections Page 3">
+<div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
 
-      
-      <div class="collections-container" aria-live="polite">
-        <!-- Each .collection-tab has a data-link attribute -->
-        <div class="collection-tab" data-link="https://mega.nz/folder/HXYmnRgZ#HmIJ4PHJziydyMcOc8bHRg" role="button" tabindex="0" aria-label="Open Collection 21">
-          <img src="images/MTX-C21-cover.webp" alt="Collection 21" class="hover-img" />
-          <p>Collection 21</p>
-        </div>
+<div class="collections-container" aria-live="polite">
+<div class="collection-tab" data-link="https://mega.nz/folder/HXYmnRgZ#HmIJ4PHJziydyMcOc8bHRg" role="button" tabindex="0" aria-label="Open Collection 21">
+<img src="images/MTX-C21-cover.webp" alt="Collection 21" class="hover-img" />
+<p>Collection 21</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/LXBA3aLB#uvssJuK-rmWGaJbsNVxY9A" role="button" tabindex="0" aria-label="Open Collection 22">
-          <img src="images/MTX-C22-cover.webp" alt="Collection 22" class="hover-img" />
-          <p>Collection 22</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/LXBA3aLB#uvssJuK-rmWGaJbsNVxY9A" role="button" tabindex="0" aria-label="Open Collection 22">
+<img src="images/MTX-C22-cover.webp" alt="Collection 22" class="hover-img" />
+<p>Collection 22</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/WChyhRgL#VjcT4bm5FiL3UjE8QxBFpQ" role="button" tabindex="0" aria-label="Open Collection 23">
-          <img src="images/MTX-C23-cover.webp" alt="Collection 23" class="hover-img" />
-          <p>Collection 23</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/WChyhRgL#VjcT4bm5FiL3UjE8QxBFpQ" role="button" tabindex="0" aria-label="Open Collection 23">
+<img src="images/MTX-C23-cover.webp" alt="Collection 23" class="hover-img" />
+<p>Collection 23</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/bKpjDCII#gHFrt1C4apdfizTtv1bCmQ" role="button" tabindex="0" aria-label="Open Collection 24">
-          <img src="images/MTX-C24-cover.webp" alt="Collection 24" class="hover-img" />
-          <p>Collection 24</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/bKpjDCII#gHFrt1C4apdfizTtv1bCmQ" role="button" tabindex="0" aria-label="Open Collection 24">
+<img src="images/MTX-C24-cover.webp" alt="Collection 24" class="hover-img" />
+<p>Collection 24</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/6XIBmIIC#KZYIUhMFTaI96aL0bRYxMw" role="button" tabindex="0" aria-label="Open Collection 25">
-          <img src="images/MTX-C25-cover.webp" alt="Collection 25" class="hover-img" />
-          <p>Collection 25</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/6XIBmIIC#KZYIUhMFTaI96aL0bRYxMw" role="button" tabindex="0" aria-label="Open Collection 25">
+<img src="images/MTX-C25-cover.webp" alt="Collection 25" class="hover-img" />
+<p>Collection 25</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/SeIFHKQB#kd1ss4hNTuyox7JiQ-EdxQ" role="button" tabindex="0" aria-label="Open Collection 26">
-          <img src="images/MTX-C26-cover.webp" alt="Collection 26" class="hover-img" />
-          <p>Collection 26</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/SeIFHKQB#kd1ss4hNTuyox7JiQ-EdxQ" role="button" tabindex="0" aria-label="Open Collection 26">
+<img src="images/MTX-C26-cover.webp" alt="Collection 26" class="hover-img" />
+<p>Collection 26</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/jTAWAaDY#J8VMDkeEZQnajDYAb-2WQA" role="button" tabindex="0" aria-label="Open Collection 27">
-          <img src="images/MTX-C27-cover.webp" alt="Collection 27" class="hover-img" />
-          <p>Collection 27</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/jTAWAaDY#J8VMDkeEZQnajDYAb-2WQA" role="button" tabindex="0" aria-label="Open Collection 27">
+<img src="images/MTX-C27-cover.webp" alt="Collection 27" class="hover-img" />
+<p>Collection 27</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/LW5T2AyB#kMTmB0sR_ro5dATLhBhjPQ" role="button" tabindex="0" aria-label="Open Collection 28">
-          <img src="images/MTX-C28-cover.webp" alt="Collection 28" class="hover-img" />
-          <p>Collection 28</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/LW5T2AyB#kMTmB0sR_ro5dATLhBhjPQ" role="button" tabindex="0" aria-label="Open Collection 28">
+<img src="images/MTX-C28-cover.webp" alt="Collection 28" class="hover-img" />
+<p>Collection 28</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/CD5DTDpT#iEU4ijiEpaRHDv23cl5z1w" role="button" tabindex="0" aria-label="Open Collection 29">
-          <img src="images/MTX-C29-cover.webp" alt="Collection 29" class="hover-img" />
-          <p>Collection 29</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/CD5DTDpT#iEU4ijiEpaRHDv23cl5z1w" role="button" tabindex="0" aria-label="Open Collection 29">
+<img src="images/MTX-C29-cover.webp" alt="Collection 29" class="hover-img" />
+<p>Collection 29</p>
+</div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/LfQyWQSQ#T63FZF806MvSaTD1l0zfWw" role="button" tabindex="0" aria-label="Open Collection 30">
-          <img src="images/MTX-C30-cover.webp" alt="Collection 30" class="hover-img" />
-          <p>Collection 30</p>
-        </div>
+<div class="collection-tab" data-link="https://mega.nz/folder/LfQyWQSQ#T63FZF806MvSaTD1l0zfWw" role="button" tabindex="0" aria-label="Open Collection 30">
+<img src="images/MTX-C30-cover.webp" alt="Collection 30" class="hover-img" />
+<p>Collection 30</p>
+</div>
 
+</div>
 
-      </div>
+<div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
+</section>
 
+</main>
 
-      <div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
-    </section>
+<footer class="footer">
+<p>&copy; 2025 Linksphere</p>
+</footer>
 
-    
-<div class="section-divider"></div>
-    
+<!-- 🧱 Ad Gate Modal -->
+<div class="gate-modal" id="gateModal" aria-hidden="true" role="dialog" aria-modal="true">
+<div class="gate-modal-content" role="document">
+<button id="closeGate" class="modal-close" aria-label="Close">✕</button>
+<h2>Access Locked</h2>
+<p id="gate-description">Choose an option to unlock this collection:</p>
 
-    
-  </main>
+<!-- TWO OPTIONS -->
+<div class="ad-buttons" id="adButtonGroup">
+<div class="method">
+<p class="method-title"> View 3 ads</p>
+<div class="ads-row">
+<button class="ad-btn" data-url="https://otieu.com/4/10175908">Ad 1</button>
+<button class="ad-btn" data-url="https://otieu.com/4/10175906">Ad 2</button>
+<button class="ad-btn" data-url="https://otieu.com/4/10175903">Ad 3</button>
+</div>
+</div>
 
-  <footer class="footer">
-    <p>&copy; 2025 Linksphere</p>
-  </footer>
+<div class="method">
+<p class="method-title">Watch a 30s video</p>
+<button id="playAdVideo" class="play-ad-btn" aria-pressed="false">Play Video</button>
+</div>
+</div>
 
-  <!-- 🧱 Ad Gate Modal -->
-  <div class="gate-modal" id="gateModal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="gate-modal-content" role="document">
-      <button id="closeGate" class="modal-close" aria-label="Close">✕</button>
-      <h2>Access Locked</h2>
-      <p id="gate-description">Choose an option to unlock this collection:</p>
+<div class="ad-video-wrapper" aria-hidden="true">
+<!-- initially src is empty; will be set when user chooses video -->
+<iframe
+id="adgateYoutube"
+width="100%"
+height="300"
+frameborder="0"
+src=""
+data-video-id="dQw4w9WgXcQ"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen
+title="Ad video player">
+</iframe>
+</div>
 
-      <!-- TWO OPTIONS -->
-      <div class="ad-buttons" id="adButtonGroup">
-        <div class="method">
-          <p class="method-title"> View 3 ads</p>
-          <div class="ads-row">
-            <button class="ad-btn" data-url="https://otieu.com/4/10175908">Ad 1</button>
-            <button class="ad-btn" data-url="https://otieu.com/4/10175906">Ad 2</button>
-            <button class="ad-btn" data-url="https://otieu.com/4/10175903">Ad 3</button>
-          </div>
-        </div>
+<div class="ad-controls">
+<button id="proceed-btn" disabled aria-disabled="true">Choose an option</button>
+</div>
+</div>
+</div>
 
-        <div class="method">
-          <p class="method-title">Watch a 30s video</p>
-          <button id="playAdVideo" class="play-ad-btn" aria-pressed="false">Play Video</button>
-        </div>
-      </div>
+<!-- Shared adult warning modal (if user hasn't acknowledged) -->
+<div id="adultWarningModal" class="adult-warning-modal" aria-hidden="true" role="dialog" aria-modal="true">
+<div class="adult-warning-content" role="document">
+<h2>⚠️ Adult Content Warning</h2>
+<p>This website contains adult themes or mature content intended for viewers 18 and older. Viewer discretion is advised.</p>
+<button id="adult-warning-continue">I Understand</button>
+</div>
+</div>
 
-      <div class="ad-video-wrapper" aria-hidden="true">
-        <!-- initially src is empty; will be set when user chooses video -->
-        <iframe
-          id="adgateYoutube"
-          width="100%"
-          height="300"
-          frameborder="0"
-          src=""
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="Ad video player">
-        </iframe>
-      </div>
+<!-- YouTube iframe API loader -->
+<script src="https://www.youtube.com/iframe_api"></script>
 
-      <div class="ad-controls">
-        <button id="proceed-btn" disabled aria-disabled="true">Choose an option</button>
-      </div>
-    </div>
-  </div>
+<!-- main consolidated JS -->
+<script src="script.js" defer></script>
 
-  <!-- Adult Content Warning Modal -->
-  <div id="adultWarningModal" class="adult-warning-modal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="adult-warning-content" role="document">
-      <h2>⚠️ Adult Content Warning</h2>
-      <p>This website contains adult themes or mature content intended for viewers 18 and older. Viewer discretion is advised.</p>
-      <button id="adult-warning-continue">I Understand</button>
-    </div>
-  </div>
-
-  <!-- YouTube iframe API loader -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
-  <script src="script.js" defer></script>
-
+<!-- lightweight tag script preserved -->
 <script>(function(s){s.dataset.zone='10206468',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-  <meta charset="UTF-8" />
-
-  <!-- Share overlay only — removed copy-to-clipboard logic (use browser context menu to copy link) -->
 
 </body>
 </html>
+
+
 
 
 

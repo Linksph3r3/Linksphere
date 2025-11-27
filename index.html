@@ -9,12 +9,101 @@
 <body>
 
   <main>
-    <h1>Welcome to Linksphere</h1>
+    <h1 class="page-title">Welcome to Linksphere</h1>
+
+    <div class="section-divider"></div>
 
     <div class="page-links">
-      <a href="adult-content.html" class="btn">Adult Content</a>
+      <a href="adult-content.html" class="btn adult-btn">NSFW</a>
     </div>
   </main>
+
+  <div class="section-divider"></div>
+
+  <!-- 🔸 Homepage Ad Zone 1: Header Banner -->
+    <section class="ad-banner" id="ad-zone-1">
+      <div class="ad-wrapper">
+        <!-- JuicyAds v3.0 -->
+<script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+<ins id="1105956" data-width="908" data-height="258"></ins>
+<script type="text/javascript" data-cfasync="false" async>(adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1105956});</script>
+<!--JuicyAds END-->
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+
+  <!-- Adult content confirmation modal (index.html only) -->
+  <div id="index-adult-modal" class="adult-warning-modal" role="dialog" aria-modal="true" aria-labelledby="adult-modal-title" aria-hidden="true">
+    <div class="adult-warning-content">
+      <button class="modal-close" aria-label="Close adult content warning" id="index-adult-modal-close">✕</button>
+      <h2 id="adult-modal-title">⚠️ Mature Content</h2>
+      <p>This page contains mature content that may not be suitable for all audiences. You must be at least 18 years old to view this content. Do you wish to proceed?</p>
+      <div style="display:flex; gap:12px; justify-content:center; margin-top:10px;">
+        <button id="index-adult-proceed" class="ad-btn">Proceed</button>
+        <button id="index-adult-cancel" class="modal-close">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal logic scoped only to index.html
+    (function(){
+      const adultBtn = document.querySelector('.btn.adult-btn');
+      const modal = document.getElementById('index-adult-modal');
+      const proceedBtn = document.getElementById('index-adult-proceed');
+      const cancelBtns = document.querySelectorAll('#index-adult-modal .modal-close');
+      let storedHref = '';
+      let lastFocusedEl = null;
+
+      if (!adultBtn || !modal) return; // nothing to do
+
+      function openModal(href) {
+        storedHref = href;
+        lastFocusedEl = document.activeElement;
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+        // set focus to proceed button
+        proceedBtn.focus();
+        // prevent background scrolling
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        // restore focus
+        if (lastFocusedEl) lastFocusedEl.focus();
+      }
+
+      adultBtn.addEventListener('click', function(e){
+        e.preventDefault();
+        openModal(this.getAttribute('href'));
+      });
+
+      proceedBtn.addEventListener('click', function(){
+        if (!storedHref) return closeModal();
+        // allow normal navigation
+        window.location.href = storedHref;
+      });
+
+      cancelBtns.forEach(btn => btn.addEventListener('click', function(){
+        closeModal();
+      }));
+
+      // close on overlay click
+      modal.addEventListener('click', function(e){
+        if (e.target === modal) closeModal();
+      });
+
+      // close on ESC
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
+      });
+    })();
+  </script>
 
 </body>
 </html>

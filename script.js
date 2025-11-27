@@ -38,6 +38,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Add an invisible overlay anchor to each collection tab so users can right-click > Copy Link
+    tabs.forEach((tab, index) => {
+        // Avoid adding twice
+        if (tab.querySelector('.collection-link-overlay')) return;
+
+        const overlay = document.createElement('a');
+        overlay.className = 'collection-link-overlay';
+        // The shareable link is the current page with a collection query param
+        const targetUrl = `${window.location.pathname}?collection=${index + 1}`;
+        overlay.href = targetUrl;
+        overlay.title = `Share Collection ${index + 1}`;
+        overlay.setAttribute('aria-label', `Share link for collection ${index + 1}`);
+
+        // Prevent default navigation and open the gate instead on left click
+        overlay.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            selectedLink = tab.dataset.link || "";
+            // add collection param to URL while keeping the same path
+            window.history.pushState({}, '', targetUrl);
+            openAdGate();
+        });
+
+        // Make sure the overlay doesn't prevent right-click context menu (copy link)
+        overlay.addEventListener('contextmenu', (e) => {
+            // Allow default context menu, do not stop propagation
+        });
+
+        // Prepend overlay so it doesn't conflict visually
+        tab.style.position = tab.style.position || 'relative';
+        tab.insertBefore(overlay, tab.firstChild);
+    });
+
     // Auto-open if collection passed in URL
     const params = new URLSearchParams(window.location.search);
     const col = params.get("collection");
@@ -47,8 +80,53 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         if (target) {
             selectedLink = target.dataset.link;
+            // switch to the target page if it exists
+            const targetPage = target.dataset.page;
+            if (targetPage) {
+                const pc = target.closest('.collections').querySelector('.page-controls');
+                if (pc) {
+                    const pageButton = pc.querySelector(`.page-btn[data-target-page="${targetPage}"]`);
+                    if (pageButton) pageButton.click();
+                }
+            }
             openAdGate();
         }
+    }
+
+    // Page controls for collections pagination (Melimtx only)
+    const pageControls = document.querySelectorAll('.page-controls');
+    if (pageControls) {
+        pageControls.forEach(pc => {
+            const container = pc.closest('.collections').querySelector('.collections-container');
+            const btns = pc.querySelectorAll('.page-btn');
+            // helper: set a page (1, 2, etc) for the closest .collections parent
+            const setCollectionsPage = (page) => {
+                // update active buttons on this control
+                btns.forEach(b => {
+                    const isActive = b.getAttribute('data-target-page') === String(page);
+                    b.classList.toggle('active', isActive);
+                    b.setAttribute('aria-pressed', isActive);
+                });
+
+                // update visibility for containers inside the current .collections parent
+                const parent = pc.closest('.collections');
+                const containers = parent.querySelectorAll('.collections-container');
+                containers.forEach(c => {
+                    const isVisible = c.classList.contains('page-' + page);
+                    c.style.display = isVisible ? '' : 'none';
+                    c.classList.toggle('active-page', isVisible);
+                    c.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+                    if (isVisible) c.scrollLeft = 0; // reset scroll to start
+                });
+            };
+
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const page = btn.getAttribute('data-target-page');
+                    setCollectionsPage(page);
+                });
+            });
+        });
     }
 });
 

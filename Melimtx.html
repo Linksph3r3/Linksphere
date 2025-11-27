@@ -4,13 +4,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
   <title>Melimtx Collections</title>
+  <style>
+    /* Page-scoped styles for Melimtx 'Back' (top-right orange arrow) */
+    body.melimtx-page .melimtx-back-btn {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ff7b00;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      z-index: 10001;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+      border: 1px solid rgba(0,0,0,0.08);
+      transition: transform 140ms ease, box-shadow 140ms ease;
+    }
+    body.melimtx-page .melimtx-back-btn svg { width: 18px; height: 18px; fill: #fff; }
+    /* Ensure page heading is 3rem on Melimtx page */
+    body.melimtx-page .page-title { font-size: 3rem !important; }
+    body.melimtx-page .melimtx-back-btn:hover,
+    body.melimtx-page .melimtx-back-btn:focus { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+    body.melimtx-page .melimtx-back-btn:focus { outline: 3px solid rgba(255,123,0,0.18); outline-offset: 4px; }
+    @media (max-width: 420px) { body.melimtx-page .melimtx-back-btn { width:40px; height:40px; top:10px; right:10px; } }
+    /* Collection tab layout (anchor overlay for right-click copy) */
+    .collection-tab { position: relative; }
+    .collection-link-overlay { position: absolute; inset: 0; display: block; background: transparent; z-index: 3; }
+    @media (max-width: 420px) { .collection-link-overlay { inset: 0; } }
+    /* Page controls styling */
+    .page-controls { display: inline-flex; gap: 8px; margin: 0 auto 8px; align-items: center; justify-content: center; }
+    /* Position the page selection controls fixed at bottom center of viewport */
+    .page-controls {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 18px;
+      z-index: 10002;
+      display: inline-flex; /* keep inline-flex layout */
+      gap: 8px;
+      background: rgba(0,0,0,0.35);
+      padding: 6px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 420px) { .page-controls { bottom: 12px; padding: 4px 8px; } }
+    .page-controls .page-btn { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.06); padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+    .page-controls .page-btn.active { background: #ff7b00; border-color: #ff7b00; color: #000; }
+    /* remove copy tooltip CSS (no share icon) -- overlays rely on right-click context menu for copying links */
+  </style>
 </head>
-<body>
+<body class="melimtx-page">
+  <!-- Top-left home icon (site-wide style is in style.css) -->
+  <a href="index.html" class="site-home-icon" aria-label="Back to homepage" title="Back to homepage">
+    <!-- Simple house icon SVG (white fill on orange background) -->
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 10.5L12 4l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5z" />
+    </svg>
+  </a>
   <main> 
-    <a href="adult-content.html" class="btn back-btn">← Back</a>
+    <a href="adult-content.html" class="btn melimtx-back-btn" aria-label="Back to Adult Content" title="Back to Adult Content">
+      <!-- left-pointing arrow icon (white on orange) -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+      </svg>
+    </a>
     <h1 class="page-title">
       <span class="title-text">Melimtx</span>
-      <img src="images/melimtx-banner.webp" alt="Melimtx Preview" class="title-hover-img">
     </h1>
     <div class="section-divider"></div>
 
@@ -29,59 +93,70 @@
     <div class="section-divider"></div>
 
     <section class="collections">
+      <!-- Page controls: allow switching between collection pages (page 1 / page 2) -->
+      <div class="page-controls" aria-hidden="false">
+        <button class="page-btn active" data-target-page="1" aria-pressed="true">1</button>
+        <button class="page-btn" data-target-page="2" aria-pressed="false">2</button>
+      </div>
+
       <div class="scroll-arrow left-arrow" role="button" tabindex="0" aria-label="Scroll left">&#10094;</div>
 
-      <div class="collections-container" aria-live="polite">
+      <div class="collections-container page-1" aria-live="polite" aria-hidden="false">
         <!-- Each .collection-tab has a data-link attribute -->
-        <div class="collection-tab" data-link="https://mega.nz/folder/yfZ2AaoQ#zTF7PfZWA76b4xEXkzsOFw" role="button" tabindex="0" aria-label="Open Collection 1">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/yfZ2AaoQ#zTF7PfZWA76b4xEXkzsOFw" role="button" tabindex="0" aria-label="Open Collection 1">
           <img src="images/melimtx-C1-preview.webp" alt="Collection 1" class="hover-img" />
           <p>Collection 1</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/TfB1yJoK#Syn3y_p-VGQ43D99TPiJ1g" role="button" tabindex="0" aria-label="Open Collection 2">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/TfB1yJoK#Syn3y_p-VGQ43D99TPiJ1g" role="button" tabindex="0" aria-label="Open Collection 2">
           <img src="images/MTX-C2-Cover.webp" alt="Collection 2" class="hover-img" />
           <p>Collection 2</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/CWgAmSpS#Tw4s30Hg6Yiw_BrmSj9zJA" role="button" tabindex="0" aria-label="Open Collection 3">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/CWgAmSpS#Tw4s30Hg6Yiw_BrmSj9zJA" role="button" tabindex="0" aria-label="Open Collection 3">
           <img src="images/MTX-C3-Cover.webp" alt="Collection 3" class="hover-img" />
           <p>Collection 3</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/DXg3yIrZ#uqXVAUjtjdWuNeYJeBzOrA" role="button" tabindex="0" aria-label="Open Collection 4">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/DXg3yIrZ#uqXVAUjtjdWuNeYJeBzOrA" role="button" tabindex="0" aria-label="Open Collection 4">
           <img src="images/MTX-C4-cover.webp" alt="Collection 4" class="hover-img" />
           <p>Collection 4</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/PKJQEDhK#Dcp7IfThNt1LyZG5yqI-Eg" role="button" tabindex="0" aria-label="Open Collection 5">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/PKJQEDhK#Dcp7IfThNt1LyZG5yqI-Eg" role="button" tabindex="0" aria-label="Open Collection 5">
           <img src="images/MTX-C5-cover.webp" alt="Collection 5" class="hover-img" />
           <p>Collection 5</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/qLJhlZaY#GHokgrQWUwgxrITUvj0yHg" role="button" tabindex="0" aria-label="Open Collection 6">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/qLJhlZaY#GHokgrQWUwgxrITUvj0yHg" role="button" tabindex="0" aria-label="Open Collection 6">
           <img src="images/MTX-C6-cover.webp" alt="Collection 6" class="hover-img" />
           <p>Collection 6</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/6DpTTDYI#I2vX9ITM6g4jdg588M50rQ" role="button" tabindex="0" aria-label="Open Collection 7">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/6DpTTDYI#I2vX9ITM6g4jdg588M50rQ" role="button" tabindex="0" aria-label="Open Collection 7">
           <img src="images/MTX-C7-cover.webp" alt="Collection 7" class="hover-img" />
           <p>Collection 7</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/LbowTBTY#IiMDk54kU6ezraACqWS4NQ" role="button" tabindex="0" aria-label="Open Collection 8">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/LbowTBTY#IiMDk54kU6ezraACqWS4NQ" role="button" tabindex="0" aria-label="Open Collection 8">
           <img src="images/MTX-C8-cover.webp" alt="Collection 8" class="hover-img" />
           <p>Collection 8</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/iKoXASwR#oN92zfZK7I1ZespC3Hj0Sg" role="button" tabindex="0" aria-label="Open Collection 9">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/iKoXASwR#oN92zfZK7I1ZespC3Hj0Sg" role="button" tabindex="0" aria-label="Open Collection 9">
           <img src="images/MTX-C9-cover.webp" alt="Collection 9" class="hover-img" />
           <p>Collection 9</p>
         </div>
 
-        <div class="collection-tab" data-link="https://mega.nz/folder/rP5kADLJ#0JaCHCcUR7R6TH72EVKB_Q" role="button" tabindex="0" aria-label="Open Collection 10">
+        <div class="collection-tab" data-page="1" data-link="https://mega.nz/folder/rP5kADLJ#0JaCHCcUR7R6TH72EVKB_Q" role="button" tabindex="0" aria-label="Open Collection 10">
           <img src="images/MTX-C10-cover.webp" alt="Collection 10" class="hover-img" />
           <p>Collection 10</p>
         </div>
+      </div>
+
+      <!-- Second page container for more collections -->
+      <div class="collections-container page-2" aria-live="polite" style="display:none;" aria-hidden="true">
+        <!-- Page 2 collections removed (container left in place). -->
       </div>
 
       <div class="scroll-arrow right-arrow" role="button" tabindex="0" aria-label="Scroll right">&#10095;</div>
@@ -314,6 +389,8 @@
 
 <script>(function(s){s.dataset.zone='10206468',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
   <meta charset="UTF-8" />
+
+  <!-- Share overlay only — removed copy-to-clipboard logic (use browser context menu to copy link) -->
 
 </body>
 </html>

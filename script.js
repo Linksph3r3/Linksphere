@@ -457,3 +457,21 @@ if (first) first.focus();
 /* End of melimtx logic */
 });
 
+* Your original script.js content remains unchanged above this line */
+/* --------------------------------------------------------------- */
+/* NEW — Age Verification (Homepage Only) */
+
+document.getElementById("open-nsfw")?.addEventListener("click", () => {
+document.getElementById("ageModal").style.display = "flex";
+});
+
+document.getElementById("confirmAge")?.addEventListener("click", () => {
+localStorage.setItem("ageVerified", "true");
+window.location.href = "LustSphere.html";
+});
+
+document.getElementById("denyAge")?.addEventListener("click", () => {
+document.getElementById("ageModal").style.display = "none";
+});
+
+

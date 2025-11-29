@@ -431,4 +431,80 @@ Utility helpers
 End of style.css
 ---------------------------- */
 
+/* Category Section */
+.categories {
+text-align: center;
+margin: 2rem auto;
+}
+
+.categories-title {
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+
+.category-grid {
+display: flex;
+justify-content: center;
+gap: 1rem;
+}
+
+.category-tab {
+background: #ff7b00;
+padding: 12px 20px;
+color: #000;
+font-weight: bold;
+border-radius: 8px;
+cursor: pointer;
+text-decoration: none;
+transition: 150ms ease;
+}
+
+.category-tab:hover {
+transform: translateY(-3px);
+}
+
+/* Age Modal */
+.age-modal {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.85);
+display: none;
+justify-content: center;
+align-items: center;
+z-index: 50000;
+}
+
+.age-modal-content {
+background: #1a1a1a;
+padding: 22px;
+border-radius: 12px;
+text-align: center;
+width: 92%;
+max-width: 400px;
+}
+
+.melimtx-wrapper {
+position: relative;
+display: inline-block;
+}
+
+.melimtx-hover-img {
+position: absolute;
+left: 50%;
+top: calc(100% + 8px);
+transform: translateX(-50%) translateY(6px);
+opacity: 0;
+pointer-events: none;
+transition: 160ms ease;
+max-width: 260px;
+border-radius: 8px;
+box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+}
+
+.melimtx-wrapper:hover .melimtx-hover-img {
+opacity: 1;
+transform: translateX(-50%) translateY(0);
+}
+
+
 

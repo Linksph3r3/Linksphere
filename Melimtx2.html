@@ -1,73 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Melimtx Collections – Page 2</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Melimtx Collections – Page 1</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body class="melimtx-page">
 
-<a href="index.html" class="site-home-icon">
-<svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9H6v-9H3z"/></svg>
+<a href="index.html" class="home-btn" aria-label="Home">
+<svg viewBox="0 0 24 24" class="home-icon">
+<path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5z"/>
+</svg>
 </a>
 
-<a href="adult-content.html" class="melimtx-back-btn">
-<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
-</a>
+<button class="back-btn" onclick="history.back()" aria-label="Go Back">
+<svg viewBox="0 0 24 24" class="back-icon">
+<path d="M15 18l-6-6 6-6" />
+</svg>
+</button>
 
 <main>
-<h1 class="page-title">Melimtx – Page 2</h1>
+<h1 class="page-title">Melimtx</h1>
 <div class="section-divider"></div>
 
-<div class="pagination-nav">
-<a href="Melimtx.html" class="prev-btn">← Previous</a>
-<span class="page-indicator">Page 2 of 2</span>
+<!-- ⭐ ROW 1 -->
+<div class="collections" data-row="1">
+<button class="scroll-arrow left-arrow" aria-label="Scroll left">&#10094;</button>
+
+<div class="collections-container" id="row-1">
+<div class="collection-tab" data-link="https://mega.nz/folder/yfZ2AaoQ#zTF7PfZWA76b4xEXkzsOFw">
+<img src="images/melimtx-C1-preview.webp" alt="" /><p>Collection 1</p>
 </div>
 
-<div class="collections">
-<div class="scroll-arrow left-arrow">&#10094;</div>
-
-<div class="collections-container">
-
-<!-- COLLECTIONS 31–60 -->
-<!-- Fill these with new URLs whenever you have them -->
-<!-- Placeholder previews so page loads correctly -->
-
-<!-- Example structure (Collection 31): -->
-<div class="collection-tab" data-link="#">
-<img src="images/placeholder.webp" alt=""><p>Collection 31</p>
+<div class="collection-tab" data-link="https://mega.nz/folder/TfB1yJoK#Syn3y_p-VGQ43D99TPiJ1g">
+<img src="images/MTX-C2-Cover.webp" alt="" /><p>Collection 2</p>
 </div>
 
-<div class="collection-tab" data-link="#">
-<img src="images/placeholder.webp" alt=""><p>Collection 32</p>
+
 </div>
 
-<div class="collection-tab" data-link="#">
-<img src="images/placeholder.webp" alt=""><p>Collection 33</p>
-</div>
-
-<!-- continue until Collection 60 (placeholders pre-created) -->
-
-<!-- I have created 30 empty collection blocks for page 2 -->
-<!-- You can replace links and images later -->
-
-<!-- You can request me to generate all Collection 31–60 blocks with real image names when needed -->
-</div>
-
-<div class="scroll-arrow right-arrow">&#10095;</div>
+<button class="scroll-arrow right-arrow" aria-label="Scroll right">&#10095;</button>
 </div>
 
 <div class="section-divider"></div>
 
-<div class="pagination-nav bottom-nav">
-<a href="Melimtx.html" class="prev-btn">← Previous</a>
-<span class="page-indicator">Page 2 of 2</span>
-</div>
+
 
 </main>
 
+<!-- PAGE NAV FOOTER (fixed bottom center) -->
+<div class="pagination">
+
+<button class="page-number" data-page="1" onclick="goToPage('Melimtx.html')">1</button>
+<button class="page-number" data-page="2" onclick="goToPage('Melimtx2.html')">2</button>
+
+</div>
+
+
+<!-- AD GATE MODAL -->
+<div id="adGate" class="gate-modal" aria-hidden="true">
+<div class="gate-content" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+<button id="gateClose" class="gate-close" aria-label="Close gate">×</button>
+
+<h2 id="gateTitle" class="gate-title">Unlock Collection</h2>
+<p class="gate-desc">Choose one method below to continue</p>
+
+<div class="gate-choice-buttons">
+<button id="chooseAds" class="gate-main-btn" type="button">View 3 Ads</button>
+<button id="chooseVideo" class="gate-main-btn" type="button">Watch 30 Seconds</button>
+</div>
+
+<div id="adsSection" class="gate-section" style="display:none;">
+<h3>Complete All</h3>
+<button class="ad-btn" data-url="https://your-ad-1.com" type="button">View Ad 1</button>
+<button class="ad-btn" data-url="https://your-ad-2.com" type="button">View Ad 2</button>
+<button class="ad-btn" data-url="https://your-ad-3.com" type="button">View Ad 3</button>
+</div>
+
+<div id="videoSection" class="gate-section" style="display:none;">
+
+<button id="muteToggle" class="mute-btn hidden" type="button">Mute: ON</button>
+
+<div id="gateVideoWrapper" style="display:none;">
+<div id="gateVideoPlaceholder"></div>
+</div>
+
+<div id="progressBarWrapper" class="hidden">
+<div id="progressBar"></div>
+</div>
+
+</div>
+
+<button id="gateProceed" class="gate-proceed" disabled type="button">Proceed</button>
+</div>
+</div>
+
 <script src="script.js"></script>
+
+<footer class="site-footer">
+    <p>&copy; 2025 Linksphere. All rights reserved.</p> 
+</footer>
+
+
 </body>
 </html>
 

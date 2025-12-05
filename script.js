@@ -1,477 +1,443 @@
-/* script.js
-Consolidated JS for all pages (Part 2 of 4).
-- Option A: all JS in one file
-- Requires: <script src="https://www.youtube.com/iframe_api"></script> loaded on pages that need video gating
+/* script.js — cleaned, final version
+- Hidden scrollbars (swipe allowed)
+- Arrows (hover desktop / always on mobile)
+- Ad gate: ads or video (locking)
+- Video: random from 3 IDs; mute toggle; countdown starts when PLAYING
+- Visual progress bar; proceed unlocked after 30 real seconds
 */
 
-/* ===== Helpers ===== */
-function $(sel, ctx = document) { return ctx.querySelector(sel); }
-function $all(sel, ctx = document) { return Array.from((ctx || document).querySelectorAll(sel)); }
-function onReady(fn) {
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
-else fn();
+/* ========== CONFIG ========== */
+const REQUIRED_SECONDS = 30;
+const gateVideos = [
+"iYQNU54cM_8",
+"8xUX3D_GxBQ",
+"qRYmz6k3bR8"
+];
+
+/* ========== DOM helpers ========== */
+const $ = (sel, ctx = document) => (ctx || document).querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from((ctx || document).querySelectorAll(sel));
+
+/* ========== Gate element resolver ========== */
+function gate() {
+return {
+modal: document.getElementById('adGate'),
+proceedBtn: document.getElementById('gateProceed'),
+closeBtn: document.getElementById('gateClose'),
+chooseAds: document.getElementById('chooseAds'),
+chooseVideo: document.getElementById('chooseVideo'),
+adsSection: document.getElementById('adsSection'),
+videoSection: document.getElementById('videoSection'),
+adBtns: $$('.ad-btn'),
+muteBtn: document.getElementById('muteToggle'),
+videoWrapper: document.getElementById('gateVideoWrapper'),
+placeholder: document.getElementById('gateVideoPlaceholder'),
+progressBarWrapper: document.getElementById('progressBarWrapper'),
+progressBar: document.getElementById('progressBar'),
+countdownEl: document.getElementById('countdown')
+};
 }
 
-/* ===== Adult Warning Modal (shared across pages) ===== */
-onReady(() => {
-const modal = document.getElementById('adultWarningModal');
-const contBtn = document.getElementById('adult-warning-continue');
-if (!modal) return;
+/* ========== State ========== */
+let state = {
+chosenMethod: null, // 'ads' | 'video' | null
+adsViewed: 0,
+targetLink: null,
+ytPlayer: null,
+watchSeconds: 0,
+watchInterval: null
+};
 
-const KEY = 'linksphere_adult_ack_v1';
-
-function openModal() {
-modal.classList.add('active');
-modal.setAttribute('aria-hidden', 'false');
-contBtn?.focus();
-document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-modal.classList.remove('active');
-modal.setAttribute('aria-hidden', 'true');
-document.body.style.overflow = '';
-}
-
-const acknowledged = localStorage.getItem(KEY);
-if (!acknowledged) openModal();
-
-contBtn?.addEventListener('click', () => {
-localStorage.setItem(KEY, '1');
-closeModal();
-});
-});
-
-/* ===== Index-page adult confirmation modal (index.html only) ===== */
-onReady(() => {
-const modal = document.getElementById('index-adult-modal');
-if (!modal) return;
-
-const proceedBtn = document.getElementById('index-adult-proceed');
-const cancelBtns = modal.querySelectorAll('.modal-close');
-let storedHref = '';
-let lastFocusedEl = null;
-
-function openModal(href) {
-storedHref = href;
-lastFocusedEl = document.activeElement;
-modal.classList.add('active');
-modal.setAttribute('aria-hidden', 'false');
-proceedBtn?.focus();
-document.body.style.overflow = 'hidden';
-}
-function closeModal() {
-modal.classList.remove('active');
-modal.setAttribute('aria-hidden', 'true');
-document.body.style.overflow = '';
-if (lastFocusedEl) lastFocusedEl.focus();
-}
-
-// attach behaviour to adult links on index page that point to adult-content
-const adultBtns = document.querySelectorAll('a.btn.adult-btn[href]');
-adultBtns.forEach(btn => {
-const href = btn.getAttribute('href');
-// Limit to links going to adult-content.html to avoid interfering with other pages
-if (!href || !href.includes('adult-content')) return;
-btn.addEventListener('click', function (e) {
-e.preventDefault();
-openModal(href);
-});
-});
-
-proceedBtn?.addEventListener('click', function () {
-if (!storedHref) return closeModal();
-window.location.href = storedHref;
-});
-
-cancelBtns.forEach(btn => btn.addEventListener('click', () => closeModal()));
-
-modal.addEventListener('click', function (e) {
-if (e.target === modal) closeModal();
-});
-
-document.addEventListener('keydown', function (e) {
-if (e.key === 'Escape' && modal.classList.contains('active')) closeModal();
-});
-});
-
-/* ===== Melimtx page logic (collections + gate + pagination + arrows) ===== */
-onReady(() => {
-// Only run on pages marked as melimtx-page
-if (!document.body.classList.contains('melimtx-page')) {
+/* ========== YT API loader ========== */
+function loadYouTubeApi() {
+return new Promise((resolve, reject) => {
+if (window.YT && typeof window.YT.Player === 'function') return resolve(window.YT);
+if (document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
+// will call onYouTubeIframeAPIReady eventually
+window.onYouTubeIframeAPIReady = () => resolve(window.YT);
 return;
 }
-
-/* Config */
-const REQUIRED_SECONDS = 30; // require 30 seconds watched to unlock
-const GATE_VIDEO_ID_FALLBACK = 'dQw4w9WgXcQ'; // replace with your desired default
-const PAGE_BASE_NAME = 'Melimtx'; // base filename: Melimtx.html -> page1, Melimtx2.html -> page2
-
-/* Utility to parse current page number from filename */
-function getCurrentMelimtxPageNumber() {
-const path = (location.pathname || '').split('/').pop() || '';
-const match = path.match(new RegExp(`^${PAGE_BASE_NAME}(\\d*)\\.html$`, 'i'));
-if (!match) return 1; // fallback if not match
-// match[1] empty means Melimtx.html -> page 1
-return match[1] ? parseInt(match[1], 10) : 1;
+window.onYouTubeIframeAPIReady = () => resolve(window.YT);
+const s = document.createElement('script');
+s.src = "https://www.youtube.com/iframe_api";
+s.async = true;
+s.onerror = () => reject(new Error('YT API load failed'));
+document.head.appendChild(s);
+});
 }
 
-const currentPageNumber = getCurrentMelimtxPageNumber();
-
-/* Create Prev / Next page nav at bottom of main content */
-function createPrevNextNav() {
-const main = document.querySelector('main');
-if (!main) return;
-
-const navWrap = document.createElement('div');
-navWrap.className = 'page-nav';
-navWrap.setAttribute('aria-label', 'Page navigation');
-
-// previous button
-const prevBtn = document.createElement('a');
-prevBtn.className = 'nav-btn';
-prevBtn.textContent = '← Previous';
-prevBtn.href = currentPageNumber > 1
-? (currentPageNumber === 2 ? `${PAGE_BASE_NAME}.html` : `${PAGE_BASE_NAME}${currentPageNumber - 1}.html`)
-: '#';
-if (currentPageNumber === 1) {
-prevBtn.setAttribute('aria-disabled', 'true');
-prevBtn.style.opacity = '0.45';
-prevBtn.addEventListener('click', e => e.preventDefault());
+/* ========== Gate UI helpers ========== */
+function resetGate() {
+const g = gate();
+state.chosenMethod = null;
+state.adsViewed = 0;
+state.targetLink = null;
+state.watchSeconds = 0;
+if (state.watchInterval) { clearInterval(state.watchInterval); state.watchInterval = null; }
+if (state.ytPlayer && state.ytPlayer.destroy) { try { state.ytPlayer.destroy(); } catch(e){} state.ytPlayer = null; }
+// UI reset
+if (g.adsSection) g.adsSection.style.display = 'none';
+if (g.videoSection) g.videoSection.style.display = 'none';
+if (g.videoWrapper) g.videoWrapper.style.display = 'none';
+if (g.progressBarWrapper) g.progressBarWrapper.classList.add('hidden');
+if (g.countdownEl) g.countdownEl.textContent = String(REQUIRED_SECONDS);
+if (g.proceedBtn) { g.proceedBtn.disabled = true; g.proceedBtn.classList.remove('active'); }
+if (g.chooseAds) { g.chooseAds.disabled = false; g.chooseAds.classList.remove('disabled'); }
+if (g.chooseVideo) { g.chooseVideo.disabled = false; g.chooseVideo.classList.remove('disabled'); }
+g.adBtns.forEach(b => { b.classList.remove('viewed'); b.disabled = false; });
+if (g.muteBtn) g.muteBtn.classList.add('hidden');
+if (g.progressBar) g.progressBar.style.width = '0%';
 }
 
-// page label
-const pageLabel = document.createElement('div');
-pageLabel.textContent = `Page ${currentPageNumber}`;
-pageLabel.style.color = '#fff';
-pageLabel.style.fontWeight = '700';
-pageLabel.style.display = 'inline-flex';
-pageLabel.style.alignItems = 'center';
-pageLabel.style.gap = '10px';
-
-// next button
-const nextBtn = document.createElement('a');
-nextBtn.className = 'nav-btn primary';
-nextBtn.textContent = 'Next Page →';
-// next page filename: Melimtx2.html for page 2, Melimtx3.html for page 3, etc.
-const nextPageNum = currentPageNumber + 1;
-nextBtn.href = nextPageNum === 1 ? `${PAGE_BASE_NAME}.html` : `${PAGE_BASE_NAME}${nextPageNum}.html`;
-
-navWrap.appendChild(prevBtn);
-navWrap.appendChild(pageLabel);
-navWrap.appendChild(nextBtn);
-
-main.appendChild(navWrap);
-}
-
-createPrevNextNav();
-
-/* Elements used by gate */
-const gateModal = document.getElementById('gateModal');
-const closeGateBtn = document.getElementById('closeGate');
-const adButtons = $all('.ad-btn');
-const playAdVideoBtn = document.getElementById('playAdVideo');
-const videoWrapper = document.querySelector('.ad-video-wrapper');
-const adIframe = document.getElementById('adgateYoutube');
-const proceedBtn = document.getElementById('proceed-btn');
-
-let currentTargetLink = null;
-let unlockState = { adsViewed: 0, totalAds: 0, videoPlayTime: 0, videoUnlocked: false, unlocked: false };
-let ytPlayer = null;
-let ytTimerInterval = null;
-let ytApiAttached = false;
-
-/* Gate open/close logic */
+/* open gate for a given collection link */
 function openGateForLink(link) {
-if (!gateModal) {
-// fallback: open directly if gate missing
-window.open(link, '_blank', 'noopener');
-return;
-}
-currentTargetLink = link;
-unlockState = { adsViewed: 0, totalAds: 0, videoPlayTime: 0, videoUnlocked: false, unlocked: false };
-// reset UI
-if (proceedBtn) {
-proceedBtn.disabled = true;
-proceedBtn.classList.remove('active');
-proceedBtn.setAttribute('aria-disabled', 'true');
-proceedBtn.innerText = 'Choose an option';
-}
-adButtons.forEach(b => { b.classList.remove('viewed'); b.removeAttribute('data-viewed'); });
-if (videoWrapper) videoWrapper.style.display = 'none';
-if (adIframe) adIframe.setAttribute('src', '');
-unlockState.totalAds = adButtons.length;
-gateModal.classList.add('active');
-gateModal.setAttribute('aria-hidden', 'false');
+const g = gate();
+resetGate();
+state.targetLink = link;
+if (g.modal) { g.modal.classList.add('active'); g.modal.setAttribute('aria-hidden','false'); }
 document.body.style.overflow = 'hidden';
-// focus first interactive control
-if (adButtons && adButtons[0]) adButtons[0].focus();
+if (g.chooseAds) g.chooseAds.focus();
 }
 
+/* close gate */
 function closeGate() {
-gateModal.classList.remove('active');
-gateModal.setAttribute('aria-hidden', 'true');
+const g = gate();
+if (g.modal) { g.modal.classList.remove('active'); g.modal.setAttribute('aria-hidden','true'); }
 document.body.style.overflow = '';
-// cleanup YT player/timers
-if (ytPlayer && typeof ytPlayer.stopVideo === 'function') {
-try { ytPlayer.stopVideo(); } catch (err) {}
-}
-if (ytTimerInterval) { clearInterval(ytTimerInterval); ytTimerInterval = null; }
-unlockState.videoPlayTime = 0;
-unlockState.adsViewed = 0;
-adButtons.forEach(btn => btn.classList.remove('viewed'));
-if (proceedBtn) {
-proceedBtn.disabled = true;
-proceedBtn.classList.remove('active');
-proceedBtn.setAttribute('aria-disabled', 'true');
-proceedBtn.innerText = 'Choose an option';
-}
-currentTargetLink = null;
+if (state.watchInterval) { clearInterval(state.watchInterval); state.watchInterval = null; }
+if (state.ytPlayer && state.ytPlayer.destroy) { try { state.ytPlayer.destroy(); } catch(e){} state.ytPlayer = null; }
+state.chosenMethod = null;
+state.adsViewed = 0;
+state.targetLink = null;
+state.watchSeconds = 0;
 }
 
-closeGateBtn?.addEventListener('click', closeGate);
-gateModal?.addEventListener('click', function (e) {
-if (e.target === gateModal) closeGate();
+/* unlock proceed */
+function unlockProceed() {
+const g = gate();
+if (!g.proceedBtn) return;
+g.proceedBtn.disabled = false;
+g.proceedBtn.classList.add('active');
+console.log('Gate unlocked: proceed enabled');
+}
+
+/* ========== Scroll Arrows & Row behavior ========== */
+function setupRowScrolling() {
+$$('.collections').forEach(row => {
+const left = row.querySelector('.left-arrow');
+const right = row.querySelector('.right-arrow');
+const container = row.querySelector('.collections-container');
+if (!container) return;
+const scrollDistance = Math.max(240, Math.round(container.clientWidth * 0.6));
+
+left?.addEventListener('click', () => {
+container.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
 });
-document.addEventListener('keydown', function (e) {
-if (e.key === 'Escape' && gateModal.classList.contains('active')) closeGate();
+right?.addEventListener('click', () => {
+container.scrollBy({ left: scrollDistance, behavior: 'smooth' });
 });
 
-/* Hook collection tabs: click opens gate */
-const collectionTabs = $all('.collection-tab');
-collectionTabs.forEach(tab => {
-tab.addEventListener('click', function (e) {
-const link = this.dataset.link;
-if (!link) return;
-openGateForLink(link);
+// Keep swipe/drag enabled — do not prevent touchmove
+// Desktop dragging support (optional): enable pointer dragging
+let isDown = false, startX = 0, startScroll = 0;
+container.addEventListener('mousedown', (e) => {
+isDown = true;
+container.classList.add('dragging');
+startX = e.pageX - container.offsetLeft;
+startScroll = container.scrollLeft;
 });
-tab.addEventListener('keydown', function (e) {
-if (e.key === 'Enter' || e.key === ' ') {
+container.addEventListener('mouseleave', () => { isDown = false; container.classList.remove('dragging'); });
+container.addEventListener('mouseup', () => { isDown = false; container.classList.remove('dragging'); });
+container.addEventListener('mousemove', (e) => {
+if (!isDown) return;
 e.preventDefault();
-const link = this.dataset.link;
+const x = e.pageX - container.offsetLeft;
+const walk = (x - startX);
+container.scrollLeft = startScroll - walk;
+});
+});
+}
+
+/* ========== Gate logic wiring ========== */
+function setupGateLogic() {
+const g = gate();
+
+// open gate when a collection-tab clicked
+document.addEventListener('click', (ev) => {
+const tab = ev.target.closest('.collection-tab');
+if (!tab) return;
+ev.preventDefault();
+const link = tab.dataset?.link || tab.getAttribute('data-link');
 if (!link) return;
 openGateForLink(link);
-}
-});
 });
 
-/* Ad buttons logic - open ad link in new tab and mark viewed */
-adButtons.forEach(btn => {
-btn.addEventListener('click', function () {
-const url = this.dataset.url;
-if (!url) return;
+// close
+g.closeBtn?.addEventListener('click', closeGate);
+g.modal?.addEventListener('click', (e) => { if (e.target === g.modal) closeGate(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeGate(); });
+
+// choose ads
+g.chooseAds?.addEventListener('click', () => {
+if (state.chosenMethod) return;
+state.chosenMethod = 'ads';
+g.adsSection.style.display = 'block';
+g.chooseVideo.disabled = true; g.chooseVideo.classList.add('disabled');
+});
+
+// choose video
+g.chooseVideo?.addEventListener('click', async () => {
+if (state.chosenMethod) return;
+state.chosenMethod = 'video';
+g.videoSection.style.display = 'block';
+g.chooseAds.disabled = true; g.chooseAds.classList.add('disabled');
+
+// preload YT API
+try {
+await loadYouTubeApi();
+} catch (err) {
+console.warn('YT API failed to load:', err);
+}
+
+// create a placeholder player only when user explicitly clicks Play (handled below)
+// show Play button by auto creating the player here with autoplay attempt
+createAndPlayRandomVideo();
+});
+
+// ad buttons
+g.adBtns.forEach(btn => {
+btn.addEventListener('click', () => {
+const url = btn.dataset?.url || '#';
 window.open(url, '_blank', 'noopener');
-this.classList.add('viewed');
-this.setAttribute('data-viewed', '1');
-const viewedCount = adButtons.filter(b => b.getAttribute('data-viewed') === '1').length;
-unlockState.adsViewed = viewedCount;
-checkIfUnlocked();
-});
-});
-
-/* Play video flow - sets iframe src and shows player area */
-function showVideoPlayer() {
-if (!videoWrapper || !adIframe) return;
-videoWrapper.style.display = 'block';
-const vid = adIframe.dataset.videoId || GATE_VIDEO_ID_FALLBACK;
-// set iframe src to embed with enablejsapi=1 so we can use YT API
-adIframe.setAttribute('src', `https://www.youtube.com/embed/${vid}?enablejsapi=1&rel=0&playsinline=1`);
-// attach YT API if available; the global onYouTubeIframeAPIReady callback will create the player
-// but we may need to attempt create if API already loaded
-tryAttachYTPlayer();
+if (!btn.classList.contains('viewed')) {
+btn.classList.add('viewed');
+btn.disabled = true;
+state.adsViewed++;
+console.log('Ad viewed, total:', state.adsViewed);
+if (state.adsViewed >= 3) unlockProceed();
 }
-
-playAdVideoBtn?.addEventListener('click', function () {
-showVideoPlayer();
-// focus iframe for keyboard users
-adIframe && adIframe.focus();
+});
 });
 
-/* Proceed button - opens the collection when unlocked */
-proceedBtn?.addEventListener('click', function () {
-if (!currentTargetLink) return;
-if (!proceedBtn.classList.contains('active')) return;
-window.open(currentTargetLink, '_blank', 'noopener');
+// proceed
+g.proceedBtn?.addEventListener('click', () => {
+if (g.proceedBtn.disabled) return;
+if (!state.targetLink) return;
+window.open(state.targetLink, '_blank', 'noopener');
 closeGate();
 });
 
-function checkIfUnlocked() {
-if (unlockState.unlocked) return true;
-if (unlockState.videoUnlocked || (unlockState.videoPlayTime >= REQUIRED_SECONDS)) {
-unlockState.unlocked = true;
+// keyboard proceed when enabled
+document.addEventListener('keydown', (ev) => {
+if (!g.modal || !g.modal.classList.contains('active')) return;
+if ((ev.key === 'Enter' || ev.key === ' ') && g.proceedBtn && !g.proceedBtn.disabled) {
+g.proceedBtn.click();
 }
-if (unlockState.totalAds > 0 && unlockState.adsViewed >= unlockState.totalAds) {
-unlockState.unlocked = true;
+});
 }
-if (unlockState.unlocked) {
-if (proceedBtn) {
-proceedBtn.disabled = false;
-proceedBtn.classList.add('active');
-proceedBtn.setAttribute('aria-disabled', 'false');
-proceedBtn.innerText = 'Proceed to collection';
-}
-return true;
-} else {
-if (proceedBtn) {
-proceedBtn.disabled = true;
-proceedBtn.classList.remove('active');
-proceedBtn.setAttribute('aria-disabled', 'true');
-proceedBtn.innerText = 'Choose an option';
-}
-return false;
+
+/* ========== YouTube player creation + controls ========== */
+async function createAndPlayRandomVideo() {
+const g = gate();
+// ensure placeholder cleared
+g.placeholder.innerHTML = '';
+g.videoWrapper.style.display = 'block';
+g.muteBtn.classList.add('hidden');
+
+// pick random ID
+const vid = gateVideos[Math.floor(Math.random() * gateVideos.length)];
+console.log('Selected gate video ID:', vid);
+
+// Create YT player
+if (!(window.YT && typeof window.YT.Player === 'function')) {
+// If API didn't load for some reason, inject and wait
+try {
+await loadYouTubeApi();
+} catch (err) {
+console.warn('YT API load failed (fallback embed will be used):', err);
+// fallback to direct embed iframe (may not allow programmatic state detection)
+g.placeholder.innerHTML = `<iframe width="100%" height="260" src="https://www.youtube.com/embed/${vid}?rel=0&playsinline=1&autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+g.progressBarWrapper.classList.remove('hidden');
+startFallbackProgress(); // start best-effort timer (since we can't detect PLAY)
+return;
 }
 }
 
-/* ===== YouTube IFrame API Integration ===== */
-// Called by YouTube API when it's ready
-window.onYouTubeIframeAPIReady = function () {
-// Only create a player if the gate iframe exists and its src includes enablejsapi=1
-const frame = document.getElementById('adgateYoutube');
-if (!frame) return;
-// Avoid creating multiple players
-if (ytApiAttached) return;
-try {
-ytPlayer = new YT.Player('adgateYoutube', {
+// create player instance bound to placeholder
+state.ytPlayer = new YT.Player(g.placeholder, {
+height: '260',
+width: '100%',
+videoId: vid,
+playerVars: {
+autoplay: 1,
+rel: 0,
+playsinline: 1,
+modestbranding: 1
+},
 events: {
-onReady: function () { /* player ready */ },
-onStateChange: onPlayerStateChange
+onReady: (ev) => {
+console.log('YT ready, attempting play');
+try { ev.target.playVideo(); } catch (e) { console.warn('play attempt failed', e); }
+// show mute toggle (default set to muted for autoplay reliability)
+try { ev.target.mute(); } catch(e) {}
+if (g.muteBtn) {
+g.muteBtn.classList.remove('hidden');
+g.muteBtn.textContent = 'Mute: ON';
+}
+},
+onStateChange: (e) => {
+console.log('YT state change:', e.data);
+// PLAYING = 1, PAUSED = 2, ENDED = 0, BUFFERING = 3, UNSTARTED = -1
+if (e.data === YT.PlayerState.PLAYING) {
+console.log('Playback started: counting real seconds');
+startWatchCounting();
+} else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.BUFFERING) {
+console.log('Playback paused/buffering: pausing count');
+pauseWatchCounting();
+} else if (e.data === YT.PlayerState.ENDED) {
+console.log('Video ended');
+// if user already accumulated required seconds, unlock
+if (state.watchSeconds >= REQUIRED_SECONDS) unlockProceed();
+pauseWatchCounting();
+}
+}
 }
 });
-ytApiAttached = true;
-} catch (err) {
-// fail gracefully — the iframe embed may still play, but we may not track time precisely
-console.warn('YT player attach failed:', err);
-}
-};
 
-function tryAttachYTPlayer() {
-// If API already loaded, attach immediately
-if (window.YT && typeof window.YT.Player === 'function' && !ytApiAttached) {
+// mute toggle
+const gMute = g.muteBtn;
+if (gMute) {
+gMute.classList.remove('hidden');
+gMute.addEventListener('click', () => {
+if (!state.ytPlayer) return;
 try {
-ytPlayer = new YT.Player('adgateYoutube', {
-events: { onReady: function () {}, onStateChange: onPlayerStateChange }
+if (state.ytPlayer.isMuted()) {
+state.ytPlayer.unMute();
+gMute.textContent = 'Mute: OFF';
+console.log('User unmuted video');
+} else {
+state.ytPlayer.mute();
+gMute.textContent = 'Mute: ON';
+console.log('User muted video');
+}
+} catch (err) { console.warn('Mute toggle error', err); }
 });
-ytApiAttached = true;
-} catch (err) {
-// ignore
 }
-}
-// Otherwise, if API not loaded, the global callback (onYouTubeIframeAPIReady) will create the player
 }
 
-function onPlayerStateChange(e) {
-// YT state: 1 = playing, 2 = paused, 0 = ended
-const state = e.data;
-if (state === YT?.PlayerState?.PLAYING || state === 1) {
-// start timer (1s ticks)
-if (ytTimerInterval) clearInterval(ytTimerInterval);
-ytTimerInterval = setInterval(() => {
-unlockState.videoPlayTime += 1;
-if (unlockState.videoPlayTime >= REQUIRED_SECONDS) {
-unlockState.videoUnlocked = true;
-checkIfUnlocked();
-clearInterval(ytTimerInterval);
-ytTimerInterval = null;
+/* start counting only while video actually plays */
+function startWatchCounting() {
+const g = gate();
+if (state.watchInterval) return; // already counting
+state.watchInterval = setInterval(() => {
+state.watchSeconds++;
+const remaining = Math.max(0, REQUIRED_SECONDS - state.watchSeconds);
+if (g.countdownEl) g.countdownEl.textContent = String(remaining);
+if (g.progressBar) g.progressBar.style.width = ((state.watchSeconds / REQUIRED_SECONDS) * 100) + '%';
+console.log('Watched seconds:', state.watchSeconds);
+if (state.watchSeconds >= REQUIRED_SECONDS) {
+clearInterval(state.watchInterval);
+state.watchInterval = null;
+unlockProceed();
 }
 }, 1000);
-} else if (state === YT?.PlayerState?.PAUSED || state === 2) {
-if (ytTimerInterval) {
-clearInterval(ytTimerInterval);
-ytTimerInterval = null;
 }
-} else if (state === YT?.PlayerState?.ENDED || state === 0) {
-unlockState.videoUnlocked = true;
-checkIfUnlocked();
-if (ytTimerInterval) { clearInterval(ytTimerInterval); ytTimerInterval = null; }
+
+/* pause counting */
+function pauseWatchCounting() {
+if (state.watchInterval) {
+clearInterval(state.watchInterval);
+state.watchInterval = null;
 }
 }
 
-/* Note: If API can't be used due to cross-origin, timer fallback is limited. The implementation above
-is the recommended approach for reliable play-time tracking. */
-
-/* ===== Scroll arrows wiring (per collections section) ===== */
-function wireArrowsForSection(section) {
-const left = section.querySelector('.left-arrow');
-const right = section.querySelector('.right-arrow');
-const container = section.querySelector('.collections-container');
-if (!container) return;
-
-function scrollAmount(dir) {
-const amount = Math.max(container.clientWidth * 0.8, 300);
-container.scrollBy({ left: dir * amount, behavior: 'smooth' });
+/* fallback if API not available — best-effort countdown */
+function startFallbackProgress() {
+const g = gate();
+if (state.watchInterval) return;
+let elapsed = 0;
+g.progressBarWrapper.classList.remove('hidden');
+state.watchInterval = setInterval(() => {
+elapsed++;
+state.watchSeconds = elapsed;
+const remaining = Math.max(0, REQUIRED_SECONDS - elapsed);
+if (g.countdownEl) g.countdownEl.textContent = String(remaining);
+if (g.progressBar) g.progressBar.style.width = ((elapsed / REQUIRED_SECONDS) * 100) + '%';
+console.log('Fallback watched seconds (est):', elapsed);
+if (elapsed >= REQUIRED_SECONDS) {
+clearInterval(state.watchInterval);
+state.watchInterval = null;
+unlockProceed();
+}
+}, 1000);
 }
 
-left?.addEventListener('click', () => scrollAmount(-1));
-right?.addEventListener('click', () => scrollAmount(1));
-// keyboard support
-left?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollAmount(-1); } });
-right?.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollAmount(1); } });
-}
+/* ========== Init on DOM ready ========== */
+document.addEventListener('DOMContentLoaded', () => {
+setupRowScrolling();
+setupGateLogic();
 
-const collectionSections = document.querySelectorAll('section.collections');
-collectionSections.forEach(sec => wireArrowsForSection(sec));
-
-/* ===== Page-controls handling (if present on the page, toggles containers) ===== */
-const pageButtons = $all('.page-controls .page-btn');
-const containers = $all('.collections-container');
-
-if (pageButtons.length && containers.length) {
-pageButtons.forEach(btn => {
-btn.addEventListener('click', function () {
-const targetPage = this.dataset.targetPage;
-if (!targetPage) return;
-pageButtons.forEach(b => {
-const active = b === this;
-b.classList.toggle('active', active);
-b.setAttribute('aria-pressed', active ? 'true' : 'false');
-});
-containers.forEach(c => {
-if (c.classList.contains(`page-${targetPage}`)) {
-c.classList.remove('hidden');
-c.setAttribute('aria-hidden', 'false');
-c.scrollTo({ left: 0, behavior: 'smooth' });
-} else {
-c.classList.add('hidden');
-c.setAttribute('aria-hidden', 'true');
-}
-});
-});
-});
-// initial state: show page-1, hide others
-containers.forEach(c => {
-if (c.classList.contains('page-1')) { c.classList.remove('hidden'); c.setAttribute('aria-hidden', 'false'); }
-else { c.classList.add('hidden'); c.setAttribute('aria-hidden', 'true'); }
-});
-}
-
-/* ===== Accessibility: ensure keyboard focus stays inside gate modal when open (basic trap) ===== */
-document.addEventListener('focus', function (ev) {
-if (!gateModal || !gateModal.classList.contains('active')) return;
-// if focus is outside the modal, bring it back to the modal
-if (!gateModal.contains(ev.target)) {
-// focus first interactive element
-const first = gateModal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-if (first) first.focus();
-}
-}, true);
-
-/* End of melimtx logic */
+// ensure arrows visibility rule: hover shows arrows on desktop; media query handles mobile always-on
+// no extra JS needed for arrow visibility
 });
 
-* Your original script.js content remains unchanged above this line */
-/* --------------------------------------------------------------- */
-/* NEW — Age Verification (Homepage Only) */
+document.addEventListener("DOMContentLoaded", () => {
+const nsfwBtn = document.getElementById("open-nsfw");
+const ageModal = document.getElementById("ageModal");
+const confirmAge = document.getElementById("confirmAge");
+const denyAge = document.getElementById("denyAge");
 
-document.getElementById("open-nsfw")?.addEventListener("click", () => {
-document.getElementById("ageModal").style.display = "flex";
+// When clicking NSFW -> open modal
+nsfwBtn.addEventListener("click", () => {
+ageModal.style.display = "flex";
 });
 
-document.getElementById("confirmAge")?.addEventListener("click", () => {
-localStorage.setItem("ageVerified", "true");
+// Confirm age -> go to Lustsphere
+confirmAge.addEventListener("click", () => {
 window.location.href = "LustSphere.html";
 });
 
-document.getElementById("denyAge")?.addEventListener("click", () => {
-document.getElementById("ageModal").style.display = "none";
+// Cancel -> close modal
+denyAge.addEventListener("click", () => {
+ageModal.style.display = "none";
+});
 });
 
+function goToPage(page) {
+window.location.href = page;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+const currentFile = window.location.pathname.split("/").pop();
+
+// Map your pages
+const pages = [
+"Melimtx.html", 
+"Melimtx2.html", 
+];
+
+const currentIndex = pages.indexOf(currentFile);
+const currentPageNumber = currentIndex + 1;
+
+// Highlight active page number
+document.querySelectorAll(".page-number").forEach(btn => {
+if (parseInt(btn.dataset.page) === currentPageNumber) {
+btn.classList.add("active");
+}
+});
+
+// Set page text
+document.querySelector(".current-page").textContent =
+`Page ${currentPageNumber}`;
+
+// Set Prev button
+document.getElementById("prevPage").onclick = () => {
+if (currentIndex > 0) goToPage(pages[currentIndex - 1]);
+};
+
+// Set Next button
+document.getElementById("nextPage").onclick = () => {
+if (currentIndex < pages.length - 1) goToPage(pages[currentIndex + 1]);
+};
+});
 

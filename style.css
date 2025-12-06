@@ -612,4 +612,24 @@ height: 26px;
 }
 }
 
+/* Make Ad Banners responsive*/
+
+/* Universal responsive ad container */
+.ad-container {
+width: 100%;
+display: flex;
+justify-content: center; /* Centers all banner sizes */
+align-items: center;
+margin: 15px 0;
+}
+
+/* Make the ad itself responsive */
+.ad-container iframe,
+.ad-container img {
+max-width: 100%;
+height: auto;
+display: block;
+}
+
+
 

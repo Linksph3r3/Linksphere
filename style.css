@@ -470,4 +470,20 @@ color: #ffffff;
    background: #ff7b00;
    color: #ffffff;
     padding:20px;
+
+}
+
+/*Ads*/
+
+.ad-banner {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.ad-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
 }

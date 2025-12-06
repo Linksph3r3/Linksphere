@@ -638,6 +638,29 @@ height: auto;
 display: block;
 }
 
+/*Horizontal Scrolling*/
+
+/* Horizontal scroll container */
+.horizontal-scroll {
+display: flex;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+scroll-behavior: smooth;
+gap: 10px;
+}
+
+/* Make sure items never shrink */
+.horizontal-scroll > * {
+flex-shrink: 0;
+}
+
+/* Optional: hide scrollbar on mobile */
+.horizontal-scroll::-webkit-scrollbar {
+display: none;
+}
+
+
 
 
 

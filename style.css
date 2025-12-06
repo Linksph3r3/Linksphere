@@ -487,3 +487,20 @@ justify-content: center;
 align-items: center;
 width: 100%;
 }
+
+/* Force 728x90 JuicyAds banners to center */
+.ad-wrapper ins[style*="728"] {
+margin: 0 auto !important;
+display: block !important;
+text-align: center !important;
+}
+
+/* Extra safety for any stubborn wide banners */
+ins.juicyads_728x90,
+ins[data-ad-width="728"] {
+margin-left: auto !important;
+margin-right: auto !important;
+display: block !important;
+text-align: center !important;
+}
+

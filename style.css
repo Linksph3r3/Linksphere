@@ -687,5 +687,32 @@ padding-bottom: 150px !important;
 }
 }
 
+/* MOBILE PAGINATION FIX — NORMAL FLOW, NOT FIXED */
+@media (max-width: 768px) {
+
+.pagination {
+display: flex;
+justify-content: center;
+margin: 40px auto;
+position: static !important; /* Not sticking */
+bottom: auto;
+left: auto;
+transform: none;
+z-index: 10;
+}
+
+/* Prevent footer from overlapping pagination */
+footer, .site-footer {
+position: static !important;
+}
+
+/* Add extra space above footer so pagination is visible */
+.pagination + footer,
+.pagination + .site-footer {
+margin-top: 40px !important;
+}
+}
+
+
 
 

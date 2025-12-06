@@ -525,10 +525,25 @@ overflow-x: hidden;
 }
 
 /* Make containers adapt smoothly */
-main, .collections-container, .ad-wrapper, .category-grid {
+
+* Remove wrapping from layout containers */
+main, .ad-wrapper, .category-grid {
 width: 100%;
 max-width: 100%;
-flex-wrap: wrap;
+}
+
+/* Collections MUST stay horizontal always */
+.collections-container {
+flex-wrap: nowrap !important;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+-webkit-overflow-scrolling: touch;
+}
+
+/* Keep scroll items from shrinking */
+.collections-container > * {
+flex-shrink: 0;
 }
 
 /* COLLECTION TABS – scale on small screens */
@@ -632,4 +647,5 @@ max-width: 100%;
 height: auto;
 display: block;
 }
+
 

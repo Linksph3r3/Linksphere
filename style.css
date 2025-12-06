@@ -504,6 +504,13 @@ display: block !important;
 text-align: center !important;
 }
 
+@media (max-width: 768px) {
+.horizontal-scroll {
+width: 100%;
+overflow-x: scroll;
+}
+}
+
 /* Makes Site Format Friendly*/
 
 /* ------------------------------- */
@@ -630,6 +637,7 @@ max-width: 100%;
 height: auto;
 display: block;
 }
+
 
 
 

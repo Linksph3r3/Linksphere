@@ -647,9 +647,19 @@ max-width: 100%;
 height: auto;
 display: block;
 }
-
-main{ 
-    padding-bottom:120px;
-}
     
+@media (max-width: 768px) {
+.pagination {
+display: flex !important;
+}
+
+footer {
+position: static !important;
+}
+
+main {
+padding-bottom: 120px;
+}
+}
+
 

@@ -662,4 +662,30 @@ padding-bottom: 120px;
 }
 }
 
+/* FIX PAGINATION ON MOBILE */
+@media (max-width: 768px) {
+
+/* Make sure pagination shows */
+.pagination {
+display: flex !important;
+position: fixed;
+bottom: 15px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 99999;
+}
+
+/* Ensure footer doesn't cover pagination */
+footer,
+.site-footer {
+position: static !important;
+}
+
+/* Add space so page content doesn't overlap pagination */
+main {
+padding-bottom: 150px !important;
+}
+}
+
+
 

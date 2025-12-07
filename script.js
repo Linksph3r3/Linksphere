@@ -497,3 +497,51 @@ tabs.forEach(tab => tab.classList.remove("mobile-preview"));
 
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+
+// Detect mobile / touch devices
+const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+if (!isTouch) return; // Desktop does NOT use tap logic
+
+const wrappers = document.querySelectorAll(".melimtx-wrapper");
+
+wrappers.forEach(wrapper => {
+
+let tapCount = 0;
+const link = wrapper.dataset.link;
+
+wrapper.addEventListener("click", function (e) {
+
+tapCount++;
+
+// First tap → show preview only
+if (tapCount === 1) {
+wrapper.classList.add("active");
+e.preventDefault(); // stop navigation
+return;
+}
+
+// Second tap → go to page
+if (tapCount === 2) {
+wrapper.classList.remove("active");
+
+if (link) {
+window.location.href = link;
+}
+
+tapCount = 0;
+}
+});
+
+// Tap outside closes preview + resets
+document.addEventListener("click", function (event) {
+if (!wrapper.contains(event.target)) {
+wrapper.classList.remove("active");
+tapCount = 0;
+}
+});
+
+});
+});
+

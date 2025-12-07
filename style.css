@@ -735,3 +735,23 @@ z-index: 99999;
 opacity: 1;
 visibility: visible;
 }
+
+/*Mlemitx Preview Fix*/
+
+.melimtx-preview {
+opacity: 0;
+transform: translateY(10px);
+transition: .2s;
+}
+
+.melimtx-wrapper.active .melimtx-preview {
+opacity: 1;
+transform: translateY(0);
+}
+
+@media (hover: hover) {
+.melimtx-wrapper:hover .melimtx-preview {
+opacity: 1;
+transform: translateY(0);
+}
+}

@@ -464,4 +464,49 @@ if (w !== wrapper) w.classList.remove("active");
 });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+
+// Detect mobile/touch device
+const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+
+if (isTouch) {
+document.querySelectorAll(".melimtx-wrapper").forEach(wrapper => {
+
+let tapCount = 0;
+
+wrapper.addEventListener("click", function (e) {
+tapCount++;
+
+// First tap → show preview image
+if (tapCount === 1) {
+wrapper.classList.add("active");
+e.stopPropagation();
+return;
+}
+
+// Second tap → open ad gate
+if (tapCount === 2) {
+wrapper.classList.remove("active");
+
+const gate = document.querySelector(".gate-modal");
+if (gate) {
+gate.classList.add("active");
+}
+
+tapCount = 0;
+}
+});
+
+// Tap outside hides preview
+document.addEventListener("click", function () {
+wrapper.classList.remove("active");
+tapCount = 0;
+});
+
+});
+}
+
+});
+
+
 

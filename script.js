@@ -508,5 +508,58 @@ tapCount = 0;
 
 });
 
+/* ========== MOBILE TAP PREVIEW + SECOND TAP OPENS GATE (FINAL) ========== */
+document.addEventListener("DOMContentLoaded", () => {
+
+// Detect mobile/touch device only
+const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+if (!isTouch) return;
+
+const wrappers = document.querySelectorAll(".melimtx-wrapper");
+
+wrappers.forEach(wrapper => {
+const tab = wrapper.querySelector(".category-tab"); // actual clickable link
+let tapped = false;
+let tapTimer = null;
+
+wrapper.addEventListener("click", function (e) {
+
+// FIRST TAP → show preview
+if (!tapped) {
+e.preventDefault(); // block gate from opening
+tapped = true;
+wrapper.classList.add("active"); // show image
+
+// allow second tap for 1.2 seconds
+tapTimer = setTimeout(() => {
+tapped = false;
+}, 1200);
+
+return;
+}
+
+// SECOND TAP → open gate
+if (tapped) {
+e.preventDefault();
+tapped = false;
+clearTimeout(tapTimer);
+wrapper.classList.remove("active");
+
+// Trigger the gate the same way as desktop click
+if (tab && tab.dataset.link) {
+openGateForLink(tab.dataset.link);
+}
+}
+});
+});
+
+// tap outside → hide all previews
+document.addEventListener("click", function (e) {
+wrappers.forEach(w => w.classList.remove("active"));
+});
+
+});
+
+
 
 

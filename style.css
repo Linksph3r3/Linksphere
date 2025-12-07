@@ -730,3 +730,8 @@ display: none !important;
 z-index: 99999;
 }
 
+/* Mobile preview state */
+.collection-tab.mobile-preview + img {
+opacity: 1;
+visibility: visible;
+}

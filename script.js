@@ -441,3 +441,59 @@ if (currentIndex < pages.length - 1) goToPage(pages[currentIndex + 1]);
 };
 });
 
+/* ========== MOBILE TAP PREVIEW on .collection-tab ONLY (FINAL) ========== */
+document.addEventListener("DOMContentLoaded", () => {
+
+// Detect real touch device only
+const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+if (!isTouch) return;
+
+const tabs = document.querySelectorAll(".collection-tab");
+
+tabs.forEach(tab => {
+let tapped = false;
+let timer = null;
+
+tab.addEventListener("click", function (e) {
+
+// FIRST TAP → show preview image
+if (!tapped) {
+e.preventDefault();
+tapped = true;
+
+// Add hover-active class to show preview
+tab.classList.add("mobile-preview");
+
+// Reset if second tap does not occur fast enough
+timer = setTimeout(() => {
+tapped = false;
+tab.classList.remove("mobile-preview");
+}, 1200);
+
+return;
+}
+
+// SECOND TAP → open gate
+if (tapped) {
+e.preventDefault();
+tapped = false;
+clearTimeout(timer);
+tab.classList.remove("mobile-preview");
+
+// Trigger the ad gate properly
+if (typeof openGateForLink === "function") {
+openGateForLink(tab.getAttribute("href"));
+}
+}
+});
+});
+
+// Tap outside to hide preview
+document.addEventListener("click", function (e) {
+if (!e.target.classList.contains("collection-tab")) {
+tabs.forEach(tab => tab.classList.remove("mobile-preview"));
+}
+});
+
+});
+

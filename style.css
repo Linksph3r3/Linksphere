@@ -731,11 +731,11 @@ z-index: 99999;
 }
 
 /* Show image on hover */
-.melimtx-wrapper:hover .melimtx-hover-img {
+.collection-tab:hover .collection-tab:hover {
 display: block !important;
 }
 
 /* Mobile tap effect */
-.melimtx-wrapper.active .melimtx-hover-img {
+.collection-tab.active .collection-tab.active {
 display: block !important;
 }

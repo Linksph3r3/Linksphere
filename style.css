@@ -713,25 +713,25 @@ margin-top: 40px !important;
 }
 }
 
-/* Restore Melimtx hover preview image size */
+/*Preview Pic*/
+
+/* FORCE Melimtx preview image to original size */
 .melimtx-hover-img {
-width: 300px; /* change this to the original width */
-height: auto; /* keeps proportions */
+width: 320px !important; /* adjust this to the original size */
+height: auto !important;
+max-width: none !important;
+max-height: none !important;
+
 position: absolute;
-top: 100%;
+top: 110%;
 left: 50%;
 transform: translateX(-50%);
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.25s ease-in-out;
+display: none !important;
+z-index: 99999;
 }
 
-/* Reveal on hover */
+/* Show image on hover */
 .melimtx-wrapper:hover .melimtx-hover-img {
-opacity: 1;
+display: block !important;
 }
-
-
-
-
 

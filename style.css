@@ -730,12 +730,3 @@ display: none !important;
 z-index: 99999;
 }
 
-/* Show image on hover */
-.collection-tab:hover .collection-tab:hover {
-display: block !important;
-}
-
-/* Mobile tap effect */
-.collection-tab.active .collection-tab.active {
-display: block !important;
-}

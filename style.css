@@ -713,6 +713,25 @@ margin-top: 40px !important;
 }
 }
 
+/* Restore Melimtx hover preview image size */
+.melimtx-hover-img {
+width: 300px; /* change this to the original width */
+height: auto; /* keeps proportions */
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.25s ease-in-out;
+}
+
+/* Reveal on hover */
+.melimtx-wrapper:hover .melimtx-hover-img {
+opacity: 1;
+}
+
+
 
 
 

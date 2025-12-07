@@ -441,3 +441,27 @@ if (currentIndex < pages.length - 1) goToPage(pages[currentIndex + 1]);
 };
 });
 
+// Mobile tap hover simulation
+document.addEventListener("DOMContentLoaded", () => {
+const wrappers = document.querySelectorAll(".melimtx-wrapper");
+
+wrappers.forEach(wrapper => {
+wrapper.addEventListener("click", function (e) {
+
+// Prevent link from opening on first tap
+if (!this.classList.contains("active")) {
+e.preventDefault();
+}
+
+// Toggle preview image
+this.classList.toggle("active");
+
+// Close all other previews
+wrappers.forEach(w => {
+if (w !== wrapper) w.classList.remove("active");
+});
+});
+});
+});
+
+

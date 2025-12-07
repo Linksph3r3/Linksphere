@@ -735,3 +735,7 @@ z-index: 99999;
 display: block !important;
 }
 
+/* Mobile tap effect */
+.melimtx-wrapper.active .melimtx-hover-img {
+display: block !important;
+}

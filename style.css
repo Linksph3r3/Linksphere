@@ -730,28 +730,30 @@ display: none !important;
 z-index: 99999;
 }
 
-/* Mobile preview state */
-.collection-tab.mobile-preview + img {
-opacity: 1;
-visibility: visible;
+.melimtx-hover-img{
+    display: none;
+    width: 100%;
+    margin-top: 10px;
 }
 
-/*Mlemitx Preview Fix*/
-
-.melimtx-preview {
-opacity: 0;
-transform: translateY(10px);
-transition: .2s;
+.melimtx-wrapper:hover .melimtx-hover-img {
+    display: block;
 }
 
-.melimtx-wrapper.active .melimtx-preview {
-opacity: 1;
-transform: translateY(0);
+/* Melimtx.html Fixes */
+.melimtx-wrapper {
+position: relative;
+display: inline-block;
+cursor: pointer;
 }
 
-@media (hover: hover) {
-.melimtx-wrapper:hover .melimtx-preview {
-opacity: 1;
-transform: translateY(0);
+.melimtx-hover-img {
+display: none;
+width: 100%;
+margin-top: 10px;
 }
+
+.melimtx-wrapper:hover .melimtx-hover-img {
+display: block !important;
 }
+

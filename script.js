@@ -545,3 +545,31 @@ tapCount = 0;
 });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+const melimtxWrapper = document.querySelector(".melimtx-wrapper");
+const preview = melimtxWrapper.querySelector(".melimtx-hover-img");
+
+let tappedOnce = false;
+
+melimtxWrapper.addEventListener("click", (e) => {
+// Detect mobile (no hover capability)
+const isMobile = matchMedia("(hover: none)").matches;
+
+if (!isMobile) return; // desktop uses hover only
+
+if (!tappedOnce) {
+// First tap → show preview
+preview.style.display = "block";
+tappedOnce = true;
+
+// Reset tap after 2 seconds if user doesn't tap again
+setTimeout(() => tappedOnce = false, 2000);
+
+e.preventDefault();
+} else {
+// Second tap → go to page
+window.location.href = melimtxWrapper.dataset.link;
+}
+});
+});
+

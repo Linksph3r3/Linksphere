@@ -578,23 +578,21 @@ document.addEventListener("DOMContentLoaded", () => {
 const hash = window.location.hash;
 
 // No hash → exit
-if (!hash || !hash.startsWith("#melimtx-c")) return;
-
-const tab = document.querySelector(hash);
-if (!tab) return;
+if (!hash || !hash.startsWith("#melimtx-c"))  {
+    setTimeout(() =>{
+        openGateModal();
+    }, 300);    
+    }
+});
 
 // Scroll into view smoothly
 tab.scrollIntoView({ behavior: "smooth", block: "center" });
 
 // Small highlight effect
 tab.style.transition = "box-shadow 0.3s ease";
-tab.style.boxShadow = "0 0 15px 5px rgba(255, 174, 0, 0.6)";
+tab.style.boxShadow = "0 0 15px 5px rgba(255, 255, 255, 0.6)";
 setTimeout(() => {
 tab.style.boxShadow = "none";
 }, 1500);
 
-// Automatically open gate for this tab
-pendingRedirect = tab.dataset.link;
-openGateModal();
-});
 

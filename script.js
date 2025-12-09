@@ -588,7 +588,7 @@ tab.scrollIntoView({ behavior: "smooth", block: "center" });
 
 // Small highlight effect
 tab.style.transition = "box-shadow 0.3s ease";
-tab.style.boxShadow = "0 0 15px 5px rgba(255, 0, 0, 0.6)";
+tab.style.boxShadow = "0 0 15px 5px rgba(255, 174, 0, 0.6)";
 setTimeout(() => {
 tab.style.boxShadow = "none";
 }, 1500);
@@ -598,3 +598,30 @@ pendingRedirect = tab.dataset.link;
 openGateModal();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+
+// Check if URL contains a collection hash
+const hash = window.location.hash;
+
+if (hash && hash.startsWith("#collection")) {
+// Force popup
+setTimeout(() => {
+openGateModal();
+}, 300); // slight delay to allow scroll
+}
+
+});
+
+function openGateModal() {
+const gateModal = document.getElementById("gateModal");
+if (!gateModal) return;
+
+gateModal.style.display = "flex";
+document.body.style.overflow = "hidden"; // prevent scrolling
+}
+
+document.getElementById("gateConfirm")?.addEventListener("click", () => {
+const gateModal = document.getElementById("gateModal");
+gateModal.style.display = "none";
+document.body.style.overflow = "";
+});

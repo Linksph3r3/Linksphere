@@ -1,10 +1,3 @@
-/* script.js — cleaned, final version
-- Hidden scrollbars (swipe allowed)
-- Arrows (hover desktop / always on mobile)
-- Ad gate: ads or video (locking)
-- Video: random from 3 IDs; mute toggle; countdown starts when PLAYING
-- Visual progress bar; proceed unlocked after 30 real seconds
-*/
 
 /* ========== CONFIG ========== */
 const REQUIRED_SECONDS = 30;
@@ -577,22 +570,36 @@ window.location.href = melimtxWrapper.dataset.link;
 document.addEventListener("DOMContentLoaded", () => {
 const hash = window.location.hash;
 
-// No hash → exit
-if (!hash || !hash.startsWith("#melimtx-c"))  {
-    setTimeout(() =>{
-        openGateModal();
-    }, 300);    
-    }
+// If no hash → do nothing
+if (!hash || !hash.startsWith("#melimtx-c")) return;
+
+// Find the collection tab that matches the hash
+const tab = document.querySelector(hash);
+
+if (!tab) return;
+
+// Scroll to the tab after DOM fully loads
+setTimeout(() => {
+tab.scrollIntoView({
+behavior: "smooth",
+block: "center"
 });
 
-// Scroll into view smoothly
-tab.scrollIntoView({ behavior: "smooth", block: "center" });
-
-// Small highlight effect
+// Highlight it
 tab.style.transition = "box-shadow 0.3s ease";
-tab.style.boxShadow = "0 0 15px 5px rgba(255, 255, 255, 0.6)";
+tab.style.boxShadow = "0 0 15px 5px rgba(255,255,255,0.6)";
 setTimeout(() => {
 tab.style.boxShadow = "none";
 }, 1500);
+
+// **IMPORTANT:** Trigger the ad gate
+if (typeof openGateForLink === "function") {
+const link = tab.dataset.link;
+if (link) openGateForLink(link);
+}
+
+}, 400); // delay ensures scroll happens before gate opens
+});
+
 
 

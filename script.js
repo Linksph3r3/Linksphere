@@ -407,6 +407,7 @@ const currentFile = window.location.pathname.split("/").pop();
 const pages = [
 "Melimtx.html", 
 "Melimtx2.html", 
+"Melmitx3.html"
 ];
 
 const currentIndex = pages.indexOf(currentFile);

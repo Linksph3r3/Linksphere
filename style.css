@@ -257,7 +257,7 @@ width: 100%;
 }
 
 /* Wrapper around the button + hover image */
-.melimtx-wrapper {
+.collections-wrapper {
 position: relative;
 display: flex;
 justify-content: center;
@@ -289,7 +289,7 @@ font-style: italic;
 }
 
 /* Hidden preview image */
-.melimtx-hover-img {
+.collections-hover-img {
 position: absolute;
 top: 110%; /* places image below the button */
 left: 50%;
@@ -301,7 +301,7 @@ z-index: 9999;
 }
 
 /* Show image ONLY when hovering the button */
-.melimtx-wrapper:hover .melimtx-hover-img {
+.collections-wrapper:hover .collections-hover-img {
 display: block;
 }
 
@@ -568,7 +568,7 @@ font-size: 13px;
 padding: 12px 18px;
 }
 
-.melimtx-hover-img {
+.collections-hover-img {
 width: 200px;
 top: 120%;
 }
@@ -716,7 +716,7 @@ margin-top: 40px !important;
 /*Preview Pic*/
 
 /* FORCE Melimtx preview image to original size */
-.melimtx-hover-img {
+.collections-hover-img {
 width: 320px !important; /* adjust this to the original size */
 height: auto !important;
 max-width: none !important;
@@ -730,30 +730,42 @@ display: none !important;
 z-index: 99999;
 }
 
-.melimtx-hover-img{
+.collections-hover-img{
     display: none;
     width: 100%;
     margin-top: 10px;
 }
 
-.melimtx-wrapper:hover .melimtx-hover-img {
+.collections-wrapper:hover .collections-hover-img {
     display: block;
 }
 
-/* Melimtx.html Fixes */
-.melimtx-wrapper {
+/* Collections.html Fixes */
+.collections-wrapper {
 position: relative;
 display: inline-block;
 cursor: pointer;
 }
 
-.melimtx-hover-img {
+.collections-hover-img {
 display: none;
 width: 100%;
 margin-top: 10px;
 }
 
-.melimtx-wrapper:hover .melimtx-hover-img {
+.collections-wrapper:hover .collections-hover-img {
 display: block !important;
 }
 
+.category-grid {
+  gap: 10px;
+}
+
+/* -------------------------------- */
+/* MOBILE FIX: HIDE SCROLL ARROWS */
+/* -------------------------------- */
+@media (max-width: 768px) {
+  .scroll-arrow {
+    display: none !important;
+  }
+}

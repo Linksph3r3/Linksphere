@@ -117,7 +117,7 @@ function startWatchCounting() {
 
     g.countdownEl.textContent = remaining;
     g.progressBar.style.width =
-      (state.watchSeconds / REQUIRED_SECONDS) * 100 + "%";
+      Math.min(100, (state.watchSeconds / REQUIRED_SECONDS) * 100) + "%";
 
     if (state.watchSeconds >= REQUIRED_SECONDS) {
       clearInterval(state.watchInterval);
@@ -167,7 +167,6 @@ async function createGateVideo() {
     }
   });
 
-  // User interaction required to start playback with sound
   g.videoWrapper.addEventListener(
     "click",
     () => {
@@ -183,26 +182,30 @@ function setupGateLogic() {
 
   document.addEventListener("click", e => {
     const tab = e.target.closest(".collection-tab");
+
+    // ❌ Never gate NSFW
+    if (tab && tab.id === "open-nsfw") return;
+
     if (!tab || !tab.dataset.link) return;
 
     e.preventDefault();
     openGateForLink(tab.dataset.link);
   });
 
-  g.closeBtn.addEventListener("click", closeGate);
+  g.closeBtn?.addEventListener("click", closeGate);
 
-  g.modal.addEventListener("click", e => {
+  g.modal?.addEventListener("click", e => {
     if (e.target === g.modal) closeGate();
   });
 
-  g.chooseAds.addEventListener("click", () => {
+  g.chooseAds?.addEventListener("click", () => {
     if (state.chosenMethod) return;
     state.chosenMethod = "ads";
     g.adsSection.style.display = "block";
     g.chooseVideo.disabled = true;
   });
 
-  g.chooseVideo.addEventListener("click", async () => {
+  g.chooseVideo?.addEventListener("click", async () => {
     if (state.chosenMethod) return;
     state.chosenMethod = "video";
     g.videoSection.style.display = "block";
@@ -221,7 +224,7 @@ function setupGateLogic() {
     });
   });
 
-  g.proceedBtn.addEventListener("click", () => {
+  g.proceedBtn?.addEventListener("click", () => {
     if (!g.proceedBtn.disabled && state.targetLink) {
       window.open(state.targetLink, "_blank", "noopener");
       closeGate();
@@ -229,37 +232,20 @@ function setupGateLogic() {
   });
 }
 
-/* ================= AGE VERIFICATION ================= */
-function setupAgeVerification() {
+/* ================= DIRECT NSFW REDIRECT ================= */
+function setupNSFWRedirect() {
   const nsfwBtn = document.getElementById("open-nsfw");
-  const ageModal = document.getElementById("ageModal");
-  const confirmBtn = document.getElementById("confirmAge");
-  const denyBtn = document.getElementById("denyAge");
+  if (!nsfwBtn) return;
 
-  if (!nsfwBtn || !ageModal || !confirmBtn || !denyBtn) return;
-
-  nsfwBtn.addEventListener("click", () => {
-    ageModal.style.display = "flex";
-    ageModal.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  });
-
-  confirmBtn.addEventListener("click", () => {
-    ageModal.style.display = "none";
-    ageModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-    window.location.href = "nsfw.html";
-  });
-
-  denyBtn.addEventListener("click", () => {
-    ageModal.style.display = "none";
-    ageModal.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
+  nsfwBtn.addEventListener("click", e => {
+    e.preventDefault();
+    e.stopPropagation(); // 🔥 prevent gate interception
+    window.location.href = "LustSphere.html";
   });
 }
 
 /* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded", () => {
   setupGateLogic();
-  setupAgeVerification();
+  setupNSFWRedirect();
 });

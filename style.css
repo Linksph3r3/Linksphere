@@ -769,3 +769,26 @@ display: block !important;
     display: none !important;
   }
 }
+
+/*Telegram Button*/
+.telegram-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.telegram-btn img {
+  width: 56px;
+  height: 56px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.telegram-btn:hover img {
+  transform: scale(1.08);
+}
+
+.telegram-btn.viewed img {
+  opacity: 0.5;
+  cursor: default;
+}

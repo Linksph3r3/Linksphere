@@ -1,5 +1,6 @@
 /* ================= CONFIG ================= */
 const REQUIRED_SECONDS = 30;
+const REQUIRED_ADS = 3; // 🔹 REQUIRED FOR TELEGRAM CONDITION
 const gateVideos = [
   "iYQNU54cM_8",
   "8xUX3D_GxBQ",
@@ -21,6 +22,7 @@ function gate() {
     adsSection: $("#adsSection"),
     videoSection: $("#videoSection"),
     adBtns: $$(".ad-btn"),
+    telegramBtn: $("#joinTelegram"), // 🔹 ADDED
     videoWrapper: $("#gateVideoWrapper"),
     placeholder: $("#gateVideoPlaceholder"),
     progressBarWrapper: $("#progressBarWrapper"),
@@ -33,6 +35,7 @@ function gate() {
 let state = {
   chosenMethod: null,
   adsViewed: 0,
+  telegramJoined: false, // 🔹 ADDED
   targetLink: null,
   ytPlayer: null,
   watchSeconds: 0,
@@ -56,6 +59,7 @@ function resetGate() {
 
   state.chosenMethod = null;
   state.adsViewed = 0;
+  state.telegramJoined = false; // 🔹 RESET
   state.watchSeconds = 0;
 
   clearInterval(state.watchInterval);
@@ -83,6 +87,11 @@ function resetGate() {
     b.classList.remove("viewed");
     b.disabled = false;
   });
+
+  if (g.telegramBtn) {
+    g.telegramBtn.classList.remove("viewed");
+    g.telegramBtn.disabled = false;
+  }
 }
 
 /* ================= OPEN / CLOSE ================= */
@@ -182,10 +191,7 @@ function setupGateLogic() {
 
   document.addEventListener("click", e => {
     const tab = e.target.closest(".collection-tab");
-
-    // ❌ Never gate NSFW
     if (tab && tab.id === "open-nsfw") return;
-
     if (!tab || !tab.dataset.link) return;
 
     e.preventDefault();
@@ -219,10 +225,27 @@ function setupGateLogic() {
       if (!btn.classList.contains("viewed")) {
         btn.classList.add("viewed");
         btn.disabled = true;
-        if (++state.adsViewed >= 3) unlockProceed();
+        state.adsViewed++;
+        if (state.adsViewed >= REQUIRED_ADS && state.telegramJoined) {
+          unlockProceed();
+        }
       }
     });
   });
+
+  // 🔹 TELEGRAM JOIN REQUIREMENT
+  if (g.telegramBtn) {
+    g.telegramBtn.addEventListener("click", () => {
+      window.open(g.telegramBtn.dataset.url, "_blank", "noopener");
+      state.telegramJoined = true;
+      g.telegramBtn.classList.add("viewed");
+      g.telegramBtn.disabled = true;
+
+      if (state.adsViewed >= REQUIRED_ADS) {
+        unlockProceed();
+      }
+    });
+  }
 
   g.proceedBtn?.addEventListener("click", () => {
     if (!g.proceedBtn.disabled && state.targetLink) {
@@ -239,7 +262,7 @@ function setupNSFWRedirect() {
 
   nsfwBtn.addEventListener("click", e => {
     e.preventDefault();
-    e.stopPropagation(); // 🔥 prevent gate interception
+    e.stopPropagation();
     window.location.href = "LustSphere.html";
   });
 }

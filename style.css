@@ -771,6 +771,7 @@ display: block !important;
 }
 
 /*Telegram Button*/
+
 .telegram-btn {
   background: none;
   border: none;
@@ -778,17 +779,11 @@ display: block !important;
   cursor: pointer;
 }
 
-.telegram-btn img {
-  width: 56px;
-  height: 56px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.telegram-btn:hover img {
+.telegram-btn:hover {
   transform: scale(1.08);
 }
 
-.telegram-btn.viewed img {
+.telegram-btn.viewed {
   opacity: 0.5;
   cursor: default;
 }

@@ -1,6 +1,6 @@
 /* ================= CONFIG ================= */
 const REQUIRED_SECONDS = 30;
-const REQUIRED_ADS = 3;
+const REQUIRED_ADS = 3; // ✅ ONLY ADS REQUIRED
 const gateVideos = [
   "iYQNU54cM_8",
   "8xUX3D_GxBQ",
@@ -22,7 +22,7 @@ function gate() {
     adsSection: $("#adsSection"),
     videoSection: $("#videoSection"),
     adBtns: $$(".ad-btn"),
-    telegramBtn: $("#joinTelegram"),
+    telegramBtn: $("#joinTelegram"), // 🔹 OPTIONAL
     videoWrapper: $("#gateVideoWrapper"),
     placeholder: $("#gateVideoPlaceholder"),
     progressBarWrapper: $("#progressBarWrapper"),
@@ -35,7 +35,6 @@ function gate() {
 let state = {
   chosenMethod: null,
   adsViewed: 0,
-  telegramJoined: false,
   targetLink: null,
   ytPlayer: null,
   watchSeconds: 0,
@@ -59,7 +58,6 @@ function resetGate() {
 
   state.chosenMethod = null;
   state.adsViewed = 0;
-  state.telegramJoined = false;
   state.watchSeconds = 0;
 
   clearInterval(state.watchInterval);
@@ -219,38 +217,36 @@ function setupGateLogic() {
     await createGateVideo();
   });
 
+  // ✅ ADS = ONLY UNLOCK CONDITION
   g.adBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       window.open(btn.dataset.url, "_blank", "noopener");
+
       if (!btn.classList.contains("viewed")) {
         btn.classList.add("viewed");
         btn.disabled = true;
         state.adsViewed++;
-        if (state.adsViewed >= REQUIRED_ADS && state.telegramJoined) {
+
+        if (state.adsViewed >= REQUIRED_ADS) {
           unlockProceed();
         }
       }
     });
   });
 
+  // 🔹 TELEGRAM = OPTIONAL SUGGESTION (NO GATE LOGIC)
   if (g.telegramBtn) {
     g.telegramBtn.addEventListener("click", () => {
       window.open(g.telegramBtn.dataset.url, "_blank", "noopener");
-      state.telegramJoined = true;
       g.telegramBtn.classList.add("viewed");
       g.telegramBtn.disabled = true;
-
-      if (state.adsViewed >= REQUIRED_ADS) {
-        unlockProceed();
-      }
     });
   }
 
   g.proceedBtn?.addEventListener("click", () => {
     if (!g.proceedBtn.disabled && state.targetLink) {
-      const link = state.targetLink;
-      window.open(link, "_blank", "noopener");
-      setTimeout(closeGate, 50);
+      window.open(state.targetLink, "_blank", "noopener");
+      closeGate();
     }
   });
 }
@@ -272,3 +268,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupGateLogic();
   setupNSFWRedirect();
 });
+
+

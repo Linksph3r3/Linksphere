@@ -22,7 +22,7 @@ function gate() {
     adsSection: $("#adsSection"),
     videoSection: $("#videoSection"),
     adBtns: $$(".ad-btn"),
-    telegramBtn: $("#joinTelegram"), // 🔹 OPTIONAL
+    telegramBtn: $("#joinTelegram"), // 🔹 OPTIONAL ONLY
     videoWrapper: $("#gateVideoWrapper"),
     placeholder: $("#gateVideoPlaceholder"),
     progressBarWrapper: $("#progressBarWrapper"),
@@ -86,8 +86,9 @@ function resetGate() {
     b.disabled = false;
   });
 
+  // 🔹 Telegram resets but NEVER marked as progress
   if (g.telegramBtn) {
-    g.telegramBtn.classList.remove("viewed");
+    g.telegramBtn.classList.remove("viewed", "active", "completed");
     g.telegramBtn.disabled = false;
   }
 }
@@ -217,7 +218,7 @@ function setupGateLogic() {
     await createGateVideo();
   });
 
-  // ✅ ADS = ONLY UNLOCK CONDITION
+  /* ===== ADS: ONLY UNLOCK CONDITION ===== */
   g.adBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       window.open(btn.dataset.url, "_blank", "noopener");
@@ -234,12 +235,15 @@ function setupGateLogic() {
     });
   });
 
-  // 🔹 TELEGRAM = OPTIONAL SUGGESTION (NO GATE LOGIC)
+  /* ===== TELEGRAM: OPTIONAL, NO PROGRESS, NO GREEN ===== */
   if (g.telegramBtn) {
-    g.telegramBtn.addEventListener("click", () => {
+    g.telegramBtn.addEventListener("click", e => {
+      e.stopPropagation();
+
+      // Ensure it NEVER looks like a completed step
+      g.telegramBtn.classList.remove("viewed", "active", "completed");
+
       window.open(g.telegramBtn.dataset.url, "_blank", "noopener");
-      g.telegramBtn.classList.add("viewed");
-      g.telegramBtn.disabled = true;
     });
   }
 
@@ -268,5 +272,3 @@ document.addEventListener("DOMContentLoaded", () => {
   setupGateLogic();
   setupNSFWRedirect();
 });
-
-

@@ -787,3 +787,13 @@ display: block !important;
   opacity: 0.5;
   cursor: default;
 }
+/* ===== Explicitly disable green highlight for Telegram button ===== */
+.telegram-btn.clicked,
+.telegram-btn.active,
+.telegram-btn.completed,
+.telegram-btn:focus,
+.telegram-btn:active {
+  background: inherit !important;
+  box-shadow: none !important;
+  outline: none !important;
+}

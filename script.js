@@ -267,5 +267,4 @@ function setupNSFWRedirect() {
 document.addEventListener("DOMContentLoaded", () => {
   setupGateLogic();
   setupNSFWRedirect();
-}); 
-
+});

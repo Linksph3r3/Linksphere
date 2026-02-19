@@ -4,44 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Linksphere - curated link collections.">
+
+  <!-- Preload CSS -->
   <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <title>Linksphere Homepage</title>
-  <noscript><link rel="stylesheet" href="style.css"></noscript> 
+  <noscript>
+    <link rel="stylesheet" href="style.css">
+  </noscript>
+
   <title>Linksphere Homepage</title>
 </head>
 
 <body class="index-page">
 
- <main>
-   <h1 class="page-title">Linksphere</h1>
+  <main>
+    <h1 class="page-title">Linksphere</h1>
 
-   <div class="section-divider"></div>
+    <div class="section-divider"></div>
 
-   <!-- 🔥 Categories Section -->
-   <section class="categories">
-     <div class="category-grid">
-      <button id="open-nsfw" class="category-tab">NSFW</button>
-     </div>
-   </section>
+    <!-- 🔥 Categories Section -->
+    <section class="categories">
+      <div class="category-grid">
+        <a href="LustSphere.html" id="open-nsfw" class="category-tab">
+          NSFW
+        </a>
+      </div>
+    </section>
 
-   <div class="section-divider"></div>
- </main>
+    <div class="section-divider"></div>
+  </main>
 
- <footer class="site-footer">
-  <p>&copy; 2026 Linksphere. All rights reserved.</p>
- </footer>
+  <footer class="site-footer">
+    <p>&copy; 2026 Linksphere. All rights reserved.</p>
+  </footer>
 
- <script src="script.js" defer></script>
+  <!-- Main Script -->
+  <script src="script.js" defer></script>
 
- <!-- Age Confirmation Modal -->
- <div class="age-modal" id="ageConfirmModal">
-   <div class="age-modal-content">
-     <h2>18+ Content Warning</h2>
-     <p>You must be 18 years or older to access this category.</p>
-     <button id="ageConfirmBtn">I am 18+</button>
-     <button id="ageCancelBtn" class="cancel-btn">Cancel</button>
-   </div>
- </div>
+  <!-- Age Confirmation Modal -->
+  <div class="age-modal" id="ageConfirmModal">
+    <div class="age-modal-content">
+      <h2>18+ Content Warning</h2>
+      <p>You must be 18 years or older to access this category.</p>
+      <button id="ageConfirmBtn">I am 18+</button>
+      <button id="ageCancelBtn" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
 
 </body>
 </html>

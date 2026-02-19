@@ -328,11 +328,25 @@ main {
 /* CATEGORY SECTION */
 /* ============================= */
 
+/* Index layout structure */
 .index-page main {
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Keep title at top center */
+.index-page .page-title {
+  text-align: center;
+  margin-top: 60px;
+}
+
+/* Push categories to vertical center */
+.index-page .categories {
+  flex: 1;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .category-grid {

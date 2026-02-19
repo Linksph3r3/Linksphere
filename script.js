@@ -1,6 +1,6 @@
 /* ================= CONFIG ================= */
 const REQUIRED_SECONDS = 30;
-const REQUIRED_ADS = 3; // ✅ ONLY ADS REQUIRED
+const REQUIRED_ADS = 3; // Ads required to unlock (video is optional alternative)
 const gateVideos = [
   "iYQNU54cM_8",
   "8xUX3D_GxBQ",
@@ -22,7 +22,7 @@ function gate() {
     adsSection: $("#adsSection"),
     videoSection: $("#videoSection"),
     adBtns: $$(".ad-btn"),
-    telegramBtn: $("#joinTelegram"), // 🔹 OPTIONAL
+    telegramBtn: $("#joinTelegram"),
     videoWrapper: $("#gateVideoWrapper"),
     placeholder: $("#gateVideoPlaceholder"),
     progressBarWrapper: $("#progressBarWrapper"),
@@ -44,21 +44,33 @@ let state = {
 /* ================= YOUTUBE API ================= */
 function loadYouTubeApi() {
   return new Promise(resolve => {
-    if (window.YT && YT.Player) return resolve();
-    window.onYouTubeIframeAPIReady = resolve;
-    const s = document.createElement("script");
-    s.src = "https://www.youtube.com/iframe_api";
-    document.head.appendChild(s);
+    if (window.YT && window.YT.Player) return resolve();
+
+    if (!window.onYouTubeIframeAPIReady) {
+      window.onYouTubeIframeAPIReady = resolve;
+    }
+
+    const existingScript = document.querySelector(
+      'script[src="https://www.youtube.com/iframe_api"]'
+    );
+
+    if (!existingScript) {
+      const s = document.createElement("script");
+      s.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(s);
+    }
   });
 }
 
 /* ================= RESET GATE ================= */
 function resetGate() {
   const g = gate();
+  if (!g.modal) return;
 
   state.chosenMethod = null;
   state.adsViewed = 0;
   state.watchSeconds = 0;
+  state.targetLink = null;
 
   clearInterval(state.watchInterval);
   state.watchInterval = null;
@@ -68,18 +80,21 @@ function resetGate() {
     state.ytPlayer = null;
   }
 
-  g.adsSection.style.display = "none";
-  g.videoSection.style.display = "none";
-  g.videoWrapper.style.display = "none";
-  g.progressBarWrapper.classList.add("hidden");
-  g.progressBar.style.width = "0%";
-  g.countdownEl.textContent = REQUIRED_SECONDS;
+  g.adsSection && (g.adsSection.style.display = "none");
+  g.videoSection && (g.videoSection.style.display = "none");
+  g.videoWrapper && (g.videoWrapper.style.display = "none");
 
-  g.proceedBtn.disabled = true;
-  g.proceedBtn.classList.remove("active");
+  if (g.progressBarWrapper) g.progressBarWrapper.classList.add("hidden");
+  if (g.progressBar) g.progressBar.style.width = "0%";
+  if (g.countdownEl) g.countdownEl.textContent = REQUIRED_SECONDS;
 
-  g.chooseAds.disabled = false;
-  g.chooseVideo.disabled = false;
+  if (g.proceedBtn) {
+    g.proceedBtn.disabled = true;
+    g.proceedBtn.classList.remove("active");
+  }
+
+  if (g.chooseAds) g.chooseAds.disabled = false;
+  if (g.chooseVideo) g.chooseVideo.disabled = false;
 
   g.adBtns.forEach(b => {
     b.classList.remove("viewed");
@@ -94,14 +109,21 @@ function resetGate() {
 
 /* ================= OPEN / CLOSE ================= */
 function openGateForLink(link) {
+  const g = gate();
+  if (!g.modal) return;
+
   resetGate();
   state.targetLink = link;
-  gate().modal.classList.add("active");
+
+  g.modal.classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
 function closeGate() {
-  gate().modal.classList.remove("active");
+  const g = gate();
+  if (!g.modal) return;
+
+  g.modal.classList.remove("active");
   document.body.style.overflow = "";
   resetGate();
 }
@@ -109,6 +131,8 @@ function closeGate() {
 /* ================= UNLOCK ================= */
 function unlockProceed() {
   const g = gate();
+  if (!g.proceedBtn) return;
+
   g.proceedBtn.disabled = false;
   g.proceedBtn.classList.add("active");
 }
@@ -118,15 +142,21 @@ function startWatchCounting() {
   if (state.watchInterval) return;
 
   const g = gate();
+  const startTime = Date.now();
+
   state.watchInterval = setInterval(() => {
-    state.watchSeconds++;
-    const remaining = Math.max(0, REQUIRED_SECONDS - state.watchSeconds);
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    state.watchSeconds = elapsed;
 
-    g.countdownEl.textContent = remaining;
-    g.progressBar.style.width =
-      Math.min(100, (state.watchSeconds / REQUIRED_SECONDS) * 100) + "%";
+    const remaining = Math.max(0, REQUIRED_SECONDS - elapsed);
 
-    if (state.watchSeconds >= REQUIRED_SECONDS) {
+    if (g.countdownEl) g.countdownEl.textContent = remaining;
+    if (g.progressBar) {
+      g.progressBar.style.width =
+        Math.min(100, (elapsed / REQUIRED_SECONDS) * 100) + "%";
+    }
+
+    if (elapsed >= REQUIRED_SECONDS) {
       clearInterval(state.watchInterval);
       state.watchInterval = null;
       unlockProceed();
@@ -142,6 +172,8 @@ function pauseWatchCounting() {
 /* ================= VIDEO CREATION ================= */
 async function createGateVideo() {
   const g = gate();
+  if (!g.videoWrapper || !g.placeholder) return;
+
   g.videoWrapper.style.display = "block";
   g.placeholder.innerHTML = "";
 
@@ -161,9 +193,10 @@ async function createGateVideo() {
     events: {
       onStateChange: e => {
         if (e.data === YT.PlayerState.PLAYING) {
-          g.progressBarWrapper.classList.remove("hidden");
+          g.progressBarWrapper?.classList.remove("hidden");
           startWatchCounting();
         }
+
         if (
           e.data === YT.PlayerState.PAUSED ||
           e.data === YT.PlayerState.BUFFERING
@@ -177,7 +210,7 @@ async function createGateVideo() {
   g.videoWrapper.addEventListener(
     "click",
     () => {
-      try { state.ytPlayer.playVideo(); } catch {}
+      try { state.ytPlayer?.playVideo(); } catch {}
     },
     { once: true }
   );
@@ -186,11 +219,13 @@ async function createGateVideo() {
 /* ================= GATE LOGIC ================= */
 function setupGateLogic() {
   const g = gate();
+  if (!g.modal) return;
 
-  document.addEventListener("click", e => {
+  // Scoped click delegation (safer than document-wide)
+  document.body.addEventListener("click", e => {
     const tab = e.target.closest(".collection-tab");
-    if (tab && tab.id === "open-nsfw") return;
     if (!tab || !tab.dataset.link) return;
+    if (tab.id === "open-nsfw") return;
 
     e.preventDefault();
     openGateForLink(tab.dataset.link);
@@ -198,7 +233,7 @@ function setupGateLogic() {
 
   g.closeBtn?.addEventListener("click", closeGate);
 
-  g.modal?.addEventListener("click", e => {
+  g.modal.addEventListener("click", e => {
     if (e.target === g.modal) closeGate();
   });
 
@@ -217,7 +252,7 @@ function setupGateLogic() {
     await createGateVideo();
   });
 
-  // ✅ ADS = ONLY UNLOCK CONDITION
+  // ADS UNLOCK
   g.adBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       window.open(btn.dataset.url, "_blank", "noopener");
@@ -234,7 +269,7 @@ function setupGateLogic() {
     });
   });
 
-  // 🔹 TELEGRAM = OPTIONAL SUGGESTION (NO GATE LOGIC)
+  // TELEGRAM OPTIONAL
   if (g.telegramBtn) {
     g.telegramBtn.addEventListener("click", () => {
       window.open(g.telegramBtn.dataset.url, "_blank", "noopener");

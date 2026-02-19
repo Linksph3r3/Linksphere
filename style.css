@@ -1,789 +1,483 @@
-/* style.css — cleaned + arrows hover behavior + hidden scrollbars + progress bar */
+/* ============================= */
+/* RESET & BASE TYPOGRAPHY */
+/* ============================= */
 
-/* Basic Reset & Typography */
-* { margin:0; padding:0; box-sizing:border-box; }
-html, body { height:100%; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
-font-family: "Poppins", Arial, sans-serif;
-background:#000;
-color:#fff;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
-overflow-x:hidden;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Page Titles */
-.page-title {
-    font-size: 4rem;
-    margin-top: 0;
-    padding-top: 0;
-    text-align: center;
-}
+/* ============================= */
+/* PAGE STRUCTURE */
+/* ============================= */
 
-/* Main layout */
 main {
-max-width:1000px;
-margin:0 auto;
-padding:18px 12px 120px; /* space for fixed pagination */
-padding-top: 0;
-margin-top:0;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 18px 12px 120px;
 }
 
+.page-title {
+  font-size: 4rem;
+  text-align: center;
+  padding-top: 0;
+  margin-top: 0;
+}
 
-/* Divider */
+/* ============================= */
+/* DIVIDER */
+/* ============================= */
+
 .section-divider {
-width:80%;
-max-width:600px;
-height:4px;
-margin:10px auto 25px;
-border-radius:3px;
-background: linear-gradient(90deg,#ff7b00,#000);
+  width: 80%;
+  max-width: 600px;
+  height: 4px;
+  margin: 10px auto 25px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ff7b00, #000);
 }
 
-/* Collections */
-.collections { position:relative; margin:40px 0; overflow:visible; }
+/* ============================= */
+/* COLLECTIONS */
+/* ============================= */
+
+.collections {
+  position: relative;
+  margin: 40px 0;
+}
+
 .collections-container {
-display:flex;
-flex-wrap:nowrap;
-overflow-x:auto; /* swipe and drag allowed */
--webkit-overflow-scrolling:touch;
-gap:15px;
-padding:10px 8px;
-scroll-behavior:smooth;
-scrollbar-width:none; /* firefox */
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  padding: 10px 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
-/* hide scrollbar for chrome/safari */
-.collections-container::-webkit-scrollbar { display:none; }
 
-/* Tab cards */
+.collections-container::-webkit-scrollbar {
+  display: none;
+}
+
+.collections-container > * {
+  flex-shrink: 0;
+}
+
 .collection-tab {
-position:relative;
-flex:0 0 auto;
-min-width:180px; max-width:220px;
-background:#524e4e;
-color:#ff7b00;
-border-radius:10px;
-padding:100px 20px;
-text-align:center;
-font-weight:700;
-cursor:pointer;
-transition: transform .28s ease, background .28s ease;
-border:1px solid transparent;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 180px;
+  max-width: 220px;
+  background: #524e4e;
+  color: #ff7b00;
+  border-radius: 10px;
+  padding: 100px 20px;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.28s ease, background 0.28s ease;
 }
-.collection-tab p { z-index:2; position:relative; transition:opacity .25s ease; }
+
+.collection-tab p {
+  position: relative;
+  z-index: 2;
+  transition: opacity 0.25s ease;
+}
+
 .collection-tab img {
-position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-opacity:0; transition:opacity .35s ease; border-radius:10px; z-index:0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
 }
-.collection-tab:hover { transform:translateY(-6px); background:#2a2a2a; }
-.collection-tab:hover img { opacity:1; }
-.collection-tab:hover p { opacity:0; }
 
-/* Scroll arrows */
+.collection-tab:hover {
+  transform: translateY(-6px);
+  background: #2a2a2a;
+}
+
+.collection-tab:hover img {
+  opacity: 1;
+}
+
+.collection-tab:hover p {
+  opacity: 0;
+}
+
+/* ============================= */
+/* SCROLL ARROWS */
+/* ============================= */
+
 .scroll-arrow {
-position:absolute; top:50%; transform:translateY(-50%);
-background:rgba(0,0,0,0.5); color:#fff; border:none;
-font-size:1rem; padding:10px 12px; border-radius:50%;
-cursor:pointer; z-index:25; transition:opacity .22s ease, transform .22s ease;
-opacity:0; display:flex; align-items:center; justify-content:center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 25;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.collections:hover .scroll-arrow { opacity:1; } /* show on hover (desktop) */
-.left-arrow { left:8px; }
-.right-arrow { right:8px; }
-.scroll-arrow:hover { transform:translateY(-50%) scale(1.06); background:rgba(0,0,0,0.5); color:#ff7b00; }
 
-/* Make arrows always visible on touch devices (no hover) */
+.collections:hover .scroll-arrow {
+  opacity: 1;
+}
+
+.left-arrow { left: 8px; }
+.right-arrow { right: 8px; }
+
+.scroll-arrow:hover {
+  transform: translateY(-50%) scale(1.06);
+  color: #ff7b00;
+}
+
 @media (hover: none) and (pointer: coarse) {
-.scroll-arrow { opacity:1; }
+  .scroll-arrow { opacity: 1; }
 }
 
-/* Pagination - fixed bottom center */
-.pagination-nav.fixed-bottom {
-position:relative; left:50%; transform:translateX(-50%); bottom:18px;
-display:inline-flex; gap:12px; align-items:center;margin-bottom: 10px; margin-top: 0;
-background:rgba(0,0,0,0.45); padding:8px 12px; border-radius:10px;
-border:1px solid rgba(255,255,255,0.04);
-}
-.pagination-nav.fixed-bottom .page-indicator,
-.pagination-nav.fixed-bottom .next-btn { color:#fff; font-weight:700; text-decoration:none; }
-
-/* Gate modal */
-.gate-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:9999; }
-.gate-modal.active { display:flex; }
-.gate-content {
-width:90%; max-width:450px; background:#1b1b1b; padding:20px; border-radius:12px; position:relative; color:#fff;
-}
-.gate-close { position:absolute; right:10px; top:10px; background:transparent; border:none; color:#fff; font-size:22px; cursor:pointer; }
-
-/* Gate buttons & layout */
-.gate-choice-buttons { display:flex; justify-content:center; gap:15px; margin-bottom:20px; }
-.gate-main-btn { background:#2b2a2a; color:#fff; padding:12px 22px; border-radius:8px; border:none; font-weight:700; cursor:pointer; }
-.gate-main-btn:hover { background:#ff7b00; color:#000; }
-.gate-main-btn.disabled { background:#444; color:#777; cursor:not-allowed; }
-
-.gate-section { margin-top:12px; text-align:center; }
-.ad-btn { display:block; width:100%; padding:10px; margin-top:6px; background:orange; border:none; font-weight:700; cursor:pointer; }
-.ad-btn.viewed { background:#00ff00; color:#000; }
-
-/* Video wrapper & mute button */
-#gateVideoWrapper { width:100%; }
-.mute-btn { padding:8px 12px; margin-bottom:8px; background:#333; color:#fff; border-radius:6px; border:none; cursor:pointer; }
-
-/* Progress bar */
-#progressBarWrapper { width:100%; height:8px; background:#444; border-radius:4px; margin-top:8px; overflow:hidden; }
-#progressBar { width:0%; height:100%; background:#4caf50; transition:width .25s linear; }
-
-/* Countdown & proceed */
-.gate-countdown { font-size:2rem; font-weight:700; margin:12px 0; color:#ff7b00; }
-.gate-proceed { width:100%; padding:12px; background:#ff7b00; color:#000; border:none; border-radius:8px; opacity:.5; cursor:not-allowed; font-weight:700; }
-.gate-proceed.active { opacity:1; cursor:pointer; }
-
-/* Small screens */
-@media (max-width:768px) {
-.collection-tab { min-width:150px; padding:60px 8px; }
-.page-title { margin-top:1.5rem; }
-}
-
-/* NSFW button style */
-.category-tab {
-font-size: 15px;
-padding: 15px;
-border-radius: 10px;
-display: flex;
-font-weight: bold;
-align-items: center;
-justify-content: center;
-border: none;
-cursor: pointer;
-background: #333;
-color: white;
-transition: 0.3s ease;
-}
-
-/* Hover -> orange */
-.category-tab:hover {
-background: #ff7b00 ;
-color: #ffffff;
-font-style: italic;
-}
-
-.category-grid {
-display: flex;
-justify-content: center;
-width: 100%;
-}
-
-.age-modal {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.6);
-justify-content: center;
-align-items: center;
-z-index: 999999;
-}
-
-.age-modal-content {
-    background:#1b1b1b;
-    color: #ffffff;
-    padding: 25px;
-    border-radius: 8px;
-    text-align: center;
-    z-index: 1000000;
-}
-
-.age-modal-content h2 {
-    color: rgb(255, 3, 3);
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-.age-modal-content button{
-
-    background-color: #5e5d5d;
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 0;
-    cursor: pointer;
-}
-
-.age-modal-content button:hover{
-    background-color: #ff7b00;
-    color: #ffffff;
-}
-.age-modal .cancel-btn:hover {
-    background: #d30000;
-    color: black;
-}
-
-/* Footer*/
-
-.site-footer {
-width: 100%;
-text-align: center;
-padding: 15px 0;
-background: #000; /* required to prevent transparency issues */
-color: #8b898b;
-margin-top: 40px;
-font-size: 15px;
-}
-
-
-/*LustSphere Page*/
-
-/* Force the entire categories section to center its content */
-.categories {
-width: 100%;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-/* Center the grid itself */
-.category-grid {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-}
-
-/* Wrapper around the button + hover image */
-.collections-wrapper {
-position: relative;
-display: flex;
-justify-content: center;
-align-items: center;
-}
-
-/* The tab itself */
-.category-tab {
-font-size: 15px;
-padding: 15px;
-border-radius: 10px;
-display: flex;
-font-weight: bold;
-text-decoration: none;
-align-items: center;
-justify-content: center;
-border: none;
-cursor: pointer;
-background: #333;
-color: white;
-transition: 0.3s ease;
-}
-
-/* Hover -> orange */
-.category-tab:hover {
-background: #ff7b00;
-color: #ffffff;
-font-style: italic;
-}
-
-/* Hidden preview image */
-.collections-hover-img {
-position: absolute;
-top: 110%; /* places image below the button */
-left: 50%;
-transform: translateX(-50%);
-border-radius: 10px;
-width: 260px;
-display: none;
-z-index: 9999;
-}
-
-/* Show image ONLY when hovering the button */
-.collections-wrapper:hover .collections-hover-img {
-display: block;
-}
-
-/*Back to Home Button*/
-
-/* Home button base positioning */
-.home-btn {
-position: fixed;
-top: 20px;
-left: 20px;
-display: inline-block;
-z-index: 9999;
-}
-
-/* Home icon styling */
-.home-icon {
-width: 32px;
-height: 32px;
-fill: white;
-transition: fill 0.3s ease;
-}
-
-/* Hover color */
-.home-btn:hover .home-icon {
-fill: #ff7b00;
-}
-
-/*Back to Previous Page*/
-
-.back-btn {
-position: fixed;
-top: 20px;
-right: 20px;
-background: none;
-border: none;
-padding: 0;
-cursor: pointer;
-z-index: 9999;
-}
-
-.back-icon {
-width: 32px;
-height: 32px;
-fill: white;
-transition: fill 0.3s ease;
-}
-
-.back-btn:hover .back-icon {
-fill:#ff7b00 ;
-}
-
-/* Pagination */
+/* ============================= */
+/* PAGINATION */
+/* ============================= */
 
 .pagination {
-text-align: center;
-margin: 25px 0;
+  text-align: center;
+  margin: 25px 0;
 }
 
 .pagination button {
-background: #2b2a2a;
-color: white;
-border: 1px solid #2b2a2a;
-padding: 8px 14px;
-margin: 0 4px;
-border-radius: 10px;
-cursor: pointer;
-font-size: 15px;
+  background: #2b2a2a;
+  color: #fff;
+  border: 1px solid #2b2a2a;
+  padding: 8px 14px;
+  margin: 0 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
 }
 
 .pagination button:hover {
-background: #ff7b00;
-border: 1px solid #ff7b00;
+  background: #ff7b00;
+  border-color: #ff7b00;
 }
 
 .page-number.active {
-background: #ff7b00;
-border-color: #ff7b00;
-color: #fff;
+  background: #ff7b00;
+  border-color: #ff7b00;
 }
 
 .current-page {
-margin-top: 10px;
-font-size: 14px;
-color: white;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
-/*Ad Gate Modal*/
-
-.gate-content {
-width: 90%;
-max-width: 450px;
-background: #1b1b1b;
-padding: 20px;
-border-radius: 12px;
-position: relative;
-color: #fff;
-text-align: center; /* ← Centers ALL text inside the gate */
-}
-
-/* Center heading inside the gate */
-.gate-content h2 {
-text-align: center;
-width: 100%;
-margin-bottom: 12px;
-}
-
-/* Optional: center paragraphs separately if needed */
-.gate-content p {
-text-align: center;
-margin: 10px 0;
-}
-
-.gate-main-btn{
-border: none;
-border-radius: 10px;
-background: #2b2a2a;
-color: white;
-outline: none;
-cursor: pointer;
-font-weight: bold;
-box-shadow: none;
-padding: 12px 22px;
-}
-
-.gate-main-btn:hover{
-background: #ff7b00;
-color:white;
-font-style: italic;
-box-shadow: none;
-}
-
-.gate-section{
-background: #2b2a2a;
-color: white;
-border-radius: 10px;
-padding: 15px;
-}
-
-/* Smaller ad buttons */
-.ad-btn {
-display: block;
-width: 100%;
-padding: 20px; /* smaller height */
-margin-top: 6px;
-background: #535252; /* grey background */
-color: #fff; /* white text */
-border: none;
-border-radius: 10px;
-font-weight: bold;
-cursor: pointer;
-font-size: 0.9rem; /* optionally smaller text */
-}
-
-/* Hover state */
-.ad-btn:hover {
-background: #ff7b00;
-}
-
-/* "Viewed" state stays green */
-.ad-btn.viewed {
-background: #00ff00;
-color: #ffffff;
-}
-
-.gate-proceed{
-   background: #ff7b00;
-   color: #ffffff;
-    padding:20px;
-
-}
-
-/*Ads*/
-
-.ad-banner {
-width: 100%;
-display: flex;
-justify-content: center;
-}
-
-.ad-wrapper {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-}
-
-/* Force 728x90 JuicyAds banners to center */
-.ad-wrapper ins[style*="728"] {
-margin: 0 auto !important;
-display: block !important;
-text-align: center !important;
-}
-
-/* Extra safety for any stubborn wide banners */
-ins.juicyads_728x90,
-ins[data-ad-width="728"] {
-margin-left: auto !important;
-margin-right: auto !important;
-display: block !important;
-text-align: center !important;
-}
-
-
-
-/* Makes Site Format Friendly*/
-
-/* ------------------------------- */
-/* UNIVERSAL RESPONSIVE FIXES */
-/* ------------------------------- */
-
-/* Ensure all images scale on mobile */
-img, video {
-max-width: 100%;
-height: auto;
-}
-
-/* Prevent overflow on small screens */
-body, html {
-max-width: 100%;
-overflow-x: hidden;
-}
-
-/* Make containers adapt smoothly */
-
-* Remove wrapping from layout containers */
-main, .ad-wrapper, .category-grid {
-width: 100%;
-max-width: 100%;
-}
-
-/* Collections MUST stay horizontal always */
-.collections-container {
-flex-wrap: nowrap !important;
-overflow-x: auto;
-overflow-y: hidden;
-white-space: nowrap;
--webkit-overflow-scrolling: touch;
-}
-
-/* Keep scroll items from shrinking */
-.collections-container > * {
-flex-shrink: 0;
-}
-
-/* COLLECTION TABS – scale on small screens */
-@media (max-width: 768px) {
-.collection-tab {
-min-width: 140px;
-max-width: 160px;
-padding: 70px 15px;
-font-size: 0.9rem;
-}
-
-.scroll-arrow {
-padding: 8px 10px;
-font-size: 0.9rem;
-}
-}
-
-/* CATEGORY BUTTONS (Melimtx etc.) */
-@media (max-width: 768px) {
-.category-tab {
-font-size: 13px;
-padding: 12px 18px;
-}
-
-.collections-hover-img {
-width: 200px;
-top: 120%;
-}
-}
-
-/* PAGE TITLES */
-@media (max-width: 768px) {
-.page-title {
-font-size: 2.2rem;
-padding: 10px 0;
-}
-}
-
-/* PAGINATION BUTTONS */
-@media (max-width: 768px) {
-.pagination button {
-padding: 6px 10px;
-margin: 3px;
-font-size: 13px;
-}
-}
-
+/* ============================= */
 /* GATE MODAL */
-@media (max-width: 768px) {
+/* ============================= */
+
+.gate-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.gate-modal.active {
+  display: flex;
+}
+
 .gate-content {
-width: 94%;
-padding: 15px;
+  width: 90%;
+  max-width: 450px;
+  background: #1b1b1b;
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+  text-align: center;
 }
 
-.gate-main-btn {
-padding: 10px 16px;
-font-size: 14px;
-}
-
-.ad-btn {
-padding: 15px;
-font-size: 0.85rem;
-}
-}
-
-/* FOOTER for small screens */
-@media (max-width: 768px) {
-.site-footer {
-font-size: 14px;
-padding: 12px 0;
-}
-}
-
-/* BACK / HOME BUTTONS */
-@media (max-width: 768px) {
-.home-btn, .back-btn {
-top: 10px;
-}
-
-.home-icon, .back-icon {
-width: 26px;
-height: 26px;
-}
-}
-
-/* Make Ad Banners responsive*/
-
-/* Universal responsive ad container */
-.ad-container {
-width: 100%;
-display: flex;
-justify-content: center; /* Centers all banner sizes */
-align-items: center;
-margin: 15px 0;
-}
-
-/* Make the ad itself responsive */
-.ad-container iframe,
-.ad-container img {
-max-width: 100%;
-height: auto;
-display: block;
-}
-    
-@media (max-width: 768px) {
-.pagination {
-display: flex !important;
-}
-
-footer {
-position: static !important;
-}
-
-main {
-padding-bottom: 120px;
-}
-}
-
-/* FIX PAGINATION ON MOBILE */
-@media (max-width: 768px) {
-
-/* Make sure pagination shows */
-.pagination {
-display: flex !important;
-position: fixed;
-bottom: 15px;
-left: 50%;
-transform: translateX(-50%);
-z-index: 99999;
-}
-
-/* Ensure footer doesn't cover pagination */
-footer,
-.site-footer {
-position: static !important;
-}
-
-/* Add space so page content doesn't overlap pagination */
-main {
-padding-bottom: 150px !important;
-}
-}
-
-/* MOBILE PAGINATION FIX — NORMAL FLOW, NOT FIXED */
-@media (max-width: 768px) {
-
-.pagination {
-display: flex;
-justify-content: center;
-margin: 40px auto;
-position: static !important; /* Not sticking */
-bottom: auto;
-left: auto;
-transform: none;
-z-index: 10;
-}
-
-/* Prevent footer from overlapping pagination */
-footer, .site-footer {
-position: static !important;
-}
-
-/* Add extra space above footer so pagination is visible */
-.pagination + footer,
-.pagination + .site-footer {
-margin-top: 40px !important;
-}
-}
-
-/*Preview Pic*/
-
-/* FORCE Melimtx preview image to original size */
-.collections-hover-img {
-width: 320px !important; /* adjust this to the original size */
-height: auto !important;
-max-width: none !important;
-max-height: none !important;
-
-position: absolute;
-top: 110%;
-left: 50%;
-transform: translateX(-50%);
-display: none !important;
-z-index: 99999;
-}
-
-.collections-hover-img{
-    display: none;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.collections-wrapper:hover .collections-hover-img {
-    display: block;
-}
-
-/* Collections.html Fixes */
-.collections-wrapper {
-position: relative;
-display: inline-block;
-cursor: pointer;
-}
-
-.collections-hover-img {
-display: none;
-width: 100%;
-margin-top: 10px;
-}
-
-.collections-wrapper:hover .collections-hover-img {
-display: block !important;
-}
-
-.category-grid {
-  gap: 10px;
-}
-
-/* -------------------------------- */
-/* MOBILE FIX: HIDE SCROLL ARROWS */
-/* -------------------------------- */
-@media (max-width: 768px) {
-  .scroll-arrow {
-    display: none !important;
-  }
-}
-
-/*Telegram Button*/
-
-.telegram-btn {
-  background: none;
+.gate-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: transparent;
   border: none;
-  padding: 0;
+  color: #fff;
+  font-size: 22px;
   cursor: pointer;
 }
 
-.telegram-btn:hover {
-  transform: scale(1.08);
+.gate-main-btn {
+  background: #2b2a2a;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-.telegram-btn.viewed {
+.gate-main-btn:hover {
+  background: #ff7b00;
+}
+
+.gate-section {
+  background: #2b2a2a;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 12px;
+}
+
+/* Ad buttons */
+
+.ad-btn {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  margin-top: 6px;
+  background: #535252;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ad-btn:hover {
+  background: #ff7b00;
+}
+
+.ad-btn.viewed {
+  background: #00ff00;
+}
+
+/* Progress bar */
+
+#progressBarWrapper {
+  width: 100%;
+  height: 8px;
+  background: #444;
+  border-radius: 4px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+  background: #4caf50;
+  transition: width 0.25s linear;
+}
+
+.gate-countdown {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 12px 0;
+  color: #ff7b00;
+}
+
+.gate-proceed {
+  width: 100%;
+  padding: 18px;
+  background: #ff7b00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
   opacity: 0.5;
-  cursor: default;
+  cursor: not-allowed;
+  font-weight: bold;
+}
+
+.gate-proceed.active {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* ============================= */
+/* CATEGORY / NSFW */
+/* ============================= */
+
+.category-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.collections-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.category-tab {
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.category-tab:hover {
+  background: #ff7b00;
+  font-style: italic;
+}
+
+/* Hover preview image */
+
+.collections-hover-img {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  display: none;
+  border-radius: 10px;
+  z-index: 9999;
+}
+
+.collections-wrapper:hover .collections-hover-img {
+  display: block;
+}
+
+/* ============================= */
+/* HOME / BACK BUTTONS */
+/* ============================= */
+
+.home-btn,
+.back-btn {
+  position: fixed;
+  top: 20px;
+  z-index: 9999;
+}
+
+.home-btn { left: 20px; }
+.back-btn { right: 20px; }
+
+.home-icon,
+.back-icon {
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+  transition: fill 0.3s ease;
+}
+
+.home-btn:hover .home-icon,
+.back-btn:hover .back-icon {
+  fill: #ff7b00;
+}
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+
+.site-footer {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  background: #000;
+  color: #8b898b;
+  margin-top: 40px;
+  font-size: 15px;
+}
+
+/* ============================= */
+/* ADS */
+/* ============================= */
+
+.ad-container,
+.ad-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.ad-container iframe,
+.ad-container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+
+  .page-title {
+    font-size: 2.2rem;
+    padding: 10px 0;
+  }
+
+  .collection-tab {
+    min-width: 140px;
+    max-width: 160px;
+    padding: 70px 15px;
+    font-size: 0.9rem;
+  }
+
+  .scroll-arrow {
+    display: none;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin: 40px auto;
+  }
+
+  .site-footer {
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  .home-icon,
+  .back-icon {
+    width: 26px;
+    height: 26px;
+  }
 }

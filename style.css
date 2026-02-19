@@ -325,8 +325,15 @@ main {
 }
 
 /* ============================= */
-/* CATEGORY / NSFW */
+/* CATEGORY SECTION */
 /* ============================= */
+
+.index-page main {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .category-grid {
   display: flex;

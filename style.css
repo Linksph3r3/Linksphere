@@ -332,8 +332,23 @@ main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+.index-page .page-title {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.center-group {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.center-group .section-divider {
+  margin: 20px 0;
 }
 
 .category-grid {

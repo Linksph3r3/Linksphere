@@ -154,13 +154,13 @@ main {
 }
 
 .lustsphere-page .categories {
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .lustsphere-page .section-divider {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 8px auto;
+  
 }
 
 
@@ -418,7 +418,7 @@ main {
   top: 115%;
   left: 50%;
   transform: translateX(-50%);
-  width: 280px;          /* reduced size */
+  width: 250px;          /* reduced size */
   max-width: 85vw;       /* responsive safety */
   display: none;
   border-radius: 10px;

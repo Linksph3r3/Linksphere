@@ -132,6 +132,25 @@ main {
 }
 
 /* ============================= */
+/* LUSTSPHERE PAGE CENTERING */
+/* ============================= */
+
+.lustsphere-page main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.lustsphere-page .notice-board {
+  margin-top: 40px;
+}
+
+.lustsphere-page .categories {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* ============================= */
 /* SCROLL ARROWS */
 /* ============================= */
 

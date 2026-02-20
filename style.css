@@ -132,7 +132,7 @@ main {
 }
 
 /* ============================= */
-/* LUSTSPHERE PAGE CENTERING */
+/* LUSTSPHERE PAGE  */
 /* ============================= */
 
 .lustsphere-page main {
@@ -149,6 +149,22 @@ main {
   margin-top: auto;
   margin-bottom: auto;
 }
+
+/* Tighten divider spacing around categories */
+.lustsphere-page .section-divider {
+  margin: 8px auto;
+}
+
+.lustsphere-page .categories {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/*notice board spacing */
+.lustsphere-page .notice-board {
+  margin: 30px auto 30px;
+}
+
 
 /* ============================= */
 /* SCROLL ARROWS */
@@ -401,10 +417,11 @@ main {
 
 .collections-hover-img {
   position: absolute;
-  top: 110%;
+  top: 115%;
   left: 50%;
   transform: translateX(-50%);
-  width: 320px;
+  width: 420px;
+  max-width: 90vw;
   display: none;
   border-radius: 10px;
   z-index: 200;

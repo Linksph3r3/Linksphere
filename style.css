@@ -163,6 +163,38 @@ main {
   
 }
 
+/* ============================= */
+/* MELIMTX COLLECTIONS PAGE  */
+/* ============================= */
+
+.melimtxcollections-page main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.melimtxcollections-page .notice-board {
+  margin: 90px auto;
+}
+
+/* Center divider + categories + divider as one block */
+.melimtxcollections-page .section-divider:first-of-type,
+.melimtxcollections-page .categories,
+.melimtxcollections-page .section-divider:last-of-type {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.melimtxcollections-page .categories {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.melimtxcollections-page .section-divider {
+  margin: 8px auto;
+  
+}
+
 
 /* ============================= */
 /* SCROLL ARROWS */

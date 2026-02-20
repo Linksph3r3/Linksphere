@@ -418,7 +418,7 @@ main {
   top: 115%;
   left: 50%;
   transform: translateX(-50%);
-  width: 250px;          /* reduced size */
+  width: 220px;          /* reduced size */
   max-width: 85vw;       /* responsive safety */
   display: none;
   border-radius: 10px;

@@ -1,6 +1,7 @@
 /* ================= CONFIG ================= */
 const REQUIRED_SECONDS = 30;
-const REQUIRED_ADS = 3; // Ads required to unlock (video is optional alternative)
+const REQUIRED_ADS = 3;
+
 const gateVideos = [
   "iYQNU54cM_8",
   "8xUX3D_GxBQ",
@@ -50,11 +51,7 @@ function loadYouTubeApi() {
       window.onYouTubeIframeAPIReady = resolve;
     }
 
-    const existingScript = document.querySelector(
-      'script[src="https://www.youtube.com/iframe_api"]'
-    );
-
-    if (!existingScript) {
+    if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
       const s = document.createElement("script");
       s.src = "https://www.youtube.com/iframe_api";
       document.head.appendChild(s);
@@ -67,18 +64,14 @@ function resetGate() {
   const g = gate();
   if (!g.modal) return;
 
-  state.chosenMethod = null;
-  state.adsViewed = 0;
-  state.watchSeconds = 0;
-  state.targetLink = null;
-
-  clearInterval(state.watchInterval);
-  state.watchInterval = null;
-
-  if (state.ytPlayer) {
-    try { state.ytPlayer.destroy(); } catch {}
-    state.ytPlayer = null;
-  }
+  state = {
+    chosenMethod: null,
+    adsViewed: 0,
+    targetLink: null,
+    ytPlayer: null,
+    watchSeconds: 0,
+    watchInterval: null
+  };
 
   g.adsSection && (g.adsSection.style.display = "none");
   g.videoSection && (g.videoSection.style.display = "none");
@@ -88,23 +81,18 @@ function resetGate() {
   if (g.progressBar) g.progressBar.style.width = "0%";
   if (g.countdownEl) g.countdownEl.textContent = REQUIRED_SECONDS;
 
-  if (g.proceedBtn) {
-    g.proceedBtn.disabled = true;
-    g.proceedBtn.classList.remove("active");
-  }
+  g.proceedBtn && (g.proceedBtn.disabled = true);
+  g.proceedBtn && g.proceedBtn.classList.remove("active");
 
-  if (g.chooseAds) g.chooseAds.disabled = false;
-  if (g.chooseVideo) g.chooseVideo.disabled = false;
+  g.chooseAds && (g.chooseAds.disabled = false);
+  g.chooseVideo && (g.chooseVideo.disabled = false);
 
   g.adBtns.forEach(b => {
     b.classList.remove("viewed");
     b.disabled = false;
   });
 
-  if (g.telegramBtn) {
-    g.telegramBtn.classList.remove("viewed");
-    g.telegramBtn.disabled = false;
-  }
+  g.telegramBtn && g.telegramBtn.classList.remove("viewed");
 }
 
 /* ================= OPEN / CLOSE ================= */
@@ -146,8 +134,6 @@ function startWatchCounting() {
 
   state.watchInterval = setInterval(() => {
     const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    state.watchSeconds = elapsed;
-
     const remaining = Math.max(0, REQUIRED_SECONDS - elapsed);
 
     if (g.countdownEl) g.countdownEl.textContent = remaining;
@@ -169,7 +155,7 @@ function pauseWatchCounting() {
   state.watchInterval = null;
 }
 
-/* ================= VIDEO CREATION ================= */
+/* ================= VIDEO ================= */
 async function createGateVideo() {
   const g = gate();
   if (!g.videoWrapper || !g.placeholder) return;
@@ -185,18 +171,13 @@ async function createGateVideo() {
     height: "260",
     width: "100%",
     videoId: vid,
-    playerVars: {
-      rel: 0,
-      playsinline: 1,
-      modestbranding: 1
-    },
+    playerVars: { rel: 0, playsinline: 1, modestbranding: 1 },
     events: {
       onStateChange: e => {
         if (e.data === YT.PlayerState.PLAYING) {
           g.progressBarWrapper?.classList.remove("hidden");
           startWatchCounting();
         }
-
         if (
           e.data === YT.PlayerState.PAUSED ||
           e.data === YT.PlayerState.BUFFERING
@@ -206,14 +187,6 @@ async function createGateVideo() {
       }
     }
   });
-
-  g.videoWrapper.addEventListener(
-    "click",
-    () => {
-      try { state.ytPlayer?.playVideo(); } catch {}
-    },
-    { once: true }
-  );
 }
 
 /* ================= GATE LOGIC ================= */
@@ -221,14 +194,13 @@ function setupGateLogic() {
   const g = gate();
   if (!g.modal) return;
 
-  // Scoped click delegation (safer than document-wide)
   document.body.addEventListener("click", e => {
-    const tab = e.target.closest(".collection-tab");
-    if (!tab || !tab.dataset.link) return;
+    const tab = e.target.closest(".collections-wrapper .category-tab");
+    if (!tab || !tab.getAttribute("href")) return;
     if (tab.id === "open-nsfw") return;
 
     e.preventDefault();
-    openGateForLink(tab.dataset.link);
+    openGateForLink(tab.getAttribute("href"));
   });
 
   g.closeBtn?.addEventListener("click", closeGate);
@@ -252,7 +224,6 @@ function setupGateLogic() {
     await createGateVideo();
   });
 
-  // ADS UNLOCK
   g.adBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       window.open(btn.dataset.url, "_blank", "noopener");
@@ -262,21 +233,10 @@ function setupGateLogic() {
         btn.disabled = true;
         state.adsViewed++;
 
-        if (state.adsViewed >= REQUIRED_ADS) {
-          unlockProceed();
-        }
+        if (state.adsViewed >= REQUIRED_ADS) unlockProceed();
       }
     });
   });
-
-  // TELEGRAM OPTIONAL
-  if (g.telegramBtn) {
-    g.telegramBtn.addEventListener("click", () => {
-      window.open(g.telegramBtn.dataset.url, "_blank", "noopener");
-      g.telegramBtn.classList.add("viewed");
-      g.telegramBtn.disabled = true;
-    });
-  }
 
   g.proceedBtn?.addEventListener("click", () => {
     if (!g.proceedBtn.disabled && state.targetLink) {
@@ -285,27 +245,6 @@ function setupGateLogic() {
     }
   });
 }
-
-/* ================= DIRECT NSFW REDIRECT ================= */
-function setupNSFWRedirect() {
-  const nsfwBtn = document.getElementById("open-nsfw");
-  if (!nsfwBtn) return;
-
-  nsfwBtn.addEventListener("click", e => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.location.href = "LustSphere.html";
-  });
-}
-
-/* ================= INIT ================= */
-document.addEventListener("DOMContentLoaded", () => {
-  setupGateLogic();
-  setupNSFWRedirect();
-  animateHomepageTitle();
-  setupAgeConfirmation();
-  setupNoticeBoard();
-});
 
 /* ================= AGE CONFIRMATION ================= */
 function setupAgeConfirmation() {
@@ -317,16 +256,14 @@ function setupAgeConfirmation() {
 
   let pendingLink = null;
 
-  // Intercept category tab clicks
-  document.body.addEventListener("click", (e) => {
+  document.body.addEventListener("click", e => {
     const tab = e.target.closest("#open-nsfw");
     if (!tab) return;
 
-    // If already confirmed in this session, allow navigation
     if (sessionStorage.getItem("ageConfirmed") === "true") return;
 
     e.preventDefault();
-    pendingLink = tab.getAttribute("href") || tab.dataset.link;
+    pendingLink = tab.getAttribute("href");
 
     modal.style.display = "flex";
     document.body.style.overflow = "hidden";
@@ -336,10 +273,7 @@ function setupAgeConfirmation() {
     sessionStorage.setItem("ageConfirmed", "true");
     modal.style.display = "none";
     document.body.style.overflow = "";
-
-    if (pendingLink) {
-      window.location.href = pendingLink;
-    }
+    if (pendingLink) window.location.href = pendingLink;
   });
 
   cancelBtn?.addEventListener("click", () => {
@@ -349,26 +283,27 @@ function setupAgeConfirmation() {
   });
 }
 
-/* ================= NOTICE BOARD ================= */
-
+/* ================= NOTICE BOARD + NEW BADGE ================= */
 function setupNoticeBoard() {
   const noticeList = document.getElementById("noticeList");
   if (!noticeList) return;
+
+  const snapshotKey = "lustSphereSnapshot_v1";
 
   const collectionLinks = Array.from(
     document.querySelectorAll(".collections-wrapper .category-tab")
   );
 
   const currentCollections = collectionLinks.map(el => ({
-    id: el.dataset.id,
+    id: el.dataset.id || el.textContent.trim(),
     name: el.textContent.trim()
   }));
 
-  const storedData = JSON.parse(localStorage.getItem("lustSphereSnapshot"));
+  const storedData = JSON.parse(localStorage.getItem(snapshotKey));
   let notices = [];
   let newIds = [];
 
-  if (storedData) {
+  if (storedData && storedData.collections) {
     const storedIds = storedData.collections.map(c => c.id);
 
     currentCollections.forEach(col => {
@@ -379,24 +314,26 @@ function setupNoticeBoard() {
     });
   }
 
-  // Save snapshot
-  localStorage.setItem("lustSphereSnapshot", JSON.stringify({
+  localStorage.setItem(snapshotKey, JSON.stringify({
     collections: currentCollections
   }));
 
-  // Apply NEW badge
   collectionLinks.forEach(link => {
-    if (newIds.includes(link.dataset.id)) {
+    const id = link.dataset.id || link.textContent.trim();
+    if (newIds.includes(id)) {
       link.classList.add("new-badge");
     }
   });
 
-  // Render notices
-  if (noticeList) {
-    if (notices.length === 0) {
-      noticeList.innerHTML = "<li>No recent updates.</li>";
-    } else {
-      noticeList.innerHTML = notices.map(n => `<li>${n}</li>`).join("");
-    }
-  }
+  noticeList.innerHTML =
+    notices.length === 0
+      ? "<li>No recent updates.</li>"
+      : notices.map(n => `<li>${n}</li>`).join("");
 }
+
+/* ================= INIT ================= */
+document.addEventListener("DOMContentLoaded", () => {
+  setupGateLogic();
+  setupAgeConfirmation();
+  setupNoticeBoard();
+});

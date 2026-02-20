@@ -404,7 +404,7 @@ main {
 }
 
 .index-page .page-title {
-  margin-top: 30px; /* reduced from 60px */
+  margin-top: 10px; /* reduced from 60px */
 }
 
 .center-group {
@@ -450,7 +450,7 @@ main {
   top: 115%;
   left: 50%;
   transform: translateX(-50%);
-  width: 220px;          /* reduced size */
+  width: 200px;          /* reduced size */
   max-width: 85vw;       /* responsive safety */
   display: none;
   border-radius: 10px;

@@ -1,529 +1,85 @@
-/* ============================= */
-/* RESET & BASE TYPOGRAPHY */
-/* ============================= */
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  font-family: "Poppins", Arial, sans-serif;
-  background: #000;
-  color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-img, video {
-  max-width: 100%;
-  height: auto;
-}
-
-/* ============================= */
-/* PAGE STRUCTURE */
-/* ============================= */
-
-main {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 18px 12px 120px;
-}
-
-.page-title {
-  font-size: 4rem;
-  text-align: center;
-  margin-top: 0;
-}
-
-/* ============================= */
-/* DIVIDER */
-/* ============================= */
-
-.section-divider {
-  width: 80%;
-  max-width: 600px;
-  height: 4px;
-  margin: 12px auto;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #ff7b00, #000);
-}
-
-.center-group .section-divider {
-  margin: 18px auto;
-}
-
-/* ============================= */
-/* COLLECTIONS */
-/* ============================= */
-
-.collections {
-  position: relative;
-  margin: 40px 0;
-}
-
-.collections-container {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 15px;
-  padding: 10px 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.collections-container::-webkit-scrollbar {
-  display: none;
-}
-
-.collections-container > * {
-  flex-shrink: 0;
-}
-
-.collection-tab {
-  position: relative;
-  flex: 0 0 auto;
-  min-width: 180px;
-  max-width: 220px;
-  background: #524e4e;
-  color: #ff7b00;
-  border-radius: 10px;
-  padding: 100px 20px;
-  text-align: center;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.28s ease, background 0.28s ease;
-}
-
-.collection-tab p {
-  position: relative;
-  z-index: 2;
-  transition: opacity 0.25s ease;
-}
-
-.collection-tab img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: 0;
-}
-
-.collection-tab:hover {
-  transform: translateY(-6px);
-  background: #2a2a2a;
-}
-
-.collection-tab:hover img {
-  opacity: 1;
-}
-
-.collection-tab:hover p {
-  opacity: 0;
-}
-
-/* ============================= */
-/* SCROLL ARROWS */
-/* ============================= */
-
-.scroll-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  font-size: 1rem;
-  padding: 10px 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  z-index: 25;
-  transition: opacity 0.22s ease, transform 0.22s ease;
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.collections:hover .scroll-arrow {
-  opacity: 1;
-}
-
-.left-arrow { left: 8px; }
-.right-arrow { right: 8px; }
-
-.scroll-arrow:hover {
-  transform: translateY(-50%) scale(1.06);
-  color: #ff7b00;
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .scroll-arrow { opacity: 1; }
-}
-
-/* ============================= */
-/* PAGINATION */
-/* ============================= */
-
-.pagination {
-  text-align: center;
-  margin: 25px 0;
-}
-
-.pagination button {
-  background: #2b2a2a;
-  color: #fff;
-  border: 1px solid #2b2a2a;
-  padding: 8px 14px;
-  margin: 0 4px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.pagination button:hover {
-  background: #ff7b00;
-  border-color: #ff7b00;
-}
-
-.page-number.active {
-  background: #ff7b00;
-  border-color: #ff7b00;
-}
-
-.current-page {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-/* ============================= */
-/* GATE MODAL */
-/* ============================= */
-
-.gate-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 10000; /* higher than everything */
-}
-
-.gate-modal.active {
-  display: flex;
-}
-
-.gate-content {
-  width: 90%;
-  max-width: 450px;
-  background: #1b1b1b;
-  padding: 20px;
-  border-radius: 12px;
-  position: relative;
-  text-align: center;
-}
-
-.gate-close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.gate-main-btn {
-  background: #2b2a2a;
-  color: #fff;
-  padding: 12px 22px;
-  border-radius: 10px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.gate-main-btn:hover {
-  background: #ff7b00;
-}
-
-.gate-section {
-  background: #2b2a2a;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 12px;
-}
-
-.ad-btn {
-  display: block;
-  width: 100%;
-  padding: 18px;
-  margin-top: 6px;
-  background: #535252;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.ad-btn:hover {
-  background: #ff7b00;
-}
-
-.ad-btn.viewed {
-  background: #00ff00;
-}
-
-#progressBarWrapper {
-  width: 100%;
-  height: 8px;
-  background: #444;
-  border-radius: 4px;
-  margin-top: 8px;
-  overflow: hidden;
-}
-
-#progressBar {
-  width: 0%;
-  height: 100%;
-  background: #4caf50;
-  transition: width 0.25s linear;
-}
-
-.gate-countdown {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 12px 0;
-  color: #ff7b00;
-}
-
-.gate-proceed {
-  width: 100%;
-  padding: 18px;
-  background: #ff7b00;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  opacity: 0.5;
-  cursor: not-allowed;
-  font-weight: bold;
-}
-
-.gate-proceed.active {
-  opacity: 1;
-  cursor: pointer;
-}
-
-/* ============================= */
-/* CATEGORY SECTION */
-/* ============================= */
-
-.index-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.index-page .page-title {
-  margin-top: 30px; /* reduced from 60px */
-}
-
-.center-group {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.category-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.collections-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.category-tab {
-  font-size: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-decoration: none;
-}
-
-.category-tab:hover {
-  background: #ff7b00;
-  font-style: italic;
-}
-
-.collections-hover-img {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 320px;
-  display: none;
-  border-radius: 10px;
-  z-index: 200;
-}
-
-.collections-wrapper:hover .collections-hover-img {
-  display: block;
-}
-
-/* ============================= */
-/* HOME / BACK BUTTONS */
-/* ============================= */
-
-.home-btn,
-.back-btn {
-  position: fixed;
-  top: 20px;
-  z-index: 100;
-}
-
-.home-btn { left: 20px; }
-.back-btn { right: 20px; }
-
-.home-icon,
-.back-icon {
-  width: 32px;
-  height: 32px;
-  fill: #fff;
-  transition: fill 0.3s ease;
-}
-
-.home-btn:hover .home-icon,
-.back-btn:hover .back-icon {
-  fill: #ff7b00;
-}
-
-/* ============================= */
-/* FOOTER */
-/* ============================= */
-
-.site-footer {
-  width: 100%;
-  text-align: center;
-  padding: 15px 0;
-  background: #000;
-  color: #8b898b;
-  margin-top: 40px;
-  font-size: 15px;
-}
-
-/* ============================= */
-/* ADS */
-/* ============================= */
-
-.ad-container,
-.ad-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15px 0;
-}
-
-.ad-container iframe,
-.ad-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
-
-@media (max-width: 768px) {
-
-  .page-title {
-    font-size: 2.2rem;
-    padding: 10px 0;
-  }
-
-  .collection-tab {
-    min-width: 140px;
-    max-width: 160px;
-    padding: 70px 15px;
-    font-size: 0.9rem;
-  }
-
-  .scroll-arrow {
-    display: none;
-  }
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin: 40px auto;
-  }
-
-  .site-footer {
-    font-size: 14px;
-    padding: 12px 0;
-  }
-
-  .home-icon,
-  .back-icon {
-    width: 26px;
-    height: 26px;
-  }
-}
-
-/* ============================= */
-/* NOTICE BOARD */
-/* ============================= */
-
-.notice-board {
-  max-width: 800px;
-  margin: 20px auto 40px;
-  padding: 15px 20px;
-  background: #111;
-  border: 1px solid #2b2a2a;
-  border-radius: 12px;
-}
-
-.notice-board h2 {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  color: #ff7b00;
-}
-
-.notice-board ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.notice-board li {
-  font-size: 14px;
-  margin-bottom: 8px;
-  padding: 6px 10px;
-  background: #1b1b1b;
-  border-radius: 8px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LustSphere</title>
+  <meta name="description" content="LustSphere adult collections - curated content categories.">
+
+  <!-- Preload CSS -->
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="style.css">
+  </noscript>
+</head>
+
+<body class="adult-page">
+
+  <!-- Home Button -->
+  <a href="index.html" class="home-btn" aria-label="Home">
+    <svg viewBox="0 0 24 24" class="home-icon">
+      <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5z"/>
+    </svg>
+  </a>
+
+  <main>
+    <h1 class="page-title">LustSphere</h1>
+
+    <!-- NOTICE BOARD -->
+    <section class="notice-board">
+      <h2>Latest Updates</h2>
+      <ul id="noticeList"></ul>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CATEGORIES -->
+    <section class="categories">
+      <div class="category-grid">
+
+        <!-- Melimtx -->
+        <div class="collections-wrapper">
+          <a href="Melimtx.html"
+             class="category-tab"
+             data-id="Melimtx"
+             aria-label="Melimtx Collection">
+            Melimtx
+          </a>
+
+          <img class="collections-hover-img"
+               src="images/Melimtx/melimtx-banner.webp"
+               alt="Melimtx preview"
+               loading="lazy" />
+        </div>
+
+        <!-- Mikayla Demaiter -->
+        <div class="collections-wrapper">
+          <a href="MikaylaD.html"
+             class="category-tab"
+             data-id="MikaylaD"
+             aria-label="Mikayla Demaiter Collection">
+            Mikayla Demaiter
+          </a>
+
+          <img class="collections-hover-img"
+               src="images/Mikayla_Demaiter/MKD_Preview_Cover.webp"
+               alt="Mikayla Demaiter preview"
+               loading="lazy" />
+        </div>
+
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Linksphere. All rights reserved.</p>
+  </footer>
+
+  <!-- Main Script -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>

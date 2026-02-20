@@ -304,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupNSFWRedirect();
   animateHomepageTitle();
   setupAgeConfirmation();
+  setupNoticeBoard();
 });
 
 /* ================= AGE CONFIRMATION ================= */
@@ -346,4 +347,56 @@ function setupAgeConfirmation() {
     document.body.style.overflow = "";
     pendingLink = null;
   });
+}
+
+/* ================= NOTICE BOARD ================= */
+
+function setupNoticeBoard() {
+  const noticeList = document.getElementById("noticeList");
+  if (!noticeList) return;
+
+  const collectionLinks = Array.from(
+    document.querySelectorAll(".collections-wrapper .category-tab")
+  );
+
+  const currentCollections = collectionLinks.map(el => ({
+    id: el.dataset.id,
+    name: el.textContent.trim()
+  }));
+
+  const storedData = JSON.parse(localStorage.getItem("lustSphereSnapshot"));
+  let notices = [];
+  let newIds = [];
+
+  if (storedData) {
+    const storedIds = storedData.collections.map(c => c.id);
+
+    currentCollections.forEach(col => {
+      if (!storedIds.includes(col.id)) {
+        notices.push(`New Collection Added: ${col.name}`);
+        newIds.push(col.id);
+      }
+    });
+  }
+
+  // Save snapshot
+  localStorage.setItem("lustSphereSnapshot", JSON.stringify({
+    collections: currentCollections
+  }));
+
+  // Apply NEW badge
+  collectionLinks.forEach(link => {
+    if (newIds.includes(link.dataset.id)) {
+      link.classList.add("new-badge");
+    }
+  });
+
+  // Render notices
+  if (noticeList) {
+    if (notices.length === 0) {
+      noticeList.innerHTML = "<li>No recent updates.</li>";
+    } else {
+      noticeList.innerHTML = notices.map(n => `<li>${n}</li>`).join("");
+    }
+  }
 }

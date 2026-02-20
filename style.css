@@ -142,7 +142,15 @@ main {
 }
 
 .lustsphere-page .notice-board {
-  margin-top: 40px;
+  margin: 30px auto;
+}
+
+/* Center divider + categories + divider as one block */
+.lustsphere-page .section-divider:first-of-type,
+.lustsphere-page .categories,
+.lustsphere-page .section-divider:last-of-type {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lustsphere-page .categories {
@@ -150,19 +158,9 @@ main {
   margin-bottom: auto;
 }
 
-/* Tighten divider spacing around categories */
 .lustsphere-page .section-divider {
-  margin: 8px auto;
-}
-
-.lustsphere-page .categories {
   margin-top: 8px;
   margin-bottom: 8px;
-}
-
-/*notice board spacing */
-.lustsphere-page .notice-board {
-  margin: 30px auto 30px;
 }
 
 
@@ -420,8 +418,8 @@ main {
   top: 115%;
   left: 50%;
   transform: translateX(-50%);
-  width: 420px;
-  max-width: 90vw;
+  width: 280px;          /* reduced size */
+  max-width: 85vw;       /* responsive safety */
   display: none;
   border-radius: 10px;
   z-index: 200;

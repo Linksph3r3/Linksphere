@@ -175,6 +175,10 @@ main {
   flex-direction: column;
 }
 
+.lustsphere-page .page-title { 
+  font-size: 4rem;
+}
+
 .lustsphere-page .notice-board {
   margin: 90px auto;
 }
@@ -203,31 +207,32 @@ main {
 /* ============================= */
 /* MELIMTX COLLECTIONS PAGE  */
 /* ============================= */
-
 .melimtxcollections-page main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-
-.melimtxcollections-page .notice-board {
-  margin: 90px auto;
+.melimtxcollections-page .page-title { 
+  margin-bottom: 180px;
+  font-size: 4rem;
 }
-
 /* Center divider + categories + divider as one block */
 .melimtxcollections-page .section-divider:first-of-type,
-.melimtxcollections-page .categories,
+.melimtxcollections-page .center-group,
 .melimtxcollections-page .section-divider:last-of-type {
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.melimtxcollections-page .categories {
+.melimtxcollections-page .center-group {
   margin-top: 8px;
   margin-bottom: 8px;
 }
 
-.melimtxcollections-page .section-divider {
+.index-page .section-divider {
   margin: 8px auto;
   
 }

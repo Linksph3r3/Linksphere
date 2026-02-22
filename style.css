@@ -435,24 +435,6 @@ main {
 /* CATEGORY SECTION */
 /* ============================= */
 
-.index-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.index-page .page-title {
-  margin-top: 10px; 
-}
-
-.center-group {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .category-grid {
   display: flex;
   justify-content: center;

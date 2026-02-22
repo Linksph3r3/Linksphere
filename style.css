@@ -132,6 +132,66 @@ main {
 }
 
 /* ============================= */
+/* INDEX PAGE*/
+/* ============================= */
+
+.index-page main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.index-page .page-title {
+  margin-top: 10px; 
+  font-size: 5rem;
+}
+
+/* Center divider + categories + divider as one block */
+.index-page .section-divider:first-of-type,
+.index-page .categories,
+.index-page .section-divider:last-of-type {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.index-page .categories {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.index-page .section-divider {
+  margin: 8px auto;
+  
+}
+.category-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.category-tab {
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.category-tab:hover {
+  background: #ff7b00;
+  font-style: italic;
+}
+
+/* ============================= */
 /* LUSTSPHERE PAGE  */
 /* ============================= */
 
@@ -164,6 +224,31 @@ main {
 .lustsphere-page .section-divider {
   margin: 8px auto;
   
+}
+
+.category-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.category-tab {
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.category-tab:hover {
+  background: #ff7b00;
+  font-style: italic;
 }
 
 /* ============================= */
@@ -414,79 +499,6 @@ main {
 .gate-proceed.active {
   opacity: 1;
   cursor: pointer;
-}
-
-/* ============================= */
-/* CATEGORY SECTION */
-/* ============================= */
-
-.index-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.index-page .page-title {
-  margin-top: 10px; 
-  font-size: 20px;
-}
-/* ============================= */
-/* INDEX PAGE*/
-/* ============================= */
-
-.index-page .section-divider:first-of-type,
-.index-page .categories,
-.index-page .section-divider:last-of-type {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.category-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.collections-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.category-tab {
-  font-size: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-decoration: none;
-}
-
-.category-tab:hover {
-  background: #ff7b00;
-  font-style: italic;
-}
-
-.collections-hover-img {
-  position: absolute;
-  top: 115%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;          /* reduced size */
-  max-width: 85vw;       /* responsive safety */
-  display: none;
-  border-radius: 10px;
-  z-index: 200;
-}
-
-.collections-wrapper:hover .collections-hover-img {
-  display: block;
 }
 
 /* ============================= */

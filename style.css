@@ -140,9 +140,6 @@ main {
   display: flex;
   flex-direction: column;
 }
-
-
-
 .index-page .page-title { 
   margin-bottom: 90px; ;
   font-size: 5rem;

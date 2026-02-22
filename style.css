@@ -141,8 +141,8 @@ main {
   flex-direction: column;
 }
 .index-page .page-title { 
-  margin-bottom: 90px; ;
-  font-size: 5rem;
+  margin-bottom: 120px; ;
+  font-size: 4rem;
 }
 /* Center divider + categories + divider as one block */
 .index-page .section-divider:first-of-type,

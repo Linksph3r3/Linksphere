@@ -3,47 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Melimtx Collections - Melimtx dedicated link collections.">
+  <title>Melimtx Collections</title>
+  <meta name="description" content="Melimtx collections - curated content categories.">
 
   <!-- Preload CSS -->
   <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="style.css">
   </noscript>
-
-  <title>Melimtx Collections</title>
 </head>
 
 <body class="melimtxcollections-page">
 
-  <main>
+  <!-- Home Button -->
+  <a href="index.html" class="home-btn" aria-label="Home">
+    <svg viewBox="0 0 24 24" class="home-icon">
+      <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5z"/>
+    </svg>
+  </a>
 
-    <!-- TOP LOCKED SECTION -->
+  <main>
     <h1 class="page-title">Melimtx Collections</h1>
 
-    <!-- CENTERED GROUP -->
-    <section class="categories">
+    <!-- NOTICE BOARD -->
+    <section class="notice-board">
+      <h2>Latest Updates</h2>
+      <ul id="noticeList"></ul>
+    </section>
 
-      <div class="section-divider"></div>
+  
+     <div class="section-divider"></div>
 
-      <section class="categories">
-        <div class="category-grid">
-          <a href="Melimtx-Video-Collections.html" id="mtxvidcollections" class="category-tab">
+      <!-- CATEGORIES -->
+     <section class="categories">
+      <div class="category-grid">
+
+        <!-- Video Collections -->
+        <div class="collections-wrapper">
+          <a href="Melimtx-Pages/Melimtx-Video-Collections.html"
+             class="category-tab"
+             data-id="VidCollections"
+             aria-label="Video Collections">
             Video Collections
           </a>
-          <a href="Melimtx-Collections.html" id="mtxcollections" class="category-tab">
-            Full Collections
-          </a>
         </div>
-      </section>
 
+         <!-- Full Collections -->
+         <div class="collections-wrapper">
+           <a href="Melimtx-Pages/Melimtx.html"
+             class="category-tab"
+             data-id="FullCollections"
+             aria-label="Full Collections">
+             Full Collections
+           </a>
+         </div>
+       </div>
+     </section>
 
-      <div class="section-divider"></div>
+     <div class="section-divider"></div>
 
-    </div>
-
+    
   </main>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2026 LinkSphere. All rights reserved.</p>
   </footer>

@@ -166,6 +166,57 @@ main {
   
 }
 
+/* ============================= */
+/* CATEGORY SECTION */
+/* ============================= */
+
+.melimtxcollections-page main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.melimtxcollections-page .page-title {
+  margin-top: 10px; 
+}
+
+.center-group {
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.collections-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.category-tab {
+  font-size: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-decoration: none;
+}
+
+.category-tab:hover {
+  background: #ff7b00;
+  font-style: italic;
+}
 
 
 /* ============================= */

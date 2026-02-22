@@ -141,12 +141,10 @@ main {
   flex-direction: column;
 }
 
-.index-page .notice-board {
-  margin: 90px auto;
-}
 
-.index-page .page-title {
-  margin-top: 10px; 
+
+.index-page .page-title { 
+  margin-bottom: 90px; ;
   font-size: 5rem;
 }
 /* Center divider + categories + divider as one block */

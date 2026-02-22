@@ -428,16 +428,21 @@ main {
 
 .index-page .page-title {
   margin-top: 10px; 
+  font-size: 20px;
 }
+/* ============================= */
+/* INDEX PAGE*/
+/* ============================= */
 
-.center-group {
+.index-page .section-divider:first-of-type,
+.index-page .categories,
+.index-page .section-divider:last-of-type {
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 .category-grid {
   display: flex;
   justify-content: center;

@@ -146,6 +146,12 @@ main {
   font-size: 5rem;
 }
 
+
+
+.index-page .notice-board {
+  margin: 90px auto;
+}
+
 /* Center divider + categories + divider as one block */
 .index-page .section-divider:first-of-type,
 .index-page .categories,
@@ -173,6 +179,11 @@ main {
   width: 100%;
 }
 
+.collections-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .category-tab {
   font-size: 15px;
   padding: 15px;
@@ -190,6 +201,7 @@ main {
   background: #ff7b00;
   font-style: italic;
 }
+
 
 /* ============================= */
 /* LUSTSPHERE PAGE  */
@@ -224,31 +236,6 @@ main {
 .lustsphere-page .section-divider {
   margin: 8px auto;
   
-}
-
-.category-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.category-tab {
-  font-size: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-decoration: none;
-}
-
-.category-tab:hover {
-  background: #ff7b00;
-  font-style: italic;
 }
 
 /* ============================= */

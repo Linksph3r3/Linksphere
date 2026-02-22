@@ -167,7 +167,7 @@ main {
 }
 
 /* ============================= */
-/* CATEGORY SECTION */
+/* MELIMTX COLLECTIONS PAGE  */
 /* ============================= */
 
 .melimtxcollections-page main {
@@ -176,46 +176,26 @@ main {
   flex-direction: column;
 }
 
-.melimtxcollections-page .page-title {
-  margin-top: 10px; 
+.melimtxcollections-page .notice-board {
+  margin: 90px auto;
 }
 
-.center-group {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Center divider + categories + divider as one block */
+.melimtxcollections-page .section-divider:first-of-type,
+.melimtxcollections-page .categories,
+.melimtxcollections-page .section-divider:last-of-type {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.category-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
+.melimtxcollections-page .categories {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
-.collections-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.category-tab {
-  font-size: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-decoration: none;
-}
-
-.category-tab:hover {
-  background: #ff7b00;
-  font-style: italic;
+.melimtxcollections-page .section-divider {
+  margin: 8px auto;
+  
 }
 
 
@@ -428,18 +408,16 @@ main {
 
 .index-page .page-title {
   margin-top: 10px; 
-  font-size: 20px;
 }
 
-.index-page .section-divider:first-of-type,
-.index-page .categories,
-.index-page .section-divider:last-of-type {
+.center-group {
   margin-top: auto;
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .category-grid {
   display: flex;
   justify-content: center;

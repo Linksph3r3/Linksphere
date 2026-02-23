@@ -185,7 +185,7 @@ main {
 
 /* Center divider + categories + divider as one block */
 .lustsphere-page .section-divider:first-of-type,
-.lustsphere-page .categories,
+.lustsphere-page .center-group,
 .lustsphere-page .section-divider:last-of-type {
   margin-top: auto;
   margin-bottom: auto;
@@ -194,7 +194,7 @@ main {
   align-items: center;
 }
 
-.lustsphere-page .categories {
+.lustsphere-page .center-group {
   margin-top: 8px;
   margin-bottom: 8px;
 }

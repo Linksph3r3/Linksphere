@@ -214,8 +214,11 @@ main {
 }
 
 .melimtxcollections-page .page-title { 
-  margin-bottom: 180px;
   font-size: 5rem;
+}
+
+.melimtxcollections-page .notice-board {
+  margin: 90px auto;
 }
 
 /* Center divider + categories + divider as one block */
@@ -238,7 +241,6 @@ main {
   margin: 8px auto;
   
 }
-
 /* ============================= */
 /* SCROLL ARROWS */
 /* ============================= */

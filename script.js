@@ -246,42 +246,6 @@ function setupGateLogic() {
   });
 }
 
-/* ================= AGE CONFIRMATION ================= */
-function setupAgeConfirmation() {
-  const modal = document.getElementById("ageConfirmModal");
-  const confirmBtn = document.getElementById("ageConfirmBtn");
-  const cancelBtn = document.getElementById("ageCancelBtn");
-
-  if (!modal) return;
-
-  let pendingLink = null;
-
-  document.body.addEventListener("click", e => {
-    const tab = e.target.closest("#open-nsfw");
-    if (!tab) return;
-
-    if (sessionStorage.getItem("ageConfirmed") === "true") return;
-
-    e.preventDefault();
-    pendingLink = tab.getAttribute("href");
-
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  });
-
-  confirmBtn?.addEventListener("click", () => {
-    sessionStorage.setItem("ageConfirmed", "true");
-    modal.style.display = "none";
-    document.body.style.overflow = "";
-    if (pendingLink) window.location.href = pendingLink;
-  });
-
-  cancelBtn?.addEventListener("click", () => {
-    modal.style.display = "none";
-    document.body.style.overflow = "";
-    pendingLink = null;
-  });
-}
 
 /* ================= NOTICE BOARD + NEW BADGE ================= */
 function setupNoticeBoard() {
@@ -334,6 +298,5 @@ function setupNoticeBoard() {
 /* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded", () => {
   setupGateLogic();
-  setupAgeConfirmation();
   setupNoticeBoard();
 });

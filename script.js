@@ -12,6 +12,27 @@ const gateVideos = [
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
+/* ================= HORIZONTAL SCROLL ================= */
+function setupHorizontalScroll() {
+  $$(".collections").forEach(row => {
+    const container = $(".collections-container", row);
+    const leftArrow = $(".left-arrow", row);
+    const rightArrow = $(".right-arrow", row);
+
+    if (!container || !leftArrow || !rightArrow) return;
+
+    const scrollAmount = 600;
+
+    leftArrow.addEventListener("click", () => {
+      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+
+    rightArrow.addEventListener("click", () => {
+      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+  });
+}
+
 /* ================= GATE ELEMENTS ================= */
 function gate() {
   return {
@@ -23,7 +44,6 @@ function gate() {
     adsSection: $("#adsSection"),
     videoSection: $("#videoSection"),
     adBtns: $$(".ad-btn"),
-    telegramBtn: $("#joinTelegram"),
     videoWrapper: $("#gateVideoWrapper"),
     placeholder: $("#gateVideoPlaceholder"),
     progressBarWrapper: $("#progressBarWrapper"),
@@ -38,7 +58,6 @@ let state = {
   adsViewed: 0,
   targetLink: null,
   ytPlayer: null,
-  watchSeconds: 0,
   watchInterval: null
 };
 
@@ -47,9 +66,7 @@ function loadYouTubeApi() {
   return new Promise(resolve => {
     if (window.YT && window.YT.Player) return resolve();
 
-    if (!window.onYouTubeIframeAPIReady) {
-      window.onYouTubeIframeAPIReady = resolve;
-    }
+    window.onYouTubeIframeAPIReady = resolve;
 
     if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
       const s = document.createElement("script");
@@ -69,30 +86,27 @@ function resetGate() {
     adsViewed: 0,
     targetLink: null,
     ytPlayer: null,
-    watchSeconds: 0,
     watchInterval: null
   };
 
-  g.adsSection && (g.adsSection.style.display = "none");
-  g.videoSection && (g.videoSection.style.display = "none");
-  g.videoWrapper && (g.videoWrapper.style.display = "none");
+  g.adsSection.style.display = "none";
+  g.videoSection.style.display = "none";
+  g.videoWrapper.style.display = "none";
 
-  if (g.progressBarWrapper) g.progressBarWrapper.classList.add("hidden");
-  if (g.progressBar) g.progressBar.style.width = "0%";
-  if (g.countdownEl) g.countdownEl.textContent = REQUIRED_SECONDS;
+  g.progressBarWrapper.classList.add("hidden");
+  g.progressBar.style.width = "0%";
+  g.countdownEl.textContent = REQUIRED_SECONDS;
 
-  g.proceedBtn && (g.proceedBtn.disabled = true);
-  g.proceedBtn && g.proceedBtn.classList.remove("active");
+  g.proceedBtn.disabled = true;
+  g.proceedBtn.classList.remove("active");
 
-  g.chooseAds && (g.chooseAds.disabled = false);
-  g.chooseVideo && (g.chooseVideo.disabled = false);
+  g.chooseAds.disabled = false;
+  g.chooseVideo.disabled = false;
 
   g.adBtns.forEach(b => {
     b.classList.remove("viewed");
     b.disabled = false;
   });
-
-  g.telegramBtn && g.telegramBtn.classList.remove("viewed");
 }
 
 /* ================= OPEN / CLOSE ================= */
@@ -119,49 +133,34 @@ function closeGate() {
 /* ================= UNLOCK ================= */
 function unlockProceed() {
   const g = gate();
-  if (!g.proceedBtn) return;
-
   g.proceedBtn.disabled = false;
   g.proceedBtn.classList.add("active");
 }
 
 /* ================= WATCH TIMER ================= */
 function startWatchCounting() {
-  if (state.watchInterval) return;
-
   const g = gate();
-  const startTime = Date.now();
+  const start = Date.now();
 
   state.watchInterval = setInterval(() => {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const elapsed = Math.floor((Date.now() - start) / 1000);
     const remaining = Math.max(0, REQUIRED_SECONDS - elapsed);
 
-    if (g.countdownEl) g.countdownEl.textContent = remaining;
-    if (g.progressBar) {
-      g.progressBar.style.width =
-        Math.min(100, (elapsed / REQUIRED_SECONDS) * 100) + "%";
-    }
+    g.countdownEl.textContent = remaining;
+    g.progressBar.style.width =
+      Math.min(100, (elapsed / REQUIRED_SECONDS) * 100) + "%";
 
     if (elapsed >= REQUIRED_SECONDS) {
       clearInterval(state.watchInterval);
-      state.watchInterval = null;
       unlockProceed();
     }
   }, 1000);
 }
 
-function pauseWatchCounting() {
-  clearInterval(state.watchInterval);
-  state.watchInterval = null;
-}
-
 /* ================= VIDEO ================= */
 async function createGateVideo() {
   const g = gate();
-  if (!g.videoWrapper || !g.placeholder) return;
-
   g.videoWrapper.style.display = "block";
-  g.placeholder.innerHTML = "";
 
   await loadYouTubeApi();
 
@@ -171,18 +170,12 @@ async function createGateVideo() {
     height: "260",
     width: "100%",
     videoId: vid,
-    playerVars: { rel: 0, playsinline: 1, modestbranding: 1 },
+    playerVars: { rel: 0, playsinline: 1 },
     events: {
       onStateChange: e => {
         if (e.data === YT.PlayerState.PLAYING) {
-          g.progressBarWrapper?.classList.remove("hidden");
+          g.progressBarWrapper.classList.remove("hidden");
           startWatchCounting();
-        }
-        if (
-          e.data === YT.PlayerState.PAUSED ||
-          e.data === YT.PlayerState.BUFFERING
-        ) {
-          pauseWatchCounting();
         }
       }
     }
@@ -194,29 +187,38 @@ function setupGateLogic() {
   const g = gate();
   if (!g.modal) return;
 
+  /* COLLECTION PAGE TABS */
+  document.body.addEventListener("click", e => {
+    const tab = e.target.closest(".collection-tab");
+    if (!tab || !tab.dataset.link) return;
+
+    e.preventDefault();
+    openGateForLink(tab.dataset.link);
+  });
+
+  /* CATEGORY PAGE TABS */
   document.body.addEventListener("click", e => {
     const tab = e.target.closest(".collections-wrapper .category-tab");
     if (!tab || !tab.getAttribute("href")) return;
-    if (tab.id === "open-nsfw") return;
 
     e.preventDefault();
     openGateForLink(tab.getAttribute("href"));
   });
 
-  g.closeBtn?.addEventListener("click", closeGate);
+  g.closeBtn.addEventListener("click", closeGate);
 
   g.modal.addEventListener("click", e => {
     if (e.target === g.modal) closeGate();
   });
 
-  g.chooseAds?.addEventListener("click", () => {
+  g.chooseAds.addEventListener("click", () => {
     if (state.chosenMethod) return;
     state.chosenMethod = "ads";
     g.adsSection.style.display = "block";
     g.chooseVideo.disabled = true;
   });
 
-  g.chooseVideo?.addEventListener("click", async () => {
+  g.chooseVideo.addEventListener("click", async () => {
     if (state.chosenMethod) return;
     state.chosenMethod = "video";
     g.videoSection.style.display = "block";
@@ -238,7 +240,7 @@ function setupGateLogic() {
     });
   });
 
-  g.proceedBtn?.addEventListener("click", () => {
+  g.proceedBtn.addEventListener("click", () => {
     if (!g.proceedBtn.disabled && state.targetLink) {
       window.open(state.targetLink, "_blank", "noopener");
       closeGate();
@@ -246,57 +248,8 @@ function setupGateLogic() {
   });
 }
 
-
-/* ================= NOTICE BOARD + NEW BADGE ================= */
-function setupNoticeBoard() {
-  const noticeList = document.getElementById("noticeList");
-  if (!noticeList) return;
-
-  const snapshotKey = "lustSphereSnapshot_v1";
-
-  const collectionLinks = Array.from(
-    document.querySelectorAll(".collections-wrapper .category-tab")
-  );
-
-  const currentCollections = collectionLinks.map(el => ({
-    id: el.dataset.id || el.textContent.trim(),
-    name: el.textContent.trim()
-  }));
-
-  const storedData = JSON.parse(localStorage.getItem(snapshotKey));
-  let notices = [];
-  let newIds = [];
-
-  if (storedData && storedData.collections) {
-    const storedIds = storedData.collections.map(c => c.id);
-
-    currentCollections.forEach(col => {
-      if (!storedIds.includes(col.id)) {
-        notices.push(`New Collection Added: ${col.name}`);
-        newIds.push(col.id);
-      }
-    });
-  }
-
-  localStorage.setItem(snapshotKey, JSON.stringify({
-    collections: currentCollections
-  }));
-
-  collectionLinks.forEach(link => {
-    const id = link.dataset.id || link.textContent.trim();
-    if (newIds.includes(id)) {
-      link.classList.add("new-badge");
-    }
-  });
-
-  noticeList.innerHTML =
-    notices.length === 0
-      ? "<li>No recent updates.</li>"
-      : notices.map(n => `<li>${n}</li>`).join("");
-}
-
 /* ================= INIT ================= */
 document.addEventListener("DOMContentLoaded", () => {
+  setupHorizontalScroll();
   setupGateLogic();
-  setupNoticeBoard();
 });

@@ -474,7 +474,7 @@ main {
   top: 115%;
   left: 50%;
   transform: translateX(-50%);
-  width: 280px;          /* reduced size */
+  width: 200px;          /* reduced size */
   max-width: 85vw;       /* responsive safety */
   display: none;
   border-radius: 10px;
@@ -524,26 +524,6 @@ main {
   color: #8b898b;
   margin-top: 40px;
   font-size: 15px;
-}
-
-/* ============================= */
-/* ADS */
-/* ============================= */
-
-.ad-container,
-.ad-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 15px 0;
-}
-
-.ad-container iframe,
-.ad-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* ============================= */

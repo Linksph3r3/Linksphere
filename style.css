@@ -505,7 +505,6 @@ main {
   width: 32px;
   height: 32px;
   fill: none;
-  background: none;
   transition: fill 0.3s ease;
 }
 

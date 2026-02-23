@@ -475,6 +475,7 @@ main {
   left: 50%;
   transform: translateX(-50%);
   width: 200px;          /* reduced size */
+  height: 200px;
   max-width: 85vw;       /* responsive safety */
   display: none;
   border-radius: 10px;

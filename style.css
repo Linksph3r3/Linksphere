@@ -130,7 +130,21 @@ main {
 .collection-tab:hover p {
   opacity: 0;
 }
+/* ============================= */
+/*  SITE LOGO */
+/* ============================= */
+ .site-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 
+.site-logo img {
+  width: 180px; /* adjust if needed */
+  height: auto;
+  display: block;
+}
 /* ============================= */
 /*  HOMEPAGE  */
 /* ============================= */

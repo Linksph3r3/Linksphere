@@ -189,8 +189,8 @@ main {
 .index-page .section-divider:first-of-type,
 .index-page .center-group,
 .index-page .section-divider:last-of-type {
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 10px ;
+  margin-bottom: 10px ;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -210,9 +210,6 @@ main {
   font-size: 15px;
   padding: 15px;
   border-radius: 10px;
-  margin-top: 10px auto;
-  margin-bottom: 10px auto;
-  font-weight: bold;
   background: linear-gradient(
   145deg,
   #c9c8c8 0%,     /* highlight */
@@ -233,8 +230,16 @@ main {
 }
 
 .index-page .category-tab:hover {
-
- color: #ffffff;
+ 
+  background: linear-gradient(
+  145deg,
+  #c9c8c8 0%,     /* highlight */
+  #999898 25%,    /* light silver */
+  #696969 50%,    /* mid tone */
+  #414040 75%,    /* dark tone */
+  #141414 100%    /* deep metallic base */
+);
+ color:#ff9100ef ;
  text-shadow:
   0 0 8px rgba(255, 140, 0, 0.7),
   0 0 16px rgba(255, 115, 0, 0.5);

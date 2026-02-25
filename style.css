@@ -135,14 +135,16 @@ main {
 /* ============================= */
 
 .site-logo img {
-  width: 400px; /* adjust if needed */
+  
   height: auto;
   display: block;
 }
 
 .site-logo-wrapper {
   text-align: center;
-  margin-top: 20px;
+  width: 400px; /* adjust if needed */
+  margin-top: 0px;
+  margin-bottom: 180px;
 }
 
 .site-logo {

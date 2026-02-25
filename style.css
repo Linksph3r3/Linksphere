@@ -147,7 +147,7 @@ main {
 
 .site-logo {
   display: block;
-  margin: 0 auto;
+  margin: 0px auto;
   width: 300px;
   height: auto;
   max-width: 500px;
@@ -232,7 +232,7 @@ main {
 
 .index-page .category-tab:hover {
 
- color: #E65100;
+ color: #ffffff;
  text-shadow:
   0 0 8px rgba(255, 140, 0, 0.7),
   0 0 16px rgba(255, 115, 0, 0.5);

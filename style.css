@@ -140,13 +140,6 @@ main {
 }
 
 
-.site-logo {
-  display: block;
-  margin: 0px auto;
-  width: 300px;
-  height: auto;
-  max-width: 500px;
-}
 
 .logo-wording {
   font-size: 3rem;

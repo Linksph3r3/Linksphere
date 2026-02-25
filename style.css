@@ -189,8 +189,8 @@ main {
 .index-page .section-divider:first-of-type,
 .index-page .center-group,
 .index-page .section-divider:last-of-type {
-  margin-top: 10px ;
-  margin-bottom: 10px ;
+  margin-top: 10px auto;
+  margin-bottom: 10px auto ;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,9 +240,7 @@ main {
   #141414 100%    /* deep metallic base */
 );
  color:#ff9100ef ;
- text-shadow:
-  0 0 8px rgba(255, 140, 0, 0.7),
-  0 0 16px rgba(255, 115, 0, 0.5);
+ 
  font-style: italic;
 }
 

@@ -134,7 +134,10 @@ main {
 /*  SITE LOGO */
 /* ============================= */
 
-
+.site-logo img {
+  margin-top: 0px;
+  display: block;
+}
 
 .site-logo-wrapper {
   text-align: center;

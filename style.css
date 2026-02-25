@@ -215,11 +215,11 @@ main {
   font-weight: bold;
   background: linear-gradient(
   145deg,
-  #F2F2F2 0%,     /* highlight */
-  #CFCFCF 25%,    /* light silver */
-  #9E9E9E 50%,    /* mid tone */
-  #6E6E6E 75%,    /* dark tone */
-  #3A3A3A 100%    /* deep metallic base */
+  #c9c8c8 0%,     /* highlight */
+  #999898 25%,    /* light silver */
+  #696969 50%,    /* mid tone */
+  #414040 75%,    /* dark tone */
+  #141414 100%    /* deep metallic base */
 );
   color: #ffffff;
   text-shadow:

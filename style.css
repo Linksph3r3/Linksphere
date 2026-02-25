@@ -135,7 +135,7 @@ main {
 /* ============================= */
 
 .site-logo img {
-  
+  margin-top: 0;
   display: block;
 }
 

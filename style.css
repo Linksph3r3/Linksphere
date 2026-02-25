@@ -135,7 +135,7 @@ main {
 /* ============================= */
 
 .site-logo img {
-  width: 250px; /* adjust if needed */
+  width: 400px; /* adjust if needed */
   height: auto;
   display: block;
 }
@@ -195,42 +195,6 @@ main {
   margin: 8px auto;
   
 }
-/* ============================= */
-/*  HOMEPAGE TITLE */
-/* ============================= */
-
-.index-page .page-title {
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 3px;
-  text-align: center;
-  margin-top: 0;
-  margin-bottom: 180px;
-
-  /* Metallic gradient */
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #cfcfcf 30%,
-    #9a9a9a 55%,
-    #ffffff 80%
-  );
-
-  /* Standard property */
-  background-clip: text;
-
-  /* WebKit fallback */
-  -webkit-background-clip: text;
-
-  /* Required for WebKit */
-  -webkit-text-fill-color: transparent;
-
-  text-shadow:
-    0 0 8px rgba(255, 123, 0, 0.6),
-    0 0 18px rgba(255, 123, 0, 0.4),
-    0 0 30px rgba(255, 123, 0, 0.25);
-}
-
 
 /* ============================= */
 /* LUSTSPHERE PAGE  */

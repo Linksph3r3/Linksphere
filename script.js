@@ -252,4 +252,38 @@ function setupGateLogic() {
 document.addEventListener("DOMContentLoaded", () => {
   setupHorizontalScroll();
   setupGateLogic();
+
+  /* ================= AGE CONFIRMATION ================= */
+
+const ageModal = document.getElementById("ageModal");
+const ageConfirm = document.getElementById("ageConfirm");
+const ageDecline = document.getElementById("ageDecline");
+
+let pendingCategoryLink = null;
+
+// Intercept category tab clicks on homepage
+document.body.addEventListener("click", e => {
+  const tab = e.target.closest(".index-page .category-tab");
+  if (!tab) return;
+
+  e.preventDefault();
+
+  pendingCategoryLink = tab.getAttribute("href");
+  ageModal.classList.add("active");
+  document.body.style.overflow = "hidden";
 });
+
+ageConfirm.addEventListener("click", () => {
+  ageModal.classList.remove("active");
+  document.body.style.overflow = "";
+
+  if (pendingCategoryLink) {
+    window.location.href = pendingCategoryLink;
+  }
+});
+
+ageDecline.addEventListener("click", () => {
+  ageModal.classList.remove("active");
+  document.body.style.overflow = "";
+});
+})

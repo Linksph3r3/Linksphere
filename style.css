@@ -136,23 +136,21 @@ main {
 
 .site-logo img {
   
-  height: auto;
   display: block;
 }
 
 .site-logo-wrapper {
   text-align: center;
-  width: 400px; /* adjust if needed */
-  margin-top: 0px;
-  margin-bottom: 180px;
-   height: auto;
-  display: block;
+  margin-top: 20px;
+  margin-bottom: 90px;
 }
 
 .site-logo {
   display: block;
   margin: 0 auto;
-  max-width: 220px;
+  width: 300px;
+  height: auto;
+  max-width: 500px;
 }
 
 .logo-wording {

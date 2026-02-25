@@ -145,6 +145,8 @@ main {
   width: 400px; /* adjust if needed */
   margin-top: 0px;
   margin-bottom: 180px;
+   height: auto;
+  display: block;
 }
 
 .site-logo {

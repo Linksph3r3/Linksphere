@@ -136,12 +136,12 @@ main {
 
 .site-logo-wrapper {
   text-align: center;
-  margin: -60px auto 100px;
+  margin: 0 auto 10px;
 }
 
 .site-logo {
   display: block;
-  margin: -60px auto 0px;
+  margin: 0 auto;
   width: 1000px;
   height: auto;
   max-width: 1200px;
@@ -222,12 +222,10 @@ main {
  color:#ffffff;
 }
 
-.index-page.hero-title {
-  margin-top: -60px;
+.index-page .hero-title {
+  margin: 0;
   font-size: 1rem;
-  font-weight: 700;
-  text-align: center;
-  color: #ffffff;
+  
 }
 
 /* ============================= */

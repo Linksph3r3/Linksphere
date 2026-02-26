@@ -150,8 +150,8 @@ main {
 .index-page .logo-text {
   font-family: Impact, sans-serif;
   font-size: 1rem;
-  letter-spacing: 2px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   margin: -60px auto;
 }
 /* ============================= */

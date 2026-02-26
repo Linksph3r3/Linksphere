@@ -221,6 +221,17 @@ main {
  );
  color:#ffffff;
 }
+
+.index-page .hero-title{
+
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+
 /* ============================= */
 /* AGE CONFIRMATION MODAL */
 /* ============================= */

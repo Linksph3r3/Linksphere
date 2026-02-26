@@ -136,7 +136,7 @@ main {
 
 .site-logo-wrapper {
   text-align: center;
-  margin: -60px auto 80px;
+  margin: -60px auto 20px;
 }
 
 .site-logo {
@@ -229,7 +229,7 @@ main {
   gap: 10px;
   width: 100%;
   font-size: 1rem;
-  margin-top: -60px;
+  
 }
 
 

@@ -136,7 +136,7 @@ main {
 
 .site-logo-wrapper {
   text-align: center;
-  margin: 0 auto 10px;
+  margin: -80px auto 10px;
 }
 
 .site-logo {
@@ -147,7 +147,11 @@ main {
   max-width: 1200px;
 }
 
-  
+.logo-text {
+  font-family: Impact, sans-serif;
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
 /* ============================= */
 /*  HOMEPAGE  */
 /* ============================= */
@@ -220,12 +224,6 @@ main {
   #000000 100%  
  );
  color:#ffffff;
-}
-
-.index-page .hero-title {
-  margin: 0;
-  font-size: 1rem;
-  
 }
 
 /* ============================= */

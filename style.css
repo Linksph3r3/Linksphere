@@ -147,13 +147,6 @@ main {
   max-width: 1200px;
 }
 
-.index-page .logo-text {
-  font-family: Impact, sans-serif;
-  font-size: 1rem;
-  display: flex;
-  justify-content: center;
-  margin: -60px auto;
-}
 /* ============================= */
 /*  HOMEPAGE  */
 /* ============================= */

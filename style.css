@@ -212,7 +212,7 @@ main {
 .index-page .category-tab:hover {
   background: linear-gradient(
   145deg,
-  #ff8800 0%,    
+  #ff7b00 0%,    
   #ff7b00 25%,    
   #e66903 50%,  
   #b65302 75%,    
@@ -220,7 +220,15 @@ main {
  );
  color:#ffffff;
 }
+.index-page .section-divider{
+width: 80%;
+  max-width: 600px;
+  height: 4px;
+  margin: 12px auto;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #000000,#b65302,#e66903,#ff7b00,#ffbb00,#ff7b00,#e66903,#b65302,#000);
 
+}
 /* ============================= */
 /* AGE CONFIRMATION MODAL */
 /* ============================= */

@@ -174,7 +174,7 @@ main {
 .index-page .section-divider:first-of-type,
 .index-page .center-group,
 .index-page .section-divider:last-of-type {
-  margin-top: 10px auto;
+  margin-top: -40px auto;
   margin-bottom: 10px auto ;
   display: flex;
   flex-direction: column;

@@ -136,7 +136,7 @@ main {
 
 .site-logo-wrapper {
   text-align: center;
-  margin: -60px auto 20px;
+  margin: -60px auto 80px;
 }
 
 .site-logo {
@@ -222,16 +222,13 @@ main {
  color:#ffffff;
 }
 
-.index-page .hero-title{
-
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  font-size: 1rem;
-  
+.index-page.hero-title {
+  margin-top: 15px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
 }
-
 
 /* ============================= */
 /* AGE CONFIRMATION MODAL */

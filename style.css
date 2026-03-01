@@ -134,56 +134,61 @@ main {
 /*  SITE LOGO */
 /* ============================= */
 
-.site-logo-wrapper {
+/* Hero Header Section */
+.hero-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin: -80px auto 0;
+  padding: 20px;
 }
 
+/* Logo */
 .site-logo {
-  display: block;
-  margin: 0 auto;
-  width: 1000px;
+  max-width: 400px;
+  width: 80%;
   height: auto;
-  max-width: 1200px;
+  margin-bottom: 1rem;
+}
+
+/* Hero Title */
+.hero-title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #d9d9d9;
+  max-width: 600px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .site-logo {
+    max-width: 300px;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    padding: 0 10px;
+  }
 }
 
 /* ============================= */
 /*  HOMEPAGE  */
 /* ============================= */
-
 .index-page main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.index-page .page-title { 
-  font-size: 5rem;
-}
-
-.index-page .notice-board {
-  margin: 90px auto;
-}
-
-/* Center divider + categories + divider as one block */
-.index-page .section-divider:first-of-type,
-.index-page .center-group,
-.index-page .section-divider:last-of-type {
-  margin-top: 10px auto;
-  margin-bottom: 10px auto ;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .index-page .center-group {
   margin-top: 40px;
   margin-bottom: 8px;
-}
-
-.index-page .section-divider {
-  margin: 8px auto;
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .index-page .category-tab {
@@ -191,44 +196,34 @@ main {
   padding: 15px;
   border-radius: 10px;
   background: linear-gradient(
-  145deg,
-  #8b8b8b 0%,     
-  #6b6b6b 25%,    
-  #4b4b4b 50%,    
-  #2b2b2b 75%,    
-  #000000 100%    
- );
-  
+    145deg,
+    #8b8b8b 0%,
+    #6b6b6b 25%,
+    #4b4b4b 50%,
+    #2b2b2b 75%,
+    #000000 100%
+  );
   text-shadow:
-  0 2px 4px rgba(0,0,0,0.6),
-  0 -1px 2px rgba(255,255,255,0.4);
+    0 2px 4px rgba(0,0,0,0.6),
+    0 -1px 2px rgba(255,255,255,0.4);
   font-family: Arial, sans-serif;
   color: #ffffff;
   cursor: pointer;
   transition: 0.3s ease;
- 
 }
 
 .index-page .category-tab:hover {
   background: linear-gradient(
-  145deg,
-  #ff7b00 0%,    
-  #ff7b00 25%,    
-  #e66903 50%,  
-  #b65302 75%,    
-  #000000 100%  
- );
- color:#ffffff;
+    145deg,
+    #ff7b00 0%,
+    #ff7b00 25%,
+    #e66903 50%,
+    #b65302 75%,
+    #000000 100%
+  );
 }
-.index-page .section-divider{
-width: 80%;
-  max-width: 600px;
-  height: 2px;
-  margin: 12px auto;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #000000,#1b1b1b,#b65302,#e66903,#ff7b00,#ffbb00,#ffffff,#ffbb00,#ff7b00,#e66903,#b65302,#1b1b1b,#000);
 
-}
+
 /* ============================= */
 /* AGE CONFIRMATION MODAL */
 /* ============================= */
@@ -660,21 +655,11 @@ width: 80%;
 /* ============================= */
 /* RESPONSIVE */
 /* ============================= */
-
 @media (max-width: 768px) {
 
-  .page-title {
-    font-size: 2.2rem;
-    padding: 10px 0;
+  main {
+    padding: 12px 10px 80px;
   }
-
-  .collection-tab {
-    min-width: 140px;
-    max-width: 160px;
-    padding: 70px 15px;
-    font-size: 0.9rem;
-  }
-
   .scroll-arrow {
     display: none;
   }
@@ -685,18 +670,41 @@ width: 80%;
     margin: 40px auto;
   }
 
-  .site-footer {
-    font-size: 14px;
-    padding: 12px 0;
-  }
-
   .home-icon,
   .back-icon {
     width: 26px;
     height: 26px;
   }
-}
 
+  .site-logo {
+    width: 95%;
+    max-width: 600px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .collection-tab {
+    min-width: 140px;
+    max-width: 160px;
+    padding: 70px 15px;
+    font-size: 0.9rem;
+  }
+
+  .age-content {
+    padding: 20px;
+  }
+
+  .age-btn {
+    padding: 10px 14px;
+  }
+
+  .site-footer {
+    font-size: 14px;
+    padding: 12px 0;
+  }
+}
 /* ============================= */
 /* NOTICE BOARD */
 /* ============================= */
@@ -789,72 +797,6 @@ main {
 }
 
 /* ============================= */
-/* SITE LOGO */
-/* ============================= */
-
-.site-logo-wrapper {
-  text-align: center;
-  margin: 0 auto 20px;
-}
-
-.site-logo {
-  width: 90%;
-  max-width: 1000px;
-  height: auto;
-  margin: 0 auto;
-}
-
-/* ============================= */
-/* HOMEPAGE */
-/* ============================= */
-
-.index-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.index-page .center-group {
-  margin-top: 40px;
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.index-page .category-tab {
-  font-size: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  background: linear-gradient(
-    145deg,
-    #8b8b8b 0%,
-    #6b6b6b 25%,
-    #4b4b4b 50%,
-    #2b2b2b 75%,
-    #000000 100%
-  );
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.6),
-    0 -1px 2px rgba(255,255,255,0.4);
-  font-family: Arial, sans-serif;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.index-page .category-tab:hover {
-  background: linear-gradient(
-    145deg,
-    #ff7b00 0%,
-    #ff7b00 25%,
-    #e66903 50%,
-    #b65302 75%,
-    #000000 100%
-  );
-}
-
-/* ============================= */
 /* COLLECTIONS */
 /* ============================= */
 
@@ -898,121 +840,3 @@ main {
   background: #2a2a2a;
 }
 
-/* ============================= */
-/* AGE CONFIRMATION MODAL */
-/* ============================= */
-
-.age-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 20000;
-}
-
-.age-modal.active {
-  display: flex;
-}
-
-.age-content {
-  background: #1b1b1b;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-}
-
-.age-content h2 {
-  color: #ff7b00;
-  margin-bottom: 10px;
-}
-
-.age-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.age-btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.age-btn.confirm {
-  background: #ff7b00;
-  color: #fff;
-}
-
-.age-btn.confirm:hover {
-  background: #ff9100;
-}
-
-.age-btn.decline {
-  background: #333;
-  color: #fff;
-}
-
-.age-btn.decline:hover {
-  background: #555;
-}
-
-/* ============================= */
-/* FOOTER */
-/* ============================= */
-
-.site-footer {
-  width: 100%;
-  text-align: center;
-  padding: 15px 0;
-  color: #ffffff;
-  margin-top: 40px;
-  font-size: 15px;
-}
-
-/* ============================= */
-/* RESPONSIVE */
-/* ============================= */
-
-@media (max-width: 768px) {
-
-  main {
-    padding: 12px 10px 80px;
-  }
-
-  .site-logo {
-    width: 95%;
-    max-width: 600px;
-  }
-
-  .page-title {
-    font-size: 2rem;
-  }
-
-  .collection-tab {
-    min-width: 140px;
-    max-width: 160px;
-    padding: 70px 15px;
-    font-size: 0.9rem;
-  }
-
-  .age-content {
-    padding: 20px;
-  }
-
-  .age-btn {
-    padding: 10px 14px;
-  }
-
-  .site-footer {
-    font-size: 14px;
-    padding: 12px 0;
-  }
-}

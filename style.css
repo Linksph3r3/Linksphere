@@ -148,6 +148,7 @@ main {
 
 /* Logo */
 .site-logo {
+  width: 350px;
   max-width: 400px;
   width: 80%;
   height: auto;

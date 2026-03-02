@@ -246,8 +246,9 @@ main {
   font-weight: bold;
   border-radius: var(--radius-md);
   background: var(--color-surface-2);
-  display: flex;
+  justify-content: center;
   align-items: center;
+  height: auto;
   color: var(--color-text);
   transition: background var(--transition-normal);
 }

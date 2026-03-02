@@ -142,17 +142,18 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: -60px;
-  padding: 20px;
+  margin-top: -60px auto; 
+  margin-bottom: 10px auto;
+  padding: 10px;
 }
 
 /* Logo */
 .site-logo {
-  width: 900px;
-  max-width: 1200px;
+  width: 1600px;
+  max-width: 1800px;
   width: 80%;
   height: auto;
-  margin:-40px 10px;
+  margin: 10px auto;
 }
 
 /* Responsive */
@@ -161,10 +162,6 @@ main {
     max-width: 300px;
   }
 
-  .hero-title {
-    font-size: 1.1rem;
-    padding: 0 10px;
-  }
 }
 
 /* ============================= */

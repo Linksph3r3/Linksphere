@@ -79,20 +79,16 @@ main {
 /* ============================= */
 
 .hero-header {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
-  margin: -60px auto 10px;
-  padding: 10px;
+  justify-content: center;
 }
 
 .site-logo {
-  width: 80%;
-  max-width: 1800px;
-  margin: 10px auto;
+  width: min(95%, 2000px);
+  height: auto;
+  max-height: 75vh;
 }
 
 /* ============================= */

@@ -246,8 +246,8 @@ main {
   font-weight: bold;
   border-radius: var(--radius-md);
   background: var(--color-surface-2);
-  justify-content:center;
   display: flex;
+  align-items: center;
   color: var(--color-text);
   transition: background var(--transition-normal);
 }
@@ -284,7 +284,7 @@ main {
 
   .site-logo {
     width: 95%;
-    ;
+    max-width: 600px;
   }
 
   .collection-tab {

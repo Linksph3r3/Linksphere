@@ -1,34 +1,70 @@
+/* =======================================================
+   LINKSPHERE — CORE STYLES (Scalable Architecture)
+   ======================================================= */
+
 /* ============================= */
-/* RESET & BASE TYPOGRAPHY */
+/* 1. DESIGN TOKENS */
 /* ============================= */
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --color-bg: #000;
+  --color-surface: #1b1b1b;
+  --color-surface-2: #2b2a2a;
+  --color-card: #524e4e;
+
+  --color-primary: #ff7b00;
+  --color-primary-hover: #ff9100;
+
+  --color-text: #ffffff;
+  --color-muted: #8b8b8b;
+
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+
+  --container-width: 1000px;
+}
+
+/* ============================= */
+/* 2. RESET */
+/* ============================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html, body {
   height: 100%;
-  max-width: 100%;
   overflow-x: hidden;
 }
 
 body {
   font-family: "Poppins", Arial, sans-serif;
-  background: #000;
-  color: #fff;
+  background: var(--color-bg);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 img, video {
+  display: block;
   max-width: 100%;
   height: auto;
 }
 
 /* ============================= */
-/* PAGE STRUCTURE */
+/* 3. LAYOUT */
 /* ============================= */
 
 main {
-  max-width: 1000px;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 18px 12px 120px;
 }
@@ -36,28 +72,49 @@ main {
 .page-title {
   font-size: 4rem;
   text-align: center;
-  margin-top: 0;
 }
 
 /* ============================= */
-/* DIVIDER */
+/* 4. HERO */
+/* ============================= */
+
+.hero-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: -60px auto 10px;
+  padding: 10px;
+}
+
+.site-logo {
+  width: 80%;
+  max-width: 1800px;
+  margin: 10px auto;
+}
+
+/* ============================= */
+/* 5. DIVIDER */
 /* ============================= */
 
 .section-divider {
   width: 80%;
   max-width: 600px;
-  height: 4px;
+  height: 2px;
   margin: 12px auto;
   border-radius: 3px;
-  background: linear-gradient(90deg, #ff7b00, #000);
-}
-
-.center-group .section-divider {
-  margin: 18px auto;
+  background: linear-gradient(
+    90deg,
+    #000,#1b1b1b,#b65302,#e66903,var(--color-primary),
+    #ffbb00,#ffffff,#ffbb00,var(--color-primary),
+    #e66903,#b65302,#1b1b1b,#000
+  );
 }
 
 /* ============================= */
-/* COLLECTIONS */
+/* 6. COLLECTIONS (Horizontal Scroll System) */
 /* ============================= */
 
 .collections {
@@ -67,11 +124,9 @@ main {
 
 .collections-container {
   display: flex;
-  flex-wrap: nowrap;
   gap: 15px;
   padding: 10px 8px;
   overflow-x: auto;
-  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -81,41 +136,36 @@ main {
   display: none;
 }
 
-.collections-container > * {
-  flex-shrink: 0;
-}
-
 .collection-tab {
   position: relative;
   flex: 0 0 auto;
   min-width: 180px;
   max-width: 220px;
-  background: #524e4e;
-  color: #ff7b00;
-  border-radius: 10px;
   padding: 100px 20px;
-  text-align: center;
+  border-radius: var(--radius-md);
+  background: var(--color-card);
+  color: var(--color-primary);
   font-weight: 700;
+  text-align: center;
   cursor: pointer;
-  transition: transform 0.28s ease, background 0.28s ease;
+  transition: transform var(--transition-normal),
+              background var(--transition-normal);
+}
+
+.collection-tab img {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
 }
 
 .collection-tab p {
   position: relative;
   z-index: 2;
   transition: opacity 0.25s ease;
-}
-
-.collection-tab img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: 0;
 }
 
 .collection-tab:hover {
@@ -130,232 +180,9 @@ main {
 .collection-tab:hover p {
   opacity: 0;
 }
-/* ============================= */
-/*  SITE LOGOS */
-/* ============================= */
-
-/* Hero Header Section */
-.hero-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 1000px;
-  max-width: 1500px;
-  text-align: center;
-  margin-top: -60px auto; 
-  margin-bottom: 10px auto;
-  padding: 10px;
-}
-
-/* Logo */
-.site-logo {
-  width: 1600px;
-  max-width: 1800px;
-  width: 80%;
-  height: auto;
-  margin: 10px auto;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .site-logo {
-    max-width: 300px;
-  }
-
-}
 
 /* ============================= */
-/*  HOMEPAGE  */
-/* ============================= */
-.index-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.index-page .center-group {
-  margin-top: 40px;
-  margin-bottom: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.index-page .category-tab {
-  font-size: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  background: linear-gradient(
-    145deg,
-    #8b8b8b 0%,
-    #6b6b6b 25%,
-    #4b4b4b 50%,
-    #2b2b2b 75%,
-    #000000 100%
-  );
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.6),
-    0 -1px 2px rgba(255,255,255,0.4);
-  font-family: Arial, sans-serif;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.index-page .category-tab:hover {
-  background: linear-gradient(
-    145deg,
-    #ff7b00 0%,
-    #ff7b00 25%,
-    #e66903 50%,
-    #b65302 75%,
-    #000000 100%
-  );
-}
-
-
-/* ============================= */
-/* AGE CONFIRMATION MODAL */
-/* ============================= */
-
-.age-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 20000;
-}
-
-.age-modal.active {
-  display: flex;
-}
-
-.age-content {
-  background: #1b1b1b;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-}
-
-.age-content h2 {
-  color: #ff7b00;
-  margin-bottom: 10px;
-}
-
-.age-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.age-btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.age-btn.confirm {
-  background: #ff7b00;
-  color: #fff;
-}
-
-.age-btn.confirm:hover {
-  background: #ff9100;
-}
-
-.age-btn.decline {
-  background: #333;
-  color: #fff;
-}
-
-.age-btn.decline:hover {
-  background: #555;
-}
-/* ============================= */
-/* LUSTSPHERE PAGE  */
-/* ============================= */
-
-.lustsphere-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.lustsphere-page .page-title { 
-  font-size: 5rem;
-}
-
-.lustsphere-page .notice-board {
-  margin: 90px auto;
-}
-
-/* Center divider + categories + divider as one block */
-.lustsphere-page .section-divider:first-of-type,
-.lustsphere-page .center-group,
-.lustsphere-page .section-divider:last-of-type {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.lustsphere-page .center-group {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.lustsphere-page .section-divider {
-  margin: 8px auto;
-  
-}
-
-/* ============================= */
-/* MELIMTX COLLECTIONS PAGE  */
-/* ============================= */
-  .melimtxcollections-page main {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.melimtxcollections-page .page-title { 
- margin-bottom: 180px;
- font-size: 5rem;
-}
-
-/* Center divider + categories + divider as one block */
-.melimtxcollections-page .section-divider:first-of-type,
-.melimtxcollections-page .center-group,
-.melimtxcollections-page .section-divider:last-of-type {
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.melimtxcollections-page .center-group {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.melimtxcollections-page .section-divider {
-  margin: 8px auto;
-  
-}
-/* ============================= */
-/* SCROLL ARROWS */
+/* 7. SCROLL ARROWS */
 /* ============================= */
 
 .scroll-arrow {
@@ -363,318 +190,82 @@ main {
   top: 50%;
   transform: translateY(-50%);
   background: rgba(0,0,0,0.5);
-  color: #fff;
   border: none;
-  font-size: 1rem;
-  padding: 10px 12px;
   border-radius: 50%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: #fff;
   cursor: pointer;
-  z-index: 25;
-  transition: opacity 0.22s ease, transform 0.22s ease;
   opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 25;
+  transition: opacity var(--transition-fast),
+              transform var(--transition-fast);
 }
 
 .collections:hover .scroll-arrow {
   opacity: 1;
 }
 
-.left-arrow { left: 8px; }
-.right-arrow { right: 8px; }
-
 .scroll-arrow:hover {
   transform: translateY(-50%) scale(1.06);
-  color: #ff7b00;
+  color: var(--color-primary);
 }
+
+.left-arrow { left: 8px; }
+.right-arrow { right: 8px; }
 
 @media (hover: none) and (pointer: coarse) {
   .scroll-arrow { opacity: 1; }
 }
 
 /* ============================= */
-/* PAGINATION */
+/* 8. CATEGORY BUTTONS */
 /* ============================= */
-
-.pagination {
-  text-align: center;
-  margin: 25px 0;
-}
-
-.pagination button {
-  background: #2b2a2a;
-  color: #fff;
-  border: 1px solid #2b2a2a;
-  padding: 8px 14px;
-  margin: 0 4px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.pagination button:hover {
-  background: #ff7b00;
-  border-color: #ff7b00;
-}
-
-.page-number.active {
-  background: #ff7b00;
-  border-color: #ff7b00;
-}
-
-.current-page {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-/* ============================= */
-/* GATE MODAL */
-/* ============================= */
-
-.gate-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 10000; /* higher than everything */
-}
-
-.gate-modal.active {
-  display: flex;
-}
-
-.gate-content {
-  width: 90%;
-  max-width: 450px;
-  background: #1b1b1b;
-  padding: 20px;
-  border-radius: 12px;
-  position: relative;
-  text-align: center;
-}
-
-.gate-close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-.gate-main-btn {
-  background: #2b2a2a;
-  color: #fff;
-  padding: 12px 22px;
-  border-radius: 10px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.gate-main-btn:hover {
-  background: #ff7b00;
-}
-
-.gate-section {
-  background: #2b2a2a;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 12px;
-}
-
-.ad-btn {
-  display: block;
-  width: 100%;
-  padding: 18px;
-  margin-top: 6px;
-  background: #535252;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.ad-btn:hover {
-  background: #ff7b00;
-}
-
-.ad-btn.viewed {
-  background: #00ff00;
-}
-
-#progressBarWrapper {
-  width: 100%;
-  height: 8px;
-  background: #444;
-  border-radius: 4px;
-  margin-top: 8px;
-  overflow: hidden;
-}
-
-#progressBar {
-  width: 0%;
-  height: 100%;
-  background: #4caf50;
-  transition: width 0.25s linear;
-}
-
-.gate-countdown {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 12px 0;
-  color: #ff7b00;
-}
-
-.gate-proceed {
-  width: 100%;
-  padding: 18px;
-  background: #ff7b00;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  opacity: 0.5;
-  cursor: not-allowed;
-  font-weight: bold;
-}
-
-.gate-proceed.active {
-  opacity: 1;
-  cursor: pointer;
-}
-
-/* ============================= */
-/* CATEGORY SECTION */
-/* ============================= */
-
-.category-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.collections-wrapper {
-  position: relative;
-  display: inline-block;
-}
 
 .category-tab {
-  font-size: 15px;
   padding: 15px;
-  border-radius: 10px;
+  font-size: 15px;
   font-weight: bold;
-  background: #333;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s ease;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  color: var(--color-text);
   text-decoration: none;
+  transition: background var(--transition-normal);
 }
 
 .category-tab:hover {
-  background: #ff7b00;
+  background: var(--color-primary);
   font-style: italic;
 }
 
-.collections-hover-img {
-  position: absolute;
-  top: 115%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;          /* reduced size */
-  height: 220px;
-  max-width: 85vw;       /* responsive safety */
-  display: none;
-  border-radius: 10px;
-  z-index: 200;
-}
-
-.collections-wrapper:hover .collections-hover-img {
-  display: block;
-}
-
 /* ============================= */
-/* HOME / BACK BUTTONS */
-/* ============================= */
-
-.home-btn,
-.back-btn {
-  position: fixed;
-  top: 20px;
-  z-index: 100;
-}
-
-.home-btn { left: 20px; }
-.back-btn { right: 20px; }
-
-.home-icon,
-.back-icon {
-  width: 32px;
-  height: 32px;
-  fill: white;
-  background:black;
-  outline: #000;
-  transition: fill 0.3s ease;
-}
-
-.home-btn:hover .home-icon,
-.back-btn:hover .back-icon {
-  fill: #ff7b00;
-}
-
-/* ============================= */
-/* FOOTER */
+/* 9. FOOTER */
 /* ============================= */
 
 .site-footer {
-  width: 100%;
   text-align: center;
   padding: 15px 0;
-  color: #ffffff;
   margin-top: 40px;
   font-size: 15px;
 }
 
 /* ============================= */
-/* RESPONSIVE */
+/* 10. RESPONSIVE */
 /* ============================= */
+
 @media (max-width: 768px) {
 
   main {
     padding: 12px 10px 80px;
   }
-  .scroll-arrow {
-    display: none;
-  }
 
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin: 40px auto;
-  }
-
-  .home-icon,
-  .back-icon {
-    width: 26px;
-    height: 26px;
+  .page-title {
+    font-size: 2rem;
   }
 
   .site-logo {
     width: 95%;
     max-width: 600px;
-  }
-
-  .page-title {
-    font-size: 2rem;
   }
 
   .collection-tab {
@@ -684,151 +275,11 @@ main {
     font-size: 0.9rem;
   }
 
-  .age-content {
-    padding: 20px;
-  }
-
-  .age-btn {
-    padding: 10px 14px;
+  .scroll-arrow {
+    display: none;
   }
 
   .site-footer {
     font-size: 14px;
-    padding: 12px 0;
   }
 }
-/* ============================= */
-/* NOTICE BOARD */
-/* ============================= */
-
-.notice-board {
-  max-width: 800px;
-  margin: 20px auto 40px;
-  padding: 15px 20px;
-  background: #111;
-  border: 1px solid #2b2a2a;
-  border-radius: 12px;
-}
-
-.notice-board h2 {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  color: #ff7b00;
-}
-
-.notice-board ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.notice-board li {
-  font-size: 14px;
-  margin-bottom: 8px;
-  padding: 6px 10px;
-  background: #1b1b1b;
-  border-radius: 8px;
-}
-
-/* ============================= */
-/* RESET & BASE TYPOGRAPHY */
-/* ============================= */
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html, body {
-  height: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  font-family: "Poppins", Arial, sans-serif;
-  background: #000;
-  color: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-img, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ============================= */
-/* PAGE STRUCTURE */
-/* ============================= */
-
-main {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 18px 12px 120px;
-}
-
-.page-title {
-  font-size: 4rem;
-  text-align: center;
-}
-
-/* ============================= */
-/* DIVIDER */
-/* ============================= */
-
-.section-divider {
-  width: 80%;
-  max-width: 600px;
-  height: 2px;
-  margin: 12px auto;
-  border-radius: 3px;
-  background: linear-gradient(
-    90deg,
-    #000000,#1b1b1b,#b65302,#e66903,#ff7b00,
-    #ffbb00,#ffffff,#ffbb00,#ff7b00,
-    #e66903,#b65302,#1b1b1b,#000
-  );
-}
-
-/* ============================= */
-/* COLLECTIONS */
-/* ============================= */
-
-.collections {
-  position: relative;
-  margin: 40px 0;
-}
-
-.collections-container {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 15px;
-  padding: 10px 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.collections-container::-webkit-scrollbar {
-  display: none;
-}
-
-.collection-tab {
-  flex: 0 0 auto;
-  min-width: 180px;
-  max-width: 220px;
-  background: #524e4e;
-  color: #ff7b00;
-  border-radius: 10px;
-  padding: 100px 20px;
-  text-align: center;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.28s ease, background 0.28s ease;
-}
-
-.collection-tab:hover {
-  transform: translateY(-6px);
-  background: #2a2a2a;
-}
-

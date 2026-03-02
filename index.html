@@ -1,65 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ============================= -->
+  <!-- META -->
+  <!-- ============================= -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="LinkSphere - curated link collections.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LinkSphere - curated link collections." />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- ============================= -->
+  <!-- PERFORMANCE -->
+  <!-- ============================= -->
 
   <!-- Preload CSS -->
-  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="style.css">
-  </noscript>
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="stylesheet" href="style.css" />
 
-  <title>LinkSphere Homepage</title>
+  <!-- Preconnect (future ad/CDN optimization ready) -->
+  <!-- Example:
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  -->
+
+  <title>LinkSphere | Curated Link Collections</title>
 </head>
 
 <body class="index-page">
 
+  <!-- ============================= -->
+  <!-- MAIN -->
+  <!-- ============================= -->
+
   <main>
 
-   <header class="hero-header">
-     <img src="images/Logos/LS-logo.png" alt="LinkSphere Logo" class="site-logo">
+    <!-- HERO -->
+    <header class="hero-header">
+      <img 
+        src="images/Logos/LS-logo.png" 
+        alt="LinkSphere Logo"
+        class="site-logo"
+        width="1200"
+        height="600"
+        loading="eager"
+        decoding="async"
+      >
     </header>
 
-    <!-- CENTERED GROUP -->
-    <section class="center-group">
+    <!-- CATEGORY SECTION -->
+    <section class="center-group" aria-labelledby="category-heading">
 
-      <div class="section-divider"></div>
+      <h1 id="category-heading" class="visually-hidden">
+        Link Categories
+      </h1>
 
-      <div class="category-grid">
-        <a href="LustSphere.html" id="open-nsfw" class="category-tab">
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <nav class="category-grid" aria-label="Main Categories">
+        <a 
+          href="LustSphere.html"
+          id="open-nsfw"
+          class="category-tab"
+        >
           NSFW
         </a>
-      </div>
+      </nav>
 
-      <div class="section-divider"></div>
+      <div class="section-divider" aria-hidden="true"></div>
 
     </section>
 
   </main>
 
+  <!-- ============================= -->
+  <!-- FOOTER -->
+  <!-- ============================= -->
+
   <footer class="site-footer">
     <p>&copy; 2026 LinkSphere. All rights reserved.</p>
   </footer>
 
-<!-- AGE CONFIRMATION MODAL -->
-<div id="ageModal" class="age-modal">
-  <div class="age-content">
-    <h2>Age Confirmation</h2>
-    <p>You must be 18+ to enter this category.</p>
+  <!-- ============================= -->
+  <!-- AGE CONFIRMATION MODAL -->
+  <!-- ============================= -->
 
-    <div class="age-buttons">
-      <button id="ageConfirm" class="age-btn confirm">I am 18+</button>
-      <button id="ageDecline" class="age-btn decline">Exit</button>
+  <div 
+    id="ageModal" 
+    class="age-modal" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="ageModalTitle"
+  >
+    <div class="age-content">
+      <h2 id="ageModalTitle">Age Confirmation</h2>
+      <p>You must be 18+ to enter this category.</p>
+
+      <div class="age-buttons">
+        <button 
+          id="ageConfirm" 
+          class="age-btn confirm"
+        >
+          I am 18+
+        </button>
+
+        <button 
+          id="ageDecline" 
+          class="age-btn decline"
+        >
+          Exit
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
+  <!-- ============================= -->
+  <!-- SCRIPT -->
+  <!-- ============================= -->
 
-  <!-- Main Script -->
   <script src="script.js" defer></script>
 
-  
 </body>
 </html>

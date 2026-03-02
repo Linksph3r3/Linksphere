@@ -95,7 +95,7 @@ main {
 }
 
 .site-logo {
-  width: min(95%, 2000px);
+  width: min(85%, 900px);
   height: auto;
   max-height: 75vh;
 }

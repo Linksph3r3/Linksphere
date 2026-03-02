@@ -85,6 +85,15 @@ main {
   justify-content: center;
 }
 
+.hero-header {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .site-logo {
   width: min(95%, 2000px);
   height: auto;

@@ -228,17 +228,14 @@ main {
   .scroll-arrow { opacity: 1; }
 }
 /* ============================= */
-/* 5. DIVIDER */
+/* CATEGORY HEADINGS */
 /* ============================= */
 .category-heading {
   color: #fff;
   font-size: 2rem;
   text-align: center;
-  
+
 }
-
-
-
 /* ============================= */
 /* 8. CATEGORY BUTTONS */
 /* ============================= */

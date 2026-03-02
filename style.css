@@ -83,6 +83,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 40px;
 }
 
 .hero-header {
@@ -117,6 +118,10 @@ main {
     #e66903,#b65302,#1b1b1b,#000
   );
 }
+
+/* ============================= */
+/* HOMEPAGE */
+/* ============================= */
 
 /* ============================= */
 /* 6. COLLECTIONS (Horizontal Scroll System) */
@@ -222,6 +227,17 @@ main {
 @media (hover: none) and (pointer: coarse) {
   .scroll-arrow { opacity: 1; }
 }
+/* ============================= */
+/* 5. DIVIDER */
+/* ============================= */
+.category-heading {
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+  
+}
+
+
 
 /* ============================= */
 /* 8. CATEGORY BUTTONS */

@@ -131,7 +131,7 @@ main {
   opacity: 0;
 }
 /* ============================= */
-/*  SITE LOGO */
+/*  SITE LOGOS */
 /* ============================= */
 
 /* Hero Header Section */
@@ -153,16 +153,6 @@ main {
   width: 80%;
   height: auto;
   margin:-40px 10px;
-}
-
-/* Hero Title */
-.hero-title {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: #d9d9d9;
-  max-width: 600px;
-  margin-top: -30px;
 }
 
 /* Responsive */

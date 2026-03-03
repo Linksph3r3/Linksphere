@@ -92,10 +92,7 @@ main {
   transition: color var(--transition);
 }
 .info-links a:hover {
-  color: #FF7B00;
-}
-
-/* Divider */
+  color: /* Divider */
 
 .section-divider {
   width: 80%;
@@ -107,7 +104,10 @@ main {
     #000,#1b1b1b,#b65302,#e66903,var(--color-primary),
     #ffbb00,#ffffff,#ffbb00,var(--color-primary),
     #e66903,#b65302,#1b1b1b,#000
-  );
+  );;
+}
+
+
 
 /* =============================
    6. CENTER GROUP

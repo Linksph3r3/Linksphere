@@ -92,8 +92,22 @@ main {
   transition: color var(--transition);
 }
 .info-links a:hover {
-  color: var(--color-primary);
+  color: #FF7B00;
 }
+
+/* Divider */
+
+.section-divider {
+  width: 80%;
+  max-width: 600px;
+  height: 2px;
+  margin: 15px auto;
+  background: linear-gradient(
+    90deg,
+    #000,#070707,#B65302,#FF7B00,
+    #ff9100,#ffffff,#FF9100,
+    #FF7B00,#B65302,#070707,#000
+  );
 
 /* =============================
    6. CENTER GROUP
@@ -151,7 +165,7 @@ main {
 }
 
 .category-tab:hover {
-  background: var(--color-primary);
+  background: red;
 }
 
 /* =============================

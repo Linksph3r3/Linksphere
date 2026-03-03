@@ -1,35 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ============================= -->
   <!-- META -->
-  <!-- ============================= -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="LinkSphere - curated link collections." />
   <meta name="theme-color" content="#000000" />
 
-  <!-- ============================= -->
-  <!-- PERFORMANCE -->
-  <!-- ============================= -->
-
-  <!-- Preload CSS -->
-  <link rel="preload" href="style.css" as="style" />
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Preconnect (future ad/CDN optimization ready) -->
-  <!-- Example:
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  -->
-
   <title>LinkSphere | Curated Link Collections</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="index-page">
-
-  <!-- ============================= -->
-  <!-- MAIN -->
-  <!-- ============================= -->
 
   <main>
 
@@ -39,12 +23,20 @@
         src="images/Logos/LS-logo.png" 
         alt="LinkSphere Logo"
         class="site-logo"
-        width="1200"
-        height="600"
         loading="eager"
-        decoding="async"
       >
     </header>
+
+    <!-- FOOTER (MOVED UNDER LOGO FOR INDEX ONLY) -->
+    <footer class="site-footer index-footer">
+      <div class="footer-links">
+        <a href="#" data-modal="about">About</a>
+        <a href="#" data-modal="privacy">Privacy</a>
+        <a href="#" data-modal="terms">Terms</a>
+        <a href="#" data-modal="contact">Contact</a>
+      </div>
+      <p>&copy; 2026 LinkSphere. All rights reserved.</p>
+    </footer>
 
     <!-- CATEGORY SECTION -->
     <section class="center-group" aria-labelledby="category-heading">
@@ -53,74 +45,40 @@
         Link Categories
       </h1>
 
-      <div class="section-divider" aria-hidden="true"></div>
+      <div class="section-divider"></div>
 
-      <nav class="category-grid" aria-label="Main Categories">
-        <a 
-          href="LustSphere.html"
-          id="open-nsfw"
-          class="category-tab"
-        >
+      <nav class="category-grid">
+        <a href="#" id="open-nsfw" class="category-tab">
           LustSphere
         </a>
       </nav>
 
-      <div class="section-divider" aria-hidden="true"></div>
+      <div class="section-divider"></div>
 
     </section>
 
   </main>
 
-  <!-- ============================= -->
-  <!-- FOOTER -->
-  <!-- ============================= -->
-
-  <footer class="site-footer">
-  <div class="footer-links">
-    <a href="#">About</a>
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-  </div>
-  <p>&copy; 2026 LinkSphere. All rights reserved.</p>
-</footer>
-
-  <!-- ============================= -->
   <!-- AGE CONFIRMATION MODAL -->
-  <!-- ============================= -->
-
-  <div 
-    id="ageModal" 
-    class="age-modal" 
-    role="dialog" 
-    aria-modal="true" 
-    aria-labelledby="ageModalTitle"
-  >
-    <div class="age-content">
-      <h2 id="ageModalTitle">Age Confirmation</h2>
+  <div id="ageModal" class="modal">
+    <div class="modal-content">
+      <h2>Age Confirmation</h2>
       <p>You must be 18+ to enter this category.</p>
-
-      <div class="age-buttons">
-        <button 
-          id="ageConfirm" 
-          class="age-btn confirm"
-        >
-          I am 18+
-        </button>
-
-        <button 
-          id="ageDecline" 
-          class="age-btn decline"
-        >
-          Exit
-        </button>
+      <div class="modal-buttons">
+        <button id="ageConfirm" class="btn primary">I am 18+</button>
+        <button id="ageDecline" class="btn">Exit</button>
       </div>
     </div>
   </div>
 
-  <!-- ============================= -->
-  <!-- SCRIPT -->
-  <!-- ============================= -->
+  <!-- FOOTER INFO MODAL -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <h2 id="infoTitle"></h2>
+      <p id="infoText"></p>
+      <button id="infoClose" class="btn primary">Close</button>
+    </div>
+  </div>
 
   <script src="script.js" defer></script>
 

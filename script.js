@@ -1,5 +1,5 @@
 /* =======================================================
-   LINKSPHERE — CORE SCRIPT (Scalable Architecture)
+   LINKSPHERE — CORE SCRIPT (CLEAN + STABLE)
    ======================================================= */
 
 /* ================= CONFIG ================= */
@@ -44,250 +44,6 @@ function setupHorizontalScroll() {
 }
 
 /* =======================================================
-   GATE MODULE
-   ======================================================= */
-
-const Gate = (() => {
-
-  let state = {
-    chosenMethod: null,
-    adsViewed: 0,
-    targetLink: null,
-    ytPlayer: null,
-    watchInterval: null
-  };
-
-  const elements = () => ({
-    modal: $("#adGate"),
-    proceedBtn: $("#gateProceed"),
-    closeBtn: $("#gateClose"),
-    chooseAds: $("#chooseAds"),
-    chooseVideo: $("#chooseVideo"),
-    adsSection: $("#adsSection"),
-    videoSection: $("#videoSection"),
-    adBtns: $$(".ad-btn"),
-    videoWrapper: $("#gateVideoWrapper"),
-    placeholder: $("#gateVideoPlaceholder"),
-    progressBarWrapper: $("#progressBarWrapper"),
-    progressBar: $("#progressBar"),
-    countdownEl: $("#countdown")
-  });
-
-  /* ---------- YOUTUBE API ---------- */
-
-  function loadYouTubeApi() {
-    return new Promise(resolve => {
-      if (window.YT?.Player) return resolve();
-
-      window.onYouTubeIframeAPIReady = resolve;
-
-      if (!document.querySelector('script[src="https://www.youtube.com/iframe_api"]')) {
-        const s = document.createElement("script");
-        s.src = "https://www.youtube.com/iframe_api";
-        document.head.appendChild(s);
-      }
-    });
-  }
-
-  /* ---------- RESET ---------- */
-
-  function reset() {
-    const g = elements();
-    if (!g.modal) return;
-
-    if (state.watchInterval) {
-      clearInterval(state.watchInterval);
-    }
-
-    if (state.ytPlayer?.destroy) {
-      state.ytPlayer.destroy();
-    }
-
-    state = {
-      chosenMethod: null,
-      adsViewed: 0,
-      targetLink: null,
-      ytPlayer: null,
-      watchInterval: null
-    };
-
-    g.adsSection?.style.setProperty("display", "none");
-    g.videoSection?.style.setProperty("display", "none");
-    g.videoWrapper?.style.setProperty("display", "none");
-
-    if (g.progressBar) g.progressBar.style.width = "0%";
-    if (g.progressBarWrapper) g.progressBarWrapper.classList.add("hidden");
-    if (g.countdownEl) g.countdownEl.textContent = CONFIG.REQUIRED_SECONDS;
-
-    g.proceedBtn?.classList.remove("active");
-    if (g.proceedBtn) g.proceedBtn.disabled = true;
-
-    g.chooseAds && (g.chooseAds.disabled = false);
-    g.chooseVideo && (g.chooseVideo.disabled = false);
-
-    g.adBtns.forEach(btn => {
-      btn.classList.remove("viewed");
-      btn.disabled = false;
-    });
-  }
-
-  /* ---------- OPEN / CLOSE ---------- */
-
-  function open(link) {
-    const g = elements();
-    if (!g.modal) return;
-
-    reset();
-    state.targetLink = link;
-
-    g.modal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-
-  function close() {
-    const g = elements();
-    if (!g.modal) return;
-
-    g.modal.classList.remove("active");
-    document.body.style.overflow = "";
-    reset();
-  }
-
-  /* ---------- UNLOCK ---------- */
-
-  function unlock() {
-    const g = elements();
-    if (!g.proceedBtn) return;
-
-    g.proceedBtn.disabled = false;
-    g.proceedBtn.classList.add("active");
-  }
-
-  /* ---------- WATCH TIMER ---------- */
-
-  function startWatchTimer() {
-    const g = elements();
-    const start = Date.now();
-
-    state.watchInterval = setInterval(() => {
-      const elapsed = Math.floor((Date.now() - start) / 1000);
-      const remaining = Math.max(0, CONFIG.REQUIRED_SECONDS - elapsed);
-
-      if (g.countdownEl) g.countdownEl.textContent = remaining;
-      if (g.progressBar) {
-        g.progressBar.style.width =
-          Math.min(100, (elapsed / CONFIG.REQUIRED_SECONDS) * 100) + "%";
-      }
-
-      if (elapsed >= CONFIG.REQUIRED_SECONDS) {
-        clearInterval(state.watchInterval);
-        unlock();
-      }
-    }, 1000);
-  }
-
-  /* ---------- VIDEO ---------- */
-
-  async function createVideo() {
-    const g = elements();
-    if (!g.videoWrapper || !g.placeholder) return;
-
-    g.videoWrapper.style.display = "block";
-
-    await loadYouTubeApi();
-
-    const vid =
-      CONFIG.GATE_VIDEOS[Math.floor(Math.random() * CONFIG.GATE_VIDEOS.length)];
-
-    state.ytPlayer = new YT.Player(g.placeholder, {
-      height: "260",
-      width: "100%",
-      videoId: vid,
-      playerVars: { rel: 0, playsinline: 1 },
-      events: {
-        onStateChange: e => {
-          if (e.data === YT.PlayerState.PLAYING) {
-            g.progressBarWrapper?.classList.remove("hidden");
-            startWatchTimer();
-          }
-        }
-      }
-    });
-  }
-
-  /* ---------- INIT ---------- */
-
-  function init() {
-    const g = elements();
-    if (!g.modal) return;
-
-    /* Global click delegation */
-    document.body.addEventListener("click", e => {
-
-      const collectionTab = e.target.closest(".collection-tab");
-      if (collectionTab?.dataset.link) {
-        e.preventDefault();
-        open(collectionTab.dataset.link);
-        return;
-      }
-
-      const categoryTab = e.target.closest(".collections-wrapper .category-tab");
-      if (categoryTab?.getAttribute("href")) {
-        e.preventDefault();
-        open(categoryTab.getAttribute("href"));
-      }
-    });
-
-    g.closeBtn?.addEventListener("click", close);
-
-    g.modal.addEventListener("click", e => {
-      if (e.target === g.modal) close();
-    });
-
-    g.chooseAds?.addEventListener("click", () => {
-      if (state.chosenMethod) return;
-      state.chosenMethod = "ads";
-      g.adsSection.style.display = "block";
-      g.chooseVideo.disabled = true;
-    });
-
-    g.chooseVideo?.addEventListener("click", async () => {
-      if (state.chosenMethod) return;
-      state.chosenMethod = "video";
-      g.videoSection.style.display = "block";
-      g.chooseAds.disabled = true;
-      await createVideo();
-    });
-
-    g.adBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        window.open(btn.dataset.url, "_blank", "noopener");
-
-        if (!btn.classList.contains("viewed")) {
-          btn.classList.add("viewed");
-          btn.disabled = true;
-          state.adsViewed++;
-
-          if (state.adsViewed >= CONFIG.REQUIRED_ADS) {
-            unlock();
-          }
-        }
-      });
-    });
-
-    g.proceedBtn?.addEventListener("click", () => {
-      if (!g.proceedBtn.disabled && state.targetLink) {
-        window.open(state.targetLink, "_blank", "noopener");
-        close();
-      }
-    });
-  }
-
-  return { init };
-
-})();
-
-/* =======================================================
    AGE CONFIRMATION (Homepage Only)
    ======================================================= */
 
@@ -296,43 +52,121 @@ function setupAgeConfirmation() {
   const ageModal = $("#ageModal");
   const ageConfirm = $("#ageConfirm");
   const ageDecline = $("#ageDecline");
+  const openBtn = $("#open-nsfw");
 
-  if (!ageModal) return;
+  if (!ageModal || !openBtn) return;
 
-  let pendingLink = null;
-
-  document.body.addEventListener("click", e => {
-    const tab = e.target.closest(".index-page .category-tab");
-    if (!tab) return;
-
+  openBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    pendingLink = tab.getAttribute("href");
-
-    ageModal.classList.add("active");
+    ageModal.style.display = "flex";
     document.body.style.overflow = "hidden";
   });
 
   ageConfirm?.addEventListener("click", () => {
-    ageModal.classList.remove("active");
     document.body.style.overflow = "";
-
-    if (pendingLink) {
-      window.location.href = pendingLink;
-    }
+    window.location.href = "LustSphere.html";
   });
 
   ageDecline?.addEventListener("click", () => {
-    ageModal.classList.remove("active");
+    ageModal.style.display = "none";
     document.body.style.overflow = "";
   });
 }
+
+/* =======================================================
+   FOOTER INFO MODAL
+   ======================================================= */
+
+function setupFooterModals() {
+
+  const infoModal = $("#infoModal");
+  const infoTitle = $("#infoTitle");
+  const infoText = $("#infoText");
+  const infoClose = $("#infoClose");
+
+  if (!infoModal) return;
+
+  const content = {
+    about: {
+      title: "About LinkSphere",
+      text: "LinkSphere provides curated collections with zero noise."
+    },
+    privacy: {
+      title: "Privacy Policy",
+      text: "We respect your privacy and do not sell user data."
+    },
+    terms: {
+      title: "Terms of Service",
+      text: "Use of this site constitutes acceptance of our terms."
+    },
+    contact: {
+      title: "Contact",
+      text: "Reach us at support@linksphere.com"
+    }
+  };
+
+  $$(".footer-links a").forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      const key = link.dataset.modal;
+      if (!content[key]) return;
+
+      infoTitle.textContent = content[key].title;
+      infoText.textContent = content[key].text;
+
+      infoModal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  infoClose?.addEventListener("click", () => {
+    infoModal.style.display = "none";
+    document.body.style.overflow = "";
+  });
+
+  infoModal.addEventListener("click", (e) => {
+    if (e.target === infoModal) {
+      infoModal.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  });
+}
+
+/* =======================================================
+   GATE MODULE (Collections Pages Only)
+   ======================================================= */
+
+const Gate = (() => {
+
+  function init() {
+
+    const gateModal = $("#adGate");
+    if (!gateModal) return; // Only run on gate pages
+
+    document.body.addEventListener("click", e => {
+      const tab = e.target.closest(".collection-tab");
+      if (!tab?.dataset.link) return;
+
+      e.preventDefault();
+      window.open(tab.dataset.link, "_blank", "noopener");
+    });
+
+  }
+
+  return { init };
+
+})();
 
 /* =======================================================
    INIT
    ======================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+
   setupHorizontalScroll();
-  Gate.init();
   setupAgeConfirmation();
+  setupFooterModals();
+  Gate.init();
+
 });

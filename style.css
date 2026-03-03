@@ -70,36 +70,36 @@ main {
 }
 
 /* =============================
-   5. FOOTER (INDEX ONLY)
+   HOMEPAGE
 ============================= */
+/*Site Information*/
 
-.index-footer {
+.site-information {
   margin-top: 10px; /* 60px from logo */
   text-align: center;
 }
-
-.site-footer p {
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--color-muted);
-}
-
-.footer-links {
+.info-links {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
-
-.footer-links a {
+.info-links a {
+  font-family: Impact,'Arial Narrow Bold', sans-serif;
+  font-weight:normal;
   color: var(--color-text);
   text-decoration: none;
   transition: color var(--transition);
 }
-
-.footer-links a:hover {
+.info-links a:hover {
   color: var(--color-primary);
 }
+
+/* =============================
+   5. FOOTER (INDEX ONLY)
+============================= */
+
+
 
 /* =============================
    6. CENTER GROUP
@@ -209,7 +209,17 @@ main {
 }
 
 /* =============================
-   9. RESPONSIVE
+   SITE FOOTER
+============================= */
+
+.site-footer{
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* =============================
+  RESPONSIVE
 ============================= */
 
 @media (max-width: 768px) {

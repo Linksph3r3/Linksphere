@@ -74,7 +74,7 @@ function setupAgeConfirmation() {
 }
 
 /* =======================================================
-   SITE INFO MODAL
+   FOOTER INFO MODAL
    ======================================================= */
 
 function setupFooterModals() {
@@ -89,7 +89,7 @@ function setupFooterModals() {
   const content = {
     about: {
       title: "About LinkSphere",
-      text: "LinkSphere is a curated online link directory designed to help users discover quality content & tools. Whether you're looking for educational material, vast collections of movies/series,software tools,or some risque content,LinkSphere is where you want to be. "
+      text: "LinkSphere provides curated collections with zero noise."
     },
     privacy: {
       title: "Privacy Policy",
@@ -101,11 +101,11 @@ function setupFooterModals() {
     },
     contact: {
       title: "Contact",
-      text: "Reach us at linksph3r3@gmail.com "
+      text: "Reach us at support@linksphere.com"
     }
   };
 
-  $$(".info-links a").forEach(link => {
+  $$(".footer-links a").forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
 

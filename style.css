@@ -70,60 +70,49 @@ main {
 }
 
 /* =============================
-   HOMEPAGE
+   5. FOOTER (INDEX ONLY)
 ============================= */
-/*Site Information*/
 
-.site-information {
-  margin-top: 10px; /* 60px from logo */
+.index-footer {
+  margin-top: 60px; /* 60px from logo */
   text-align: center;
 }
-.info-links {
+
+.site-footer p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.footer-links {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
-.info-links a {
-  font-family: Impact,'Arial Narrow Bold', sans-serif;
-  font-weight:normal;
+
+.footer-links a {
   color: var(--color-text);
   text-decoration: none;
   transition: color var(--transition);
 }
-.info-links a:hover {
-  color: /* Divider */
 
-.section-divider {
-  width: 80%;
-  max-width: 600px;
-  height: 2px;
-  margin: 15px auto;
-  background: linear-gradient(
-    90deg,
-    #000,#1b1b1b,#b65302,#e66903,var(--color-primary),
-    #ffbb00,#ffffff,#ffbb00,var(--color-primary),
-    #e66903,#b65302,#1b1b1b,#000
-  );;
+.footer-links a:hover {
+  color: var(--color-primary);
 }
-
-
 
 /* =============================
    6. CENTER GROUP
 ============================= */
 
 .index-page .center-group {
-  margin-top: 90px; /* 20px from footer */
+  margin-top: 20px; /* 20px from footer */
   text-align: center;
 }
 
 .category-heading {
   font-size: 2rem;
-  font-family: Impact;
-  font-weight: normal;
   margin-bottom: 10px;
-  margin-top: 80px;
 }
 
 /* Divider */
@@ -217,18 +206,7 @@ main {
 }
 
 /* =============================
-   SITE FOOTER
-============================= */
-
-.site-footer{
-  margin-top: 8px;
-  font-size: 14px;
-  color: var(--color-muted);
-  text-align: center;
-}
-
-/* =============================
-  RESPONSIVE
+   9. RESPONSIVE
 ============================= */
 
 @media (max-width: 768px) {

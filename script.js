@@ -74,7 +74,7 @@ function setupAgeConfirmation() {
 }
 
 /* =======================================================
-   FOOTER INFO MODAL
+   SITE INFO MODAL
    ======================================================= */
 
 function setupFooterModals() {
@@ -105,7 +105,7 @@ function setupFooterModals() {
     }
   };
 
-  $$(".footer-links a").forEach(link => {
+  $$(".info-links a").forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
 

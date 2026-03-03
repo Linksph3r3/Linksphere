@@ -113,11 +113,12 @@ main {
 .category-heading {
   font-size: 2rem;
   font-family: Impact;
+  font-weight: normal;
   margin-bottom: 10px;
   margin-top: 80px;
 }
 
-/* Divider */
+/* Divider */jvgu
 
 .section-divider {
   width: 80%;

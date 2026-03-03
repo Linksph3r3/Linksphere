@@ -104,9 +104,9 @@ main {
   margin: 15px auto;
   background: linear-gradient(
     90deg,
-    #000,#070707,#B65302,#FF7B00,
-    #ff9100,#ffffff,#FF9100,
-    #FF7B00,#B65302,#070707,#000
+    #000,#1b1b1b,#b65302,#e66903,var(--color-primary),
+    #ffbb00,#ffffff,#ffbb00,var(--color-primary),
+    #e66903,#b65302,#1b1b1b,#000
   );
 
 /* =============================
@@ -165,7 +165,7 @@ main {
 }
 
 .category-tab:hover {
-  background: red;
+  background: var(--color-primary);
 }
 
 /* =============================

@@ -226,15 +226,21 @@ main {
 }
 
 .modal-content {
-  background: #817f7f;
+  background: #1b1b1b;
+  border-radius: 10px;
   padding: 30px;
-  border-radius: var(--radius-md);
+
+  width: auto;                /* allows natural width */
+  max-width: 600px;           /* prevents being too wide */
+  
+  max-height: 80vh;           /* prevents overflow */
+  overflow-y: auto;           /* scroll only if needed */
+
   text-align: left;
-  max-width: 400px;
-  min-height: 70vh;
+}
 
-
-  width: 100%;
+.modal-content:has(p:only-child) {
+  max-width: 450px;
 }
 
 .modal-content h3 {
@@ -290,4 +296,15 @@ main {
   .footer-links {
     gap: 12px;
   }
+
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    max-height: 85vh;
+  }
+
 }
+
+
+  

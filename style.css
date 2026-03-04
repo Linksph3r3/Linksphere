@@ -124,6 +124,19 @@ main {
   font-weight: bold;
 }
 
+.index-page .category-heading {
+  font-size: 2rem;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-family: Impact ;
+  font-weight: normal;
+}
+ .category-heading {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+
 /* Divider */
 
 .section-divider {
@@ -161,6 +174,11 @@ main {
   text-decoration: none;
   transition: background var(--transition);
 }
+
+.index-page .category-tab:hover {
+  background: red;
+}
+
 
 .category-tab:hover {
   background: var(--color-primary);

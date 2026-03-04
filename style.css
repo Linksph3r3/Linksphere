@@ -56,17 +56,18 @@ main {
    4. HERO (LOGO AT TOP)
 ============================= */
 
+/* HERO HEADER */
 .hero-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  text-align: center;
 }
 
 .site-logo {
-  width: 95%;
-  max-width: 900px;
+  width: 160px;        /* smaller logo */
+  max-width: 80%;
+  display: block;
+  margin: 0 auto;
 }
 
 /* =============================

@@ -229,9 +229,24 @@ main {
   background: #817f7f;
   padding: 30px;
   border-radius: var(--radius-md);
-  text-align: center;
+  text-align: left;
   max-width: 400px;
+  min-height: 70vh;
+  overflow-y: auto;
+
   width: 100%;
+}
+
+.modal-content h3 {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #ff7b00;
+}
+
+.modal-content p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  font-size: 0.9rem;
 }
 
 .modal-buttons {

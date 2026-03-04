@@ -113,33 +113,29 @@ function setupFooterModals() {
      },
     terms: {
       title: "Terms & Conditions",
-      text: `By accessing LinkSphere, you agree to the following terms:
+      text: `
+  <p>By accessing <strong>LinkSphere</strong>, you agree to the following terms:</p>
 
-1. Use of Site
+  <h3>1. Use of Site</h3>
+  <p>LinkSphere is a curated directory. We do not host third-party content. 
+  Users are responsible for complying with local laws when accessing external links.</p>
 
-LinkSphere is a curated directory.
-We do not host third-party content.
+  <h3>2. Age Restrictions</h3>
+  <p>Some categories may contain adult-oriented material. 
+  You must be 18 years or older to access such sections.</p>
 
-Users are responsible for complying with local laws when accessing external links.
+  <h3>3. External Content Disclaimer</h3>
+  <p>We do not control or endorse third-party websites listed on this platform. 
+  Accessing external links is done at your own discretion.</p>
 
-2. Age Restrictions
+  <h3>4. Intellectual Property</h3>
+  <p>All branding, layout design, and original materials on LinkSphere 
+  are protected and may not be copied without permission.</p>
 
-Some categories may contain adult-oriented material.
-You must be 18 years or older to access such sections.
-
-3. External Content Disclaimer
-
-We do not control or endorse third-party websites listed on this platform.
-Accessing external links is done at your own discretion.
-
-4. Intellectual Property
-
-All branding, layout design, and original materials on LinkSphere are protected and may not be copied without permission.
-
-5. Limitation of Liability
-
-LinkSphere is provided “as is” without warranties of any kind.
-We are not liable for damages resulting from use of external links.`
+  <h3>5. Limitation of Liability</h3>
+  <p>LinkSphere is provided “as is” without warranties of any kind. 
+  We are not liable for damages resulting from use of external links.</p>
+  `
     },
     contact: {
       title: "Contact",
@@ -155,7 +151,7 @@ We are not liable for damages resulting from use of external links.`
       if (!content[key]) return;
 
       infoTitle.textContent = content[key].title;
-      infoText.textContent = content[key].text;
+      infoText.innerHTML = content[key].text;
 
       infoModal.style.display = "flex";
       document.body.style.overflow = "hidden";

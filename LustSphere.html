@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- META -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LustSphere</title>
-  <meta name="description" content="LustSphere collections - curated content categories.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LustSphere - Enter the Realm of Desire." />
+  <meta name="theme-color" content="#000000" />
 
-  <!-- Preload CSS -->
-  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="style.css">
-  </noscript>
+  <title>LustSphere | Enter the Realm of Desire </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="lustsphere-page">
 
-  <!-- Home Button -->
-  <a href="index.html" class="home-btn" aria-label="Home">
-    <svg viewBox="0 0 24 24" class="home-icon">
-      <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5z"/>
-    </svg>
-  </a>
-
   <main>
-   
-      <!-- HERO -->
-      <header class="hero-header">
-       <img 
-        src="images/Logos/LustSphere-logo.png" 
-        alt="LustSphere Logo"
-        class="site-logo"
-        loading="eager">
-     </header>
 
+    <!-- HERO -->
+    <header class="hero-header">
+      <img 
+        src="images/Logos/LustSphere-logo.png" 
+        alt="LinkSphere Logo"
+        class="site-logo"
+        loading="eager"
+      >
+    </header>
 
     <!-- NOTICE BOARD -->
     <section class="notice-board">
@@ -40,11 +33,17 @@
       <ul id="noticeList"></ul>
     </section>
 
-  
-     <div class="section-divider"></div>
+    <!-- CATEGORY SECTION -->
+    <section class="center-group" aria-labelledby="category-heading">
+
+      <h1 id="category-heading" class="category-heading">
+        Models
+      </h1>
+
+      <div class="section-divider"></div>
 
       <!-- CATEGORIES -->
-     <section class="center-group">
+     
       <div class="category-grid">
 
         <!-- Melimtx -->
@@ -77,19 +76,40 @@
              loading="lazy" />
          </div>
        </div>
-     </section>
+     
 
-     <div class="section-divider"></div>
+       <div class="section-divider"></div>
 
-    
+    </section>
+
   </main>
 
-  <!-- Footer -->
+  <!-- AGE CONFIRMATION MODAL -->
+  <div id="ageModal" class="modal">
+    <div class="modal-content">
+      <h2>Age Confirmation</h2>
+      <p>You must be 18+ to enter this category.</p>
+      <div class="modal-buttons">
+        <button id="ageConfirm" class="btn primary">I am 18+</button>
+        <button id="ageDecline" class="btn">Exit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER INFO MODAL -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <h2 id="infoTitle"></h2>
+      <p id="infoText"></p>
+      <button id="infoClose" class="btn primary">Close</button>
+    </div>
+  </div>
+
+<!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2026 LinkSphere. All rights reserved.</p>
   </footer>
 
-  <!-- Main Script -->
   <script src="script.js" defer></script>
 
 </body>

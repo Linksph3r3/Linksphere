@@ -108,10 +108,25 @@ main {
 }
 
 /* =============================
-   6. CENTER GROUP
+   NOTICE BOARD
+============================= */
+
+.notice-board {
+  margin: 20px auto 10px auto;
+  text-align: center;
+  max-width: 800px;
+}
+
+/* =============================
+    CENTER GROUP
 ============================= */
 
 .index-page .center-group {
+  margin-top: 200px; /* 20px from footer */
+  text-align: center;
+}
+
+.center-group {
   margin-top: 200px; /* 20px from footer */
   text-align: center;
 }
@@ -124,17 +139,11 @@ main {
   font-weight: bold;
 }
 
-.index-page .category-heading {
-  font-size: 2rem;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  font-family: Impact ;
-  font-weight: normal;
-}
  .category-heading {
   font-size: 2rem;
   margin-bottom: 10px;
 }
+
 
 
 /* Divider */
@@ -208,6 +217,29 @@ main {
 
 .category-tab:hover {
   background: var(--color-primary);
+}
+
+.collections-wrapper {
+  text-align: center;
+  position: relative;
+}
+
+.collections-hover-img {
+  position: absolute;
+  top: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+  z-index: 5;
+}
+
+.collections-wrapper:hover .collections-hover-img {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* =============================
@@ -303,6 +335,15 @@ main {
     padding: 20px;
     max-height: 85vh;
   }
+
+  .collections-hover-img {
+    width: 180px;
+  }
+
+  .category-grid {
+    gap: 25px;
+  }
+
 
 }
 

@@ -197,6 +197,58 @@ const Gate = (() => {
 })();
 
 /* =======================================================
+   NOTICE BOARD
+   ======================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const noticeList = document.getElementById("noticeList");
+
+  if (!noticeList) return;
+
+  // Automatically pull all category tabs
+  const categories = document.querySelectorAll(".category-tab");
+
+  noticeList.innerHTML = "";
+
+  categories.forEach(cat => {
+    const name = cat.textContent.trim();
+    const link = cat.getAttribute("href");
+
+    const li = document.createElement("li");
+    li.innerHTML = `<a href="${link}">New Collection: ${name}</a>`;
+    noticeList.appendChild(li);
+  });
+
+});
+
+/* =======================================================
+   MOBILE COLLECTION PREVIEW
+   ======================================================= */
+document.querySelectorAll(".collections-wrapper").forEach(wrapper => {
+
+  const tab = wrapper.querySelector(".category-tab");
+  const img = wrapper.querySelector(".collections-hover-img");
+
+  let tappedOnce = false;
+
+  tab.addEventListener("click", function(e) {
+
+    if (window.innerWidth > 768) return; // desktop behaves normally
+
+    if (!tappedOnce) {
+      e.preventDefault();
+      img.style.opacity = "1";
+      img.style.visibility = "visible";
+      tappedOnce = true;
+
+      setTimeout(() => tappedOnce = false, 800);
+    }
+    // second tap will follow link
+  });
+
+});
+/* =======================================================
    INIT
    ======================================================= */
 

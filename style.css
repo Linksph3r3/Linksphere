@@ -146,9 +146,9 @@ main {
   margin: 15px auto;
   background: linear-gradient(
     90deg,
-    #000,#B65302,#FF7B00,#FF9100,
+    #000,#B65302,#B65302,#FF9100,
     #FFBB00,#ffffff,#FFBB00,
-    #FF9100,#FF7B00,#B65302,#000
+    #FF9100,#B65302,#B65302,#000
   );
   border-radius: 3px;
 }

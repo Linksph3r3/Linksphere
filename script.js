@@ -98,14 +98,14 @@ function setupFooterModals() {
 
      <p>LinkSphere respects your privacy.</p>
 
-     <h3>1. Information We Collect</hhh3>
+     <h3>1. Information We Collect</h3>
      <p>We may collect non-personal data such as browser type and anonymous usage statistics.</p>
 
      <h3>2. Cookies</h3>
      <p>We may use basic cookies for site functionality and analytics.</p>
 
      <h3>3. Third-Party Links</h3>
-     <<p>We are not responsible for external site privacy practices.</p>
+     <p>We are not responsible for external site privacy practices.</p>
 
      <h3>4. Data Security</h3>
      <p>We take reasonable measures to protect site integrity.</p>

@@ -89,19 +89,61 @@ function setupFooterModals() {
   const content = {
     about: {
       title: "About LinkSphere",
-      text: "LinkSphere provides curated collections with zero noise."
+      text: `LinkSphere is a curated link directory designed to cut through the noise.We organize quality online content into streamlined, accessible collections so users can discover what they're looking for quickly and efficiently.`
     },
     privacy: {
-      title: "Privacy Policy",
-      text: "We respect your privacy and do not sell user data."
-    },
+     title: "Privacy Policy",
+     text: `
+     Last updated: 2026
+
+     LinkSphere respects your privacy.
+
+     1. Information We Collect
+     We may collect non-personal data such as browser type and anonymous usage statistics.
+
+     2. Cookies
+     We may use basic cookies for site functionality and analytics.
+
+     3. Third-Party Links
+     We are not responsible for external site privacy practices.
+
+     4. Data Security
+     We take reasonable measures to protect site integrity.
+     `
+     },
     terms: {
-      title: "Terms of Service",
-      text: "Use of this site constitutes acceptance of our terms."
+      title: "Terms & Conditions",
+      text: `By accessing LinkSphere, you agree to the following terms:
+
+1. Use of Site
+
+LinkSphere is a curated directory.
+We do not host third-party content.
+
+Users are responsible for complying with local laws when accessing external links.
+
+2. Age Restrictions
+
+Some categories may contain adult-oriented material.
+You must be 18 years or older to access such sections.
+
+3. External Content Disclaimer
+
+We do not control or endorse third-party websites listed on this platform.
+Accessing external links is done at your own discretion.
+
+4. Intellectual Property
+
+All branding, layout design, and original materials on LinkSphere are protected and may not be copied without permission.
+
+5. Limitation of Liability
+
+LinkSphere is provided “as is” without warranties of any kind.
+We are not liable for damages resulting from use of external links.`
     },
     contact: {
       title: "Contact",
-      text: "Reach us at support@linksphere.com"
+      text: "Reach us at linksph3r3@gmail.com"
     }
   };
 

@@ -70,34 +70,37 @@ main {
 }
 
 /* =============================
-   5. FOOTER (INDEX ONLY)
+   SITE INFO
 ============================= */
 
-.index-footer {
-  margin-top: 60px; /* 60px from logo */
+.site-info {
+  margin-top: 90px; /* 60px from logo */
   text-align: center;
 }
 
-.site-footer p {
+.site-footer {
   margin-top: 8px;
+  margin-bottom: 10px;
   font-size: 14px;
   color: var(--color-muted);
 }
 
-.footer-links {
+.info-links {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.footer-links a {
+.info-links a {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: normal;
   color: var(--color-text);
   text-decoration: none;
   transition: color var(--transition);
 }
 
-.footer-links a:hover {
+.info-links a:hover {
   color: var(--color-primary);
 }
 

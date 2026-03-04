@@ -64,7 +64,7 @@ main {
 }
 
 .site-logo {
-  width: 160px;        /* smaller logo */
+  width: 320px;        /* smaller logo */
   max-width: 80%;
   display: block;
   margin: 0 auto;

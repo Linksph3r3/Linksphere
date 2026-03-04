@@ -110,8 +110,15 @@ main {
 ============================= */
 
 .index-page .center-group {
-  margin-top: 20px; /* 20px from footer */
+  margin-top: 60px; /* 20px from footer */
   text-align: center;
+}
+
+.index-page.category-heading {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+  font-weight: normal;
 }
 
 .category-heading {

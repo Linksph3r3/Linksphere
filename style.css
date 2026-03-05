@@ -201,16 +201,12 @@ main {
   transition: background var(--transition);
 }
 
-.index-page .category-tab:hover {
-  background: #7a09bbe8;
-}
-
 
 .category-tab:hover {
   background: var(--color-primary);
 }
 
-.index-page .category-tab:hover .open-nsfw {
+.index-page .category-tab:hover {
 
 background: linear-gradient(
     90deg,

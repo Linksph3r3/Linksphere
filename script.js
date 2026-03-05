@@ -197,32 +197,6 @@ const Gate = (() => {
 })();
 
 /* =======================================================
-   NOTICE BOARD
-   ======================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const noticeList = document.getElementById("noticeList");
-
-  if (!noticeList) return;
-
-  // Automatically pull all category tabs
-  const categories = document.querySelectorAll(".category-tab");
-
-  noticeList.innerHTML = "";
-
-  categories.forEach(cat => {
-    const name = cat.textContent.trim();
-    const link = cat.getAttribute("href");
-
-    const li = document.createElement("li");
-    li.innerHTML = `<a href="${link}">New Collection: ${name}</a>`;
-    noticeList.appendChild(li);
-  });
-
-});
-
-/* =======================================================
    MOBILE COLLECTION PREVIEW
    ======================================================= */
 document.querySelectorAll(".collections-wrapper").forEach(wrapper => {

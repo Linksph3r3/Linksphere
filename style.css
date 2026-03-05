@@ -74,7 +74,7 @@ main {
   width: 320px;        /* smaller logo */
   max-width: 80%;
   display: block;
-  margin-top: 20px;
+  margin-top: -20px;
 }
 
 /* =============================
@@ -113,16 +113,6 @@ main {
 
 .info-links a:hover {
   color: #FF7B00;
-}
-
-/* =============================
-   NOTICE BOARD
-============================= */
-
-.notice-board {
-  margin: 20px auto 10px auto;
-  text-align: center;
-  max-width: 800px;
 }
 
 /* =============================

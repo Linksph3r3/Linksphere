@@ -210,6 +210,15 @@ main {
   background: var(--color-primary);
 }
 
+.index-page .category-tab:hover .open-nsfw {
+
+background: linear-gradient(
+    90deg,
+    #FF6A00,#FF3B00,#FF1A1A,#E00000,#C00000,#600000,#000
+  );
+ 
+}
+
 .collections-wrapper {
   text-align: center;
   position: relative;

@@ -18,28 +18,10 @@
   --container-width: 1000px;
 }
 
-/* =============================
-   2. RESET
-============================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* GLOBAL RESET */
+html, body {
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: var(--color-bg);
-  color: var(--color-text);
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
 }
 
 /* =============================

@@ -71,8 +71,10 @@ main {
 }
 
 .lustsphere-page .site-logo {
-  width: 480px;        /* smaller logo */
-  margin-top: 0 auto;
+  width: 360px;        /* smaller logo */
+  max-width: 80%;
+  display: block;
+  margin-top: 0px;
 }
 
 /* =============================

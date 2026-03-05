@@ -70,11 +70,17 @@ main {
   margin: 0 auto;
 }
 
+.lustsphere-page .hero-header {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
 .lustsphere-page .site-logo {
-  width: 360px;        /* smaller logo */
+  width: 640px;
   max-width: 80%;
   display: block;
-  margin-top: -20px;
+  margin: 0 auto;
 }
 
 /* =============================

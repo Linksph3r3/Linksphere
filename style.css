@@ -290,6 +290,15 @@ background: linear-gradient(
   color: white;
 }
 
+.site-info-btn-primary{
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  background: #8b8b8b;
+  color: white;
+}
+
 .site-info-btn-primary .btn.primary:hover {
   background:#ff7b00;
 }

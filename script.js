@@ -197,32 +197,6 @@ const Gate = (() => {
 })();
 
 /* =======================================================
-   MOBILE COLLECTION PREVIEW
-   ======================================================= */
-document.querySelectorAll(".collections-wrapper").forEach(wrapper => {
-
-  const tab = wrapper.querySelector(".category-tab");
-  const img = wrapper.querySelector(".collections-hover-img");
-
-  let tappedOnce = false;
-
-  tab.addEventListener("click", function(e) {
-
-    if (window.innerWidth > 768) return; // desktop behaves normally
-
-    if (!tappedOnce) {
-      e.preventDefault();
-      img.style.opacity = "1";
-      img.style.visibility = "visible";
-      tappedOnce = true;
-
-      setTimeout(() => tappedOnce = false, 800);
-    }
-    // second tap will follow link
-  });
-
-});
-/* =======================================================
    INIT
    ======================================================= */
 

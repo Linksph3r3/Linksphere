@@ -117,10 +117,6 @@ main {
   text-align: center;
 }
 
-.lustsphere-page .center-group {
-  margin-top: 50px; /* 20px from footer */
-  text-align: center;
-}
 
 .center-group {
   margin-top: 200px; /* 20px from footer */
@@ -228,33 +224,12 @@ main {
 
 background: linear-gradient(
     90deg,
-    #FF6A00,#ff1201de,#E00000,#E00000,#C00000,#600000,#600000
+    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
   );
  
 }
 
-.collections-wrapper {
-  text-align: center;
-  position: relative;
-}
 
-.collections-hover-img {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 220px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-  border-radius: 10px;
-  z-index: 5;
-}
-
-.lustsphere-page .collections-tab:hover .collections-hover-img {
-  opacity: 1;
-  visibility: visible;
-}
 /* =============================
    8. MODALS
 ============================= */

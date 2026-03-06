@@ -290,7 +290,7 @@ background: linear-gradient(
   color: white;
 }
 
-.site-info .btn.primary {
+.site-info .btn.primary:hover {
   background:#ff7b00;
 }
 

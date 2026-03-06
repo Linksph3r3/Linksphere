@@ -290,7 +290,7 @@ background: linear-gradient(
   color: white;
 }
 
-.site-info.btn.primary {
+.site-info .btn.primary {
   background:#ff7b00;
 }
 
@@ -298,9 +298,11 @@ background: linear-gradient(
   background: var(--color-primary);
 }
 
+.index-page .btn.primary {
+  background:#8b8b8b;
+}
 
-
-.index-page.btn.primary:hover {
+.index-page .btn.primary:hover {
   background: linear-gradient(
     90deg,
     #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000

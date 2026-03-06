@@ -295,12 +295,8 @@ background: linear-gradient(
   border: none;
   cursor: pointer;
   border-radius: var(--radius-md);
-  background: #8b8b8b;
+  background: #FF7B00;
   color: white;
-}
-
-.site-info-btn-primary .btn.primary:hover {
-  background:#ff7b00;
 }
 
 .btn.primary {

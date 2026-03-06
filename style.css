@@ -251,11 +251,10 @@ background: linear-gradient(
   z-index: 5;
 }
 
-.collections-wrapper:hover .collections-hover-img {
+.lustsphere-page .collections-tab:hover .collections-hover-img {
   opacity: 1;
   visibility: visible;
 }
-
 /* =============================
    8. MODALS
 ============================= */

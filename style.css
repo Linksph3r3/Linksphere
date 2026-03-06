@@ -59,14 +59,14 @@ main {
 /* HERO HEADER */
 .hero-header {
   padding: 0;
-  margin-top: 20px;
+  margin-top: 0;
   text-align: center;
 }
 
 .site-logo {
   width: 420px;        /* smaller logo */
   max-width: 80%;
-  margin: 0 auto;
+  margin-top: 20px;
 }
 
 /* =============================

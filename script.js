@@ -197,6 +197,36 @@ const Gate = (() => {
 })();
 
 /* =======================================================
+   CATEGORY PREVIEW COVER
+   ======================================================= */
+
+   const tabs = document.querySelectorAll(".category-tab");
+const preview = document.getElementById("previewImage");
+
+tabs.forEach(tab => {
+
+  // Hover for desktop
+  tab.addEventListener("mouseenter", () => {
+    const img = tab.dataset.preview;
+    preview.src = img;
+    preview.classList.add("active");
+  });
+
+  // Click for mobile
+  tab.addEventListener("click", (e) => {
+    const img = tab.dataset.preview;
+
+    if (preview.src !== img) {
+      e.preventDefault();
+      preview.src = img;
+      preview.classList.add("active");
+    }
+  });
+
+});
+
+
+/* =======================================================
    INIT
    ======================================================= */
 

@@ -147,7 +147,11 @@ main {
   margin-bottom: 10px;
   font-family: serif;
   font-weight:bolder;
-  color: #E5E5E5;
+  color: linear-gradient(
+   180deg,
+    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+
+  );
   letter-spacing: 2px;
 }
 
@@ -216,9 +220,10 @@ main {
   margin: 10px;
   font-weight: normal;
   border-radius: var(--radius-md);
-  background: #D4AF37;
+  background: #E5C78B;
   color: #E00000;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: serif;
+  font-weight: normal;
   letter-spacing: 1px;
 }
 
@@ -236,16 +241,17 @@ main {
 .index-page .category-tab:hover {
 background: linear-gradient(
     90deg,
-    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
+    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
   );
 }
 
 .lustsphere-page .category-tab:hover {
 background: linear-gradient(
     90deg,
-    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
+   #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
   );
   font-family:serif;
+  font-weight: normal;
   color: #E5C78B;
 }
 
@@ -253,13 +259,29 @@ background: linear-gradient(
   background: var(--color-primary);
 }
 
-
+/* =============================
+    CATEGORY PREVIEW COVER
+============================= */
  
+.category-preview{
+  margin-top:20px;
+  text-align:center;
+}
 
+.category-preview img{
+  max-width:260px;
+  width:100%;
+  border-radius:10px;
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
 
+.category-preview img.active{
+  opacity:1;
+}
 
 /* =============================
-   8. MODALS
+    MODALS
 ============================= */
 
 .modal {
@@ -339,7 +361,7 @@ background: linear-gradient(
 .index-page .btn.primary:hover {
   background: linear-gradient(
     90deg,
-    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
+    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
   );
   
 }

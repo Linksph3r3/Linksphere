@@ -60,14 +60,15 @@ main {
 .hero-header {
   padding: 0;
   margin-top: 0;
-  display: block;
+  justify-content: center;
   text-align: center;
 }
 
 .site-logo {
   width: 420px;        /* smaller logo */
   max-width: 80%;
-  margin: 0px;
+  margin: 0 auto;
+  
 }
 
 /* =============================

@@ -212,9 +212,9 @@ main {
   gap: 10px;
   font-weight: bold;
   border-radius: var(--radius-md);
-  background:#E5C78B ;
+  background:#D4AF37 ;
   color: #E00000;
-  font-family:cursive;
+  font-family:;
   transition: background var(--transition);
 }
 

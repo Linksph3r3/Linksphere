@@ -212,10 +212,8 @@ main {
   font-weight: bold;
   border-radius: var(--radius-md);
   background: var(--color-surface-2);
-  color: var(--color-text);
+  color: #E5C78B;
   font-family:serif;
-  font-style: italic;
-  font-weight: lighter;
   transition: background var(--transition);
 }
 
@@ -244,8 +242,7 @@ background: linear-gradient(
     #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
   );
   font-family:serif;
-  font-style: italic;
-  font-weight: lighter;
+  color: #E5C78B;
 }
 
 .category-tab:hover {

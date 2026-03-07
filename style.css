@@ -214,7 +214,7 @@ main {
   border-radius: var(--radius-md);
   background: #D4AF37;
   color: #E5C78B;
-  font-family:serif;
+  font-family:cursive;
   transition: background var(--transition);
 }
 

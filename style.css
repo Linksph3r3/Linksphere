@@ -118,6 +118,10 @@ main {
   text-align: center;
 }
 
+.lustsphere-page .center-group {
+  margin-top: 50px; /* 20px from footer */
+  text-align: center;
+}
 
 .center-group {
   margin-top: 200px; /* 20px from footer */

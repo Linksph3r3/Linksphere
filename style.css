@@ -136,6 +136,14 @@ main {
   font-weight: normal;
 }
 
+.lustsphere-page .category-heading {
+  font-size: 2rem;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-family:serif ;
+  font-weight: bold;
+}
+
  .category-heading {
   font-size: 2rem;
   margin-bottom: 10px;
@@ -220,19 +228,29 @@ main {
   transition: background var(--transition);
 }
 
+.index-page .category-tab:hover {
+background: linear-gradient(
+    90deg,
+    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
+  );
+}
+
+.lustsphere-page .category-tab:hover {
+background: linear-gradient(
+    90deg,
+    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
+  );
+  font-family:serif;
+  font-style: italic;
+}
 
 .category-tab:hover {
   background: var(--color-primary);
 }
 
-.index-page .category-tab:hover {
 
-background: linear-gradient(
-    90deg,
-    #E5C78B,#D4AF37,#FF6A00,#ff1201,#E00000,#E00000,#C00000,#600000,#3a0000
-  );
  
-}
+
 
 
 /* =============================

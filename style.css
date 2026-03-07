@@ -64,6 +64,11 @@ main {
   text-align: center;
 }
 
+.lustsphere-page.hero-header {
+  padding-top: 60px;
+  text-align: center;
+}
+
 .site-logo {
   width: 420px;        /* smaller logo */
   max-width: 80%;
@@ -140,9 +145,10 @@ main {
   font-size: 2rem;
   margin-top: 40px;
   margin-bottom: 10px;
-  font-family:serif ;
-  color:#E5C78B ;
-  font-weight: bold;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: normal;
+  color: #E5E5E5;
+  letter-spacing: 2px;
 }
 
  .category-heading {
@@ -208,16 +214,14 @@ main {
 
 .lustsphere-page .category-tab {
   padding: 15px 30px;
-  margin: 10px auto;  
-  gap: 10px;
-  font-weight: bold;
+  margin: 10px;
+  font-weight: normal;
   border-radius: var(--radius-md);
-  background:#D4AF37 ;
+  background: #D4AF37;
   color: #E00000;
-  font-family:;
-  transition: background var(--transition);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 1px;
 }
-
 
 .category-tab {
   padding: 15px 30px;

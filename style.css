@@ -199,7 +199,7 @@ main {
   font-size: 16px;
   font-weight: bold;
   border-radius: var(--radius-md);
-  background: #817f7f;
+  background: #888;
   color: var(--color-text);
   text-decoration: none;
   transition: background var(--transition);
@@ -211,7 +211,7 @@ main {
   gap: 10px;
   font-weight: bold;
   border-radius: var(--radius-md);
-  background: var(--color-surface-2);
+  background: #D4AF37;
   color: #E5C78B;
   font-family:serif;
   transition: background var(--transition);

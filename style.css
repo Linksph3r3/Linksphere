@@ -212,8 +212,8 @@ main {
   gap: 10px;
   font-weight: bold;
   border-radius: var(--radius-md);
-  background: #D4AF37;
-  color: #E5C78B;
+  background:#E5C78B ;
+  color: #E00000;
   font-family:cursive;
   transition: background var(--transition);
 }

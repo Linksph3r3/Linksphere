@@ -143,10 +143,10 @@ main {
 
 .lustsphere-page .category-heading {
   font-size: 2rem;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 10px;
   font-family: serif;
-  font-weight: bold;
+  font-weight:bolder;
   color: #E5E5E5;
   letter-spacing: 2px;
 }

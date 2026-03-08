@@ -272,12 +272,15 @@ background: linear-gradient(
   position:absolute;
   top:120%;
   left:50%;
+
   transform:translateX(-50%);
 
-  width:240px;      /* same width for all previews */
-  height:320px;     /* same height for all previews */
+  width:240px;      /* fixed preview width */
+  height:320px;     /* fixed preview height */
 
-  object-fit:cover; /* crops image to fill frame */
+  max-width:none;   /* prevents inheriting parent width */
+
+  object-fit:cover;
 
   border-radius:10px;
 
@@ -302,7 +305,7 @@ background: linear-gradient(
 
 .category-item{
   position:relative;
-  display:inline-block;
+  display:inline-block;  /* prevents stretching */
   text-align:center;
 }
 

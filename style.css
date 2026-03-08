@@ -89,14 +89,6 @@ main {
   text-align: center;
 }
 
-.lustphere-site-footer{
-  margin-top: 8px;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #FF0F6D;
-}
-
 .site-footer {
   margin-top: 8px;
   text-align: center;
@@ -293,13 +285,13 @@ background: linear-gradient(
 ============================= */
  .category-preview{
   position:absolute;
-  top:160%;
+  margin-top: 10px;
   left:50%;
 
   transform:translateX(-50%);
 
   width:240px;      /* fixed preview width */
-  height: 240px;     /* fixed preview height */
+  height: 100px;     /* fixed preview height */
 
   max-width:none;   /* prevents inheriting parent width */
 

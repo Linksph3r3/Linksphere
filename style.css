@@ -197,7 +197,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  gap: 40px;
+  margin: 50px 0;
 }
 
 .category-grid {
@@ -271,21 +272,21 @@ background: linear-gradient(
   position:absolute;
   top:120%;
   left:50%;
-  transform:translateX(-50%) scale(.95);
+  transform:translateX(-50%);
 
-  width:240px;
-  height:300px;   /* forces uniform height */
+  width:240px;      /* same width for all previews */
+  height:320px;     /* same height for all previews */
 
-  object-fit:cover;   /* crops image nicely instead of stretching */
+  object-fit:cover; /* crops image to fill frame */
 
   border-radius:10px;
 
   opacity:0;
-  pointer-events:none;
+  transition:opacity .25s ease;
 
-  transition:all .25s ease;
   z-index:1000;
 }
+
 
 /* Hover (desktop) */
 .category-item:hover .category-preview{

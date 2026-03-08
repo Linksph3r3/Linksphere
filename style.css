@@ -17,6 +17,9 @@
   --transition: 0.3s ease;
   --container-width: 1000px;
 }
+.linksphere-page :root{
+  background-color: #c8c8c8;
+}
 
 /* =============================
    2. RESET
@@ -65,7 +68,7 @@ main {
 }
 
 .lustsphere-page.hero-header {
-  padding-top: 60px;
+  padding-top: 10px;
   text-align: center;
 }
 
@@ -83,6 +86,15 @@ main {
 .site-info {
   margin-top: 60px; /* 60px from logo */
   text-align: center;
+}
+
+.linksphere-page .site-footer{
+
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #FF0F6D;
 }
 
 .site-footer {
@@ -124,7 +136,7 @@ main {
 }
 
 .lustsphere-page .center-group {
-  margin-top: 30px; /* 20px from footer */
+  margin-top: 30px; 
   text-align: center;
 }
 
@@ -147,7 +159,7 @@ main {
   margin-bottom: 10px;
   font-family: serif;
   font-weight:bolder;
-  color: #8b8b8b;
+  color: #000000;
 
 }
 
@@ -197,8 +209,8 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  margin: 50px 0;
+  gap: 10px;
+  margin: 30px 0;
 }
 
 .category-grid {
@@ -224,11 +236,10 @@ main {
   margin: 20px auto;
   font-weight: normal;
   border-radius: var(--radius-md);
-  background: #c8c8c8;
-  color: #FF2E8B;
+  background: #ffffff;
+  color: #000000;
   font-family: serif;
   font-weight: bold;
-  letter-spacing: 1px;
 }
 
 .category-tab {
@@ -270,13 +281,13 @@ background: linear-gradient(
 ============================= */
  .category-preview{
   position:absolute;
-  top:120%;
+  top:160%;
   left:50%;
 
   transform:translateX(-50%);
 
   width:240px;      /* fixed preview width */
-  height:320px;     /* fixed preview height */
+  height:280px;     /* fixed preview height */
 
   max-width:none;   /* prevents inheriting parent width */
 

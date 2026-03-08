@@ -285,7 +285,7 @@ background: linear-gradient(
 ============================= */
  .category-preview{
   position:absolute;
-  margin-top: 10px;
+  margin-top: 5px;
   left:50%;
 
   transform:translateX(-50%);

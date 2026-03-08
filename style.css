@@ -18,7 +18,7 @@
   --container-width: 1000px;
 }
 .lustsphere-page{
-  background-color:#8b8b8b;
+  background-color:#ffffff;
   color:#000;
 }
 
@@ -90,7 +90,6 @@ main {
 }
 
 .lustphere-page .site-footer{
-
   margin-top: 8px;
   text-align: center;
   margin-bottom: 10px;
@@ -238,7 +237,7 @@ main {
   font-size: 16px;
   font-weight: bold;
   border-radius: var(--radius-md);
-  background: #8888887e;
+  background: #8b8b8b;
   color: var(--color-text);
   text-decoration: none;
   transition: background var(--transition);
@@ -249,8 +248,8 @@ main {
   margin: 20px auto;
   font-weight: normal;
   border-radius: var(--radius-md);
-  background: #ffffff;
-  color: #000000;
+  background: #000000;
+  color: #ffffff;
   font-family: serif;
   font-weight: bold;
 }
@@ -292,28 +291,32 @@ background: linear-gradient(
 /* =============================
     CATEGORY PREVIEW COVER
 ============================= */
- .category-preview{
-  position:absolute;
-  top:160%;
-  left:50%;
+ .categories-container{
+  overflow:visible;
+}
 
+.category-item{
+  position:relative;
+  overflow:visible;
+}
+
+.category-preview{
+  position:absolute;
+  top:calc(100% + 12px);   /* space below tab */
+  left:50%;
   transform:translateX(-50%);
 
-  width:240px;      /* fixed preview width */
-  height: 240px;     /* fixed preview height */
-
-  max-width:none;   /* prevents inheriting parent width */
+  width:240px;
+  height:320px;
 
   object-fit:cover;
-
   border-radius:10px;
 
   opacity:0;
   transition:opacity .25s ease;
 
-  z-index:1000;
+  z-index:999;
 }
-
 
 /* Hover (desktop) */
 .category-item:hover .category-preview{

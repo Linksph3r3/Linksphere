@@ -266,11 +266,13 @@ background: linear-gradient(
 .category-preview{
   margin-top:20px;
   text-align:center;
+  justify-content: center;
 }
 
 .category-preview img{
   max-width:260px;
   width:100%;
+  justify-content: center;
   border-radius:10px;
   opacity:0;
   transition:opacity 0.3s ease;

@@ -148,7 +148,7 @@ main {
   font-family: serif;
   font-weight:bolder;
   color: linear-gradient(
-   180deg,
+   90deg,
     #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
 
   );
@@ -220,10 +220,10 @@ main {
   margin: 10px;
   font-weight: normal;
   border-radius: var(--radius-md);
-  background: #E5C78B;
-  color: #E00000;
+  background: #c8c8c8;
+  color: #FF2E8B;
   font-family: serif;
-  font-weight: normal;
+  font-weight: bold;
   letter-spacing: 1px;
 }
 
@@ -239,6 +239,8 @@ main {
 }
 
 .index-page .category-tab:hover {
+  font-family: serif;
+  font-weight: bold;
 background: linear-gradient(
     90deg,
     #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
@@ -251,8 +253,8 @@ background: linear-gradient(
    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
   );
   font-family:serif;
-  font-weight: normal;
-  color: #E5C78B;
+  font-weight: bold;
+  color: #fff;
 }
 
 .category-tab:hover {

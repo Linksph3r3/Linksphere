@@ -17,8 +17,9 @@
   --transition: 0.3s ease;
   --container-width: 1000px;
 }
-.linksphere-page :root{
-  background-color: #c8c8c8;
+.lustsphere-page{
+  background-color:#ffffff;
+  color:#000;
 }
 
 /* =============================

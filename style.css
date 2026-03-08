@@ -147,12 +147,8 @@ main {
   margin-bottom: 10px;
   font-family: serif;
   font-weight:bolder;
-  color: linear-gradient(
-   90deg,
-    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+  color: #8b8b8b;
 
-  );
-  letter-spacing: 2px;
 }
 
  .category-heading {
@@ -197,6 +193,13 @@ main {
    7. CATEGORY GRID
 ============================= */
 
+.lustsphere-page .category-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
 .category-grid {
   display: flex;
   justify-content: center;
@@ -217,7 +220,7 @@ main {
 
 .lustsphere-page .category-tab {
   padding: 15px 30px;
-  margin: 10px;
+  margin: 20px auto;
   font-weight: normal;
   border-radius: var(--radius-md);
   background: #c8c8c8;
@@ -264,19 +267,17 @@ background: linear-gradient(
 /* =============================
     CATEGORY PREVIEW COVER
 ============================= */
- .category-item{
-  position:relative;
-  display:inline-block;
-  text-align:center;
-}
-
-.category-preview{
+ .category-preview{
   position:absolute;
   top:120%;
   left:50%;
   transform:translateX(-50%) scale(.95);
 
   width:240px;
+  height:300px;   /* forces uniform height */
+
+  object-fit:cover;   /* crops image nicely instead of stretching */
+
   border-radius:10px;
 
   opacity:0;
@@ -296,6 +297,28 @@ background: linear-gradient(
 .category-tab:focus + .category-preview{
   opacity:1;
   transform:translateX(-50%) scale(1);
+}
+
+.category-item{
+  position:relative;
+  display:inline-block;
+  text-align:center;
+}
+
+.category-preview{
+  position:absolute;
+  top:120%;
+  left:50%;
+  transform:translateX(-50%) scale(.95);
+
+  width:240px;
+  border-radius:10px;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:all .25s ease;
+  z-index:1000;
 }
 
 /* =============================

@@ -262,11 +262,32 @@ background: linear-gradient(
 /* =============================
     CATEGORY PREVIEW COVER
 ============================= */
- 
+ .category-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
 .category-preview{
-  margin-top:20px;
-  text-align:center;
-  justify-content: center;
+  width:220px;
+  margin-top:12px;
+  border-radius:8px;
+  opacity:0;
+  transform:scale(.95);
+  transition:all .25s ease;
+  pointer-events:none;
+}
+
+/* Desktop hover */
+.category-item:hover .category-preview{
+  opacity:1;
+  transform:scale(1);
+}
+
+/* Mobile tap */
+.category-tab:focus + .category-preview{
+  opacity:1;
+  transform:scale(1);
 }
 
 .category-preview img{

@@ -182,8 +182,8 @@ main {
   margin: 15px auto;
   background: linear-gradient(
     90deg,
-    #000,#1b1b1b,#b65302,#e66903,var(--color-primary),
-    #ffbb00,#ffffff,#ffbb00,var(--color-primary),
+    #000,#1b1b1b,#b65302,#e66903,
+    #ffbb00,#ffffff,#ffbb00,
     #e66903,#b65302,#1b1b1b,#000
   );
   border-radius: 3px;

@@ -290,8 +290,8 @@ background: linear-gradient(
 
   transform:translateX(-50%);
 
-  width:240px;      /* fixed preview width */
-  height: 100px;     /* fixed preview height */
+  width:300px;      /* fixed preview width */
+  height: 300px;     /* fixed preview height */
 
   max-width:none;   /* prevents inheriting parent width */
 

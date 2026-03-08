@@ -265,44 +265,37 @@ background: linear-gradient(
     CATEGORY PREVIEW COVER
 ============================= */
  .category-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  position:relative;
+  display:inline-block;
+  text-align:center;
 }
 
 .category-preview{
-  width:220px;
-  margin-top:12px;
-  border-radius:8px;
+  position:absolute;
+  top:120%;
+  left:50%;
+  transform:translateX(-50%) scale(.95);
+
+  width:240px;
+  border-radius:10px;
+
   opacity:0;
-  transform:scale(.95);
-  transition:all .25s ease;
   pointer-events:none;
+
+  transition:all .25s ease;
+  z-index:1000;
 }
 
-/* Desktop hover */
+/* Hover (desktop) */
 .category-item:hover .category-preview{
   opacity:1;
-  transform:scale(1);
+  transform:translateX(-50%) scale(1);
 }
 
-/* Mobile tap */
+/* Tap (mobile) */
 .category-tab:focus + .category-preview{
   opacity:1;
-  transform:scale(1);
-}
-
-.category-preview img{
-  max-width:260px;
-  width:100%;
-  justify-content: center;
-  border-radius:10px;
-  opacity:0;
-  transition:opacity 0.3s ease;
-}
-
-.category-preview img.active{
-  opacity:1;
+  transform:translateX(-50%) scale(1);
 }
 
 /* =============================

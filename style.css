@@ -18,7 +18,7 @@
   --container-width: 1000px;
 }
 .lustsphere-page{
-  background-color:#ffffff;
+  background-color:#8b8b8b;
   color:#000;
 }
 
@@ -89,7 +89,7 @@ main {
   text-align: center;
 }
 
-.linksphere-page .site-footer{
+.lustphere-page .site-footer{
 
   margin-top: 8px;
   text-align: center;
@@ -187,6 +187,18 @@ main {
   border-radius: 3px;
 }
 
+.lustsphere-page .section-divider {
+  width: 80%;
+  max-width: 600px;
+  height: 4px;
+  margin: 15px auto;
+  background: linear-gradient(
+    90deg,
+    #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
+    
+  );
+  border-radius: 3px;
+}
 
 .section-divider {
   width: 80%;
@@ -226,7 +238,7 @@ main {
   font-size: 16px;
   font-weight: bold;
   border-radius: var(--radius-md);
-  background: #888;
+  background: #8888887e;
   color: var(--color-text);
   text-decoration: none;
   transition: background var(--transition);
@@ -288,7 +300,7 @@ background: linear-gradient(
   transform:translateX(-50%);
 
   width:240px;      /* fixed preview width */
-  height:280px;     /* fixed preview height */
+  height: 240px;     /* fixed preview height */
 
   max-width:none;   /* prevents inheriting parent width */
 

@@ -89,7 +89,7 @@ main {
   text-align: center;
 }
 
-.lustphere-page .site-footer{
+.lustphere-site-footer{
   margin-top: 8px;
   text-align: center;
   margin-bottom: 10px;
@@ -155,7 +155,7 @@ main {
 
 .lustsphere-page .category-heading {
   font-size: 2rem;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
   font-family: serif;
   font-weight:bolder;
@@ -222,7 +222,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .category-grid {
@@ -291,32 +291,28 @@ background: linear-gradient(
 /* =============================
     CATEGORY PREVIEW COVER
 ============================= */
- .categories-container{
-  overflow:visible;
-}
-
-.category-item{
-  position:relative;
-  overflow:visible;
-}
-
-.category-preview{
+ .category-preview{
   position:absolute;
-  top:calc(100% + 12px);   /* space below tab */
+  top:160%;
   left:50%;
+
   transform:translateX(-50%);
 
-  width:240px;
-  height:320px;
+  width:240px;      /* fixed preview width */
+  height: 240px;     /* fixed preview height */
+
+  max-width:none;   /* prevents inheriting parent width */
 
   object-fit:cover;
+
   border-radius:10px;
 
   opacity:0;
   transition:opacity .25s ease;
 
-  z-index:999;
+  z-index:1000;
 }
+
 
 /* Hover (desktop) */
 .category-item:hover .category-preview{
@@ -351,6 +347,7 @@ background: linear-gradient(
   transition:all .25s ease;
   z-index:1000;
 }
+
 
 /* =============================
     MODALS

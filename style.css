@@ -22,6 +22,11 @@
   color:#000;
 }
 
+.melimtxcollections-page{
+  background-color:#ffffff;
+  color:#000;
+}
+
 /* =============================
    2. RESET
 ============================= */
@@ -57,7 +62,7 @@ main {
 }
 
 /* =============================
-   4. HERO (LOGO AT TOP)
+    HERO (LOGO AT TOP)
 ============================= */
 
 /* HERO HEADER */
@@ -78,6 +83,17 @@ main {
   max-width: 80%;
   margin: 0 auto;
   
+}
+
+/* =============================
+    PAGE TITLE
+============================= */
+.page-title h1{
+
+  text-align: center;
+  font-size: 2rem;
+  font-family: serif;
+  font-weight: bold;
 }
 
 /* =============================
@@ -191,6 +207,19 @@ main {
   border-radius: 3px;
 }
 
+.melimtxcollections-page .section-divider {
+  width: 80%;
+  max-width: 600px;
+  height: 4px;
+  margin: 15px auto;
+  background: linear-gradient(
+    90deg,
+    #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
+    
+  );
+  border-radius: 3px;
+}
+
 .section-divider {
   width: 80%;
   max-width: 600px;
@@ -217,6 +246,14 @@ main {
   margin: 20px 0;
 }
 
+.melimtxcollections-page .category-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
 .category-grid {
   display: flex;
   justify-content: center;
@@ -235,7 +272,7 @@ main {
   transition: background var(--transition);
 }
 
-.lustsphere-page .category-tab {
+.melimtxcollections-page .category-tab {
   padding: 15px 30px;
   margin: 20px auto;
   font-weight: normal;
@@ -245,6 +282,7 @@ main {
   font-family: serif;
   font-weight: bold;
 }
+
 
 .category-tab {
   padding: 15px 30px;
@@ -267,6 +305,16 @@ background: linear-gradient(
 }
 
 .lustsphere-page .category-tab:hover {
+background: linear-gradient(
+    90deg,
+   #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+  );
+  font-family:serif;
+  font-weight: bold;
+  color: #fff;
+}
+
+.melimtxcollections-page .category-tab:hover {
 background: linear-gradient(
     90deg,
    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000

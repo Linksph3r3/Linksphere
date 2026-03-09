@@ -1,65 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- META -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melimtx collections</title>
-  <meta name="description" content="Melimtx Collections - curated content categories.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
 
-  <!-- Preload CSS -->
-  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="style.css">
-  </noscript>
+  <title>Melimtx Collections</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="melimtxcollections-page">
 
-  <!-- Home Button -->
-  <a href="index.html" class="home-btn" aria-label="Home">
-    <svg viewBox="0 0 24 24" class="home-icon">
-      <path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10.5z"/>
-    </svg>
-  </a>
-
-  <!-- Back Button -->
- <button class="back-btn" onclick="history.back()" aria-label="Go Back">
-  <svg viewBox="0 0 24 24" class="back-icon">
-  <path d="M15 18l-6-6 6-6" />
-  </svg>
- </button>
-
   <main>
-    <h1 class="page-title">Melimtx Collections</h1>
+
+   <h1 class="page-title">Melimtx Collections</h1>
 
 
-      <!-- CENTERED GROUP -->
-    <section class="center-group">
+    <!-- CATEGORY SECTION -->
+    <section class="center-group" aria-labelledby="category-heading">
+
+      <h1 id="category-heading" class="category-heading">
+        
+      </h1>
 
       <div class="section-divider"></div>
 
-      <section class="center-group">
-        <div class="category-grid">
-          <a href="Melimtx-Video-Collections.html" id="vidcollections" class="category-tab">
-            Video Collections
-          </a>
-          <a href="/Melimtx.html" id="fullcollections" class="category-tab">
-           Full Collections
-          </a>
-        </div>
-      </section>
-     
-     <div class="section-divider"></div>
+      <nav class="category-grid">
 
-    
+  <div class="category-item">
+    <a href="Melimtx-Video-Collections.html" class="category-tab">
+      Video Collections
+    </a>
+  </div>
+
+  <div class="category-item">
+    <a href="Melimtx.html" class="category-tab">
+      Full Collections
+    </a>
+     </nav>
+      <div class="section-divider"></div>
+
+
+    </section>
+  
+
   </main>
 
-  <!-- Footer -->
+<!-- Footer -->
   <footer class="site-footer">
     <p>&copy; 2026 LinkSphere. All rights reserved.</p>
   </footer>
 
-  <!-- Main Script -->
   <script src="script.js" defer></script>
 
 </body>

@@ -197,6 +197,58 @@ const Gate = (() => {
 })();
 
 /* =======================================================
+   ADGATE
+   ======================================================= */
+
+let targetLink = null;
+
+document.querySelectorAll(".collection-tab").forEach(tab => {
+
+tab.addEventListener("click", ()=>{
+
+targetLink = tab.dataset.link;
+
+document.getElementById("adGate").style.display="flex";
+
+});
+
+});
+
+/* =======================================================
+   PROCEED BUTTON
+   ======================================================= */
+
+   document.getElementById("gateProceed").addEventListener("click", ()=>{
+
+if(targetLink){
+window.location.href = targetLink;
+}
+
+});
+
+/* =======================================================
+   AD PROGRESS TRACKER
+   ======================================================= */
+
+   let adsCompleted = 0;
+
+document.querySelectorAll(".ad-btn").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+window.open(btn.dataset.url,"_blank");
+
+adsCompleted++;
+
+if(adsCompleted >= 3){
+document.getElementById("gateProceed").disabled=false;
+}
+
+});
+
+});
+
+/* =======================================================
    CATEGORY PREVIEW COVER
    ======================================================= */
 
@@ -225,6 +277,28 @@ tabs.forEach(tab => {
 
 });
 
+/* =======================================================
+   COLLECTIONS
+   ======================================================= */
+
+document.querySelectorAll(".collection-tab").forEach(tab => {
+
+const img = tab.querySelector("img");
+
+if(img){
+tab.style.setProperty(
+"--bg",
+`url(${img.src})`
+);
+
+tab.querySelector("img").remove();
+
+tab.style.backgroundImage = `url(${img.src})`;
+tab.style.backgroundSize = "cover";
+tab.style.backgroundPosition = "center";
+}
+
+});
 
 /* =======================================================
    INIT

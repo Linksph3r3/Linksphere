@@ -235,7 +235,7 @@ main {
 }
 
 /* =============================
-   7. CATEGORY GRID
+  CATEGORY GRID
 ============================= */
 
 .lustsphere-page .category-grid {
@@ -388,9 +388,61 @@ background: linear-gradient(
   z-index:1000;
 }
 
+/* =============================
+  COLLECTIONS
+============================= */
+.collections-container {
+display:flex;
+gap:10px;
+overflow-x:auto;
+scroll-behavior:smooth;
+padding:10px 0;
+}
+
+.collection-tab{
+min-width:140px;
+height:90px;
+background:#111;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+cursor:pointer;
+overflow:hidden;
+}
+
+.collection-tab img{
+display:none;
+}
+
+.collection-tab::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:opacity .3s ease;
+z-index:0;
+}
+
+.collection-tab p{
+position:relative;
+z-index:1;
+color:#fff;
+font-weight:600;
+}
+
+.collection-tab:hover::before{
+opacity:1;
+}
 
 /* =============================
-    MODALS
+  MODALS
 ============================= */
 
 .modal {
@@ -476,7 +528,20 @@ background: linear-gradient(
 }
 
 /* =============================
-   9. RESPONSIVE
+  HORIZONTAL
+============================= */
+
+.collections-container::-webkit-scrollbar{
+display:none;
+}
+
+.collections-container{
+-ms-overflow-style:none;
+scrollbar-width:none;
+}
+
+/* =============================
+ RESPONSIVE
 ============================= */
 
 @media (max-width: 768px) {

@@ -391,12 +391,17 @@ background: linear-gradient(
 /* =============================
   COLLECTIONS
 ============================= */
-.collections-container {
+.collections-container{
 display:flex;
-gap:10px;
+gap:12px;
 overflow-x:auto;
 scroll-behavior:smooth;
-padding:10px 0;
+padding:10px 40px;
+flex:1;
+}
+
+.collections-container::-webkit-scrollbar{
+display:none;
 }
 
 .collection-tab{
@@ -439,6 +444,13 @@ font-weight:600;
 
 .collection-tab:hover::before{
 opacity:1;
+}
+
+.collection-row{
+position:relative;
+display:flex;
+align-items:center;
+margin:35px 0;
 }
 
 /* =============================
@@ -531,13 +543,53 @@ opacity:1;
   HORIZONTAL
 ============================= */
 
-.collections-container::-webkit-scrollbar{
-display:none;
+.scroll-arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:42px;
+height:42px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:26px;
+font-weight:bold;
+
+color:white;
+
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(6px);
+
+border-radius:50%;
+
+cursor:pointer;
+z-index:10;
+
+transition:all .25s ease;
+}
+.left-arrow{
+left:0;
 }
 
-.collections-container{
--ms-overflow-style:none;
-scrollbar-width:none;
+.right-arrow{
+right:0;
+}
+
+.scroll-arrow:hover{
+
+background:linear-gradient(
+135deg,
+#ff0055,
+#ff3d7a
+);
+
+box-shadow:
+0 0 10px #ff0055,
+0 0 20px #ff0055;
+
+transform:translateY(-50%) scale(1.15);
 }
 
 /* =============================

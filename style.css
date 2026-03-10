@@ -17,10 +17,7 @@
   --transition: 0.3s ease;
   --container-width: 1000px;
 }
-.lustsphere-page{
-  background-color:#ffffff;
-  color:#000;
-}
+
 
 .melimtxcollections-page{
   background-color:#ffffff;
@@ -167,7 +164,7 @@ main {
   margin-bottom: 10px;
   font-family: serif;
   font-weight:bolder;
-  color: #000000;
+  color: #ffffff;
 
 }
 

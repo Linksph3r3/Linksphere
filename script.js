@@ -22,26 +22,30 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 /* =======================================================
    HORIZONTAL SCROLL
    ======================================================= */
-
 function setupHorizontalScroll() {
-  $$(".collections").forEach(row => {
+
+  $$(".collection-row").forEach(row => {
+
     const container = $(".collections-container", row);
     const leftArrow = $(".left-arrow", row);
     const rightArrow = $(".right-arrow", row);
 
-    if (!container || !leftArrow || !rightArrow) return;
+    if (!container) return;
 
-    const scrollAmount = 600;
+    const scrollAmount = 500;
 
-    leftArrow.addEventListener("click", () => {
+    leftArrow?.addEventListener("click", () => {
       container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
     });
 
-    rightArrow.addEventListener("click", () => {
+    rightArrow?.addEventListener("click", () => {
       container.scrollBy({ left: scrollAmount, behavior: "smooth" });
     });
+
   });
+
 }
+
 
 /* =======================================================
    AGE CONFIRMATION (Homepage Only)
@@ -170,7 +174,19 @@ function setupFooterModals() {
     }
   });
 }
+/* =======================================================
+   ADGATE
+   ======================================================= */
 
+function openAdGate(link) {
+
+  const gate = document.getElementById("adGate");
+
+  gate.style.display = "flex";   // this centers the modal
+
+  gate.dataset.target = link;
+
+}
 
 /* =======================================================
    CATEGORY PREVIEW COVER
@@ -223,6 +239,13 @@ tab.style.backgroundPosition = "center";
 }
 
 });
+/* =======================================================
+   PAGINATION
+   ======================================================= */
+
+   function goToPage(url){
+window.location.href = url;
+}
 
 /* =======================================================
    INIT

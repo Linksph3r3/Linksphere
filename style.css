@@ -544,10 +544,12 @@ z-index:9999;
 
 .left-arrow{
 left:10px;
+cursor: pointer;
 }
 
 .right-arrow{
 right:10px;
+cursor: pointer;
 }
 /* =============================
  RESPONSIVE

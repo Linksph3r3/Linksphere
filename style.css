@@ -62,8 +62,8 @@ main {
 }
 
 .melimtx-page main{
-padding-top:0;
-margin-top:0;
+  padding-top:0;
+  margin-top:0;
 }
 /* =============================
     HERO (LOGO AT TOP)
@@ -92,13 +92,19 @@ margin-top:0;
 /* =============================
     PAGE TITLE
 ============================= */
+/* Remove default heading spacing */
 .page-title{
   text-align:center;
   font-size:4rem;
   font-family:serif;
   font-weight:bold;
+
   margin-top:0;
   margin-bottom:10px;
+}
+
+h1{
+  margin:0;
 }
 /* =============================
    SITE INFO

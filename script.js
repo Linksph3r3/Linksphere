@@ -22,6 +22,7 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 /* =======================================================
    HORIZONTAL SCROLL
    ======================================================= */
+
 function setupHorizontalScroll() {
 
   const rows = document.querySelectorAll(".collection-row");
@@ -31,6 +32,8 @@ function setupHorizontalScroll() {
     const container = row.querySelector(".collections-container");
     const leftArrow = row.querySelector(".left-arrow");
     const rightArrow = row.querySelector(".right-arrow");
+
+    if(!container || !leftArrow || !rightArrow) return;
 
     const scrollAmount = 600;
 
@@ -48,22 +51,28 @@ function setupHorizontalScroll() {
       });
     });
 
+    container.addEventListener("scroll", () => {
+
+      if(container.scrollLeft <= 0){
+        leftArrow.style.opacity = "0.3";
+      } else {
+        leftArrow.style.opacity = "1";
+      }
+
+      if(container.scrollLeft + container.clientWidth >= container.scrollWidth){
+        rightArrow.style.opacity = "0.3";
+      } else {
+        rightArrow.style.opacity = "1";
+      }
+
+    });
+
   });
 
 }
 
-container.addEventListener("scroll", () => {
-
-  if(container.scrollLeft <= 0){
-    leftArrow.style.opacity = "0.3";
-  } else {
-    leftArrow.style.opacity = "1";
-  }
-
-});
-
 /* =======================================================
-   AGE CONFIRMATION (Homepage Only)
+   AGE CONFIRMATION
    ======================================================= */
 
 function setupAgeConfirmation() {
@@ -90,10 +99,11 @@ function setupAgeConfirmation() {
     ageModal.style.display = "none";
     document.body.style.overflow = "";
   });
+
 }
 
 /* =======================================================
-   FOOTER INFO MODAL
+   FOOTER MODALS
    ======================================================= */
 
 function setupFooterModals() {
@@ -106,171 +116,155 @@ function setupFooterModals() {
   if (!infoModal) return;
 
   const content = {
-    about: {
-      title: "About LinkSphere",
-      text: `<p>LinkSphere is a curated link directory designed to cut through the noise.We organize quality online content into streamlined, accessible collections so users can discover what they're looking for quickly and efficiently.</p>`
+
+    about:{
+      title:"About LinkSphere",
+      text:`<p>LinkSphere is a curated link directory designed to cut through the noise. We organize quality online content into streamlined, accessible collections.</p>`
     },
-    privacy: {
-     title: "Privacy Policy",
-     text: `
-     
 
-     <p>LinkSphere respects your privacy.</p>
+    privacy:{
+      title:"Privacy Policy",
+      text:`
+      <p>LinkSphere respects your privacy.</p>
 
-     <h3>1. Information We Collect</h3>
-     <p>We may collect non-personal data such as browser type and anonymous usage statistics.</p>
+      <h3>1. Information We Collect</h3>
+      <p>We may collect anonymous usage statistics.</p>
 
-     <h3>2. Cookies</h3>
-     <p>We may use basic cookies for site functionality and analytics.</p>
+      <h3>2. Cookies</h3>
+      <p>Basic cookies may be used for site functionality.</p>
 
-     <h3>3. Third-Party Links</h3>
-     <p>We are not responsible for external site privacy practices.</p>
+      <h3>3. Third-Party Links</h3>
+      <p>We are not responsible for external site privacy policies.</p>
 
-     <h3>4. Data Security</h3>
-     <p>We take reasonable measures to protect site integrity.</p>
-     `
-     },
-    terms: {
-      title: "Terms & Conditions",
-      text: `
-  <p>By accessing <strong>LinkSphere</strong>, you agree to the following terms:</p>
-
-  <h3>1. Use of Site</h3>
-  <p>LinkSphere is a curated directory. We do not host third-party content. 
-  Users are responsible for complying with local laws when accessing external links.</p>
-
-  <h3>2. Age Restrictions</h3>
-  <p>Some categories may contain adult-oriented material. 
-  You must be 18 years or older to access such sections.</p>
-
-  <h3>3. External Content Disclaimer</h3>
-  <p>We do not control or endorse third-party websites listed on this platform. 
-  Accessing external links is done at your own discretion.</p>
-
-  <h3>4. Intellectual Property</h3>
-  <p>All branding, layout design, and original materials on LinkSphere 
-  are protected and may not be copied without permission.</p>
-
-  <h3>5. Limitation of Liability</h3>
-  <p>LinkSphere is provided “as is” without warranties of any kind. 
-  We are not liable for damages resulting from use of external links.</p>
-  `
+      <h3>4. Data Security</h3>
+      <p>Reasonable security measures are implemented.</p>
+      `
     },
-    contact: {
-      title: "Contact",
-      text: `<p>Reach us at linksph3r3@gmail.com</p>`
+
+    terms:{
+      title:"Terms & Conditions",
+      text:`
+      <p>By accessing LinkSphere you agree to the following:</p>
+
+      <h3>1. Use of Site</h3>
+      <p>LinkSphere is a curated directory and does not host third-party content.</p>
+
+      <h3>2. Age Restrictions</h3>
+      <p>Some categories contain adult content and require users to be 18+.</p>
+
+      <h3>3. External Content</h3>
+      <p>We do not control third-party sites linked on this platform.</p>
+
+      <h3>4. Intellectual Property</h3>
+      <p>All original design and branding belong to LinkSphere.</p>
+
+      <h3>5. Liability</h3>
+      <p>LinkSphere is provided “as is” without warranties.</p>
+      `
+    },
+
+    contact:{
+      title:"Contact",
+      text:`<p>linksph3r3@gmail.com</p>`
     }
+
   };
 
-  $$(".info-links a").forEach(link => {
-    link.addEventListener("click", (e) => {
+  $$(".info-links a").forEach(link=>{
+
+    link.addEventListener("click",(e)=>{
+
       e.preventDefault();
 
       const key = link.dataset.modal;
-      if (!content[key]) return;
+
+      if(!content[key]) return;
 
       infoTitle.textContent = content[key].title;
       infoText.innerHTML = content[key].text;
 
-      infoModal.style.display = "flex";
-      document.body.style.overflow = "hidden";
+      infoModal.style.display="flex";
+      document.body.style.overflow="hidden";
+
     });
+
   });
 
-  infoClose?.addEventListener("click", () => {
-    infoModal.style.display = "none";
-    document.body.style.overflow = "";
+  infoClose?.addEventListener("click",()=>{
+
+    infoModal.style.display="none";
+    document.body.style.overflow="";
+
   });
 
-  infoModal.addEventListener("click", (e) => {
-    if (e.target === infoModal) {
-      infoModal.style.display = "none";
-      document.body.style.overflow = "";
-    }
-  });
 }
+
+/* =======================================================
+   COLLECTION TABS
+   ======================================================= */
+
+function setupCollections(){
+
+  document.querySelectorAll(".collection-tab").forEach(tab=>{
+
+    const img = tab.querySelector("img");
+
+    if(img){
+
+      tab.style.backgroundImage=`url(${img.src})`;
+      tab.style.backgroundSize="cover";
+      tab.style.backgroundPosition="center";
+
+      img.remove();
+
+    }
+
+    tab.addEventListener("click",()=>{
+
+      const link = tab.dataset.link;
+
+      if(link){
+        openAdGate(link);
+      }
+
+    });
+
+  });
+
+}
+
 /* =======================================================
    ADGATE
    ======================================================= */
 
-function openAdGate(link) {
+function openAdGate(link){
 
   const gate = document.getElementById("adGate");
 
-  gate.style.display = "flex";   // this centers the modal
+  if(!gate) return;
 
-  gate.dataset.target = link;
+  gate.style.display="flex";
+  gate.dataset.target=link;
 
 }
 
-/* =======================================================
-   CATEGORY PREVIEW COVER
-   ======================================================= */
-
-   const tabs = document.querySelectorAll(".category-tab");
-const preview = document.getElementById("previewImage");
-
-tabs.forEach(tab => {
-
-  // Hover for desktop
-  tab.addEventListener("mouseenter", () => {
-    const img = tab.dataset.preview;
-    preview.src = img;
-    preview.classList.add("active");
-  });
-
-  // Click for mobile
-  tab.addEventListener("click", (e) => {
-    const img = tab.dataset.preview;
-
-    if (preview.src !== img) {
-      e.preventDefault();
-      preview.src = img;
-      preview.classList.add("active");
-    }
-  });
-
-});
-
-/* =======================================================
-   COLLECTIONS
-   ======================================================= */
-
-document.querySelectorAll(".collection-tab").forEach(tab => {
-
-const img = tab.querySelector("img");
-
-if(img){
-tab.style.setProperty(
-"--bg",
-`url(${img.src})`
-);
-
-tab.querySelector("img").remove();
-
-tab.style.backgroundImage = `url(${img.src})`;
-tab.style.backgroundSize = "cover";
-tab.style.backgroundPosition = "center";
-}
-
-});
 /* =======================================================
    PAGINATION
    ======================================================= */
 
-   function goToPage(url){
-window.location.href = url;
+function goToPage(url){
+  window.location.href=url;
 }
 
 /* =======================================================
    INIT
    ======================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
   setupHorizontalScroll();
   setupAgeConfirmation();
   setupFooterModals();
-  Gate.init();
+  setupCollections();
 
 });

@@ -336,60 +336,22 @@ background: linear-gradient(
     CATEGORY PREVIEW COVER
 ============================= */
  .category-preview{
-  position:absolute;
-  margin-top: 5px;
-  left:50%;
+position:absolute;
+top:140%;
+left:50%;
+transform:translateX(-50%);
 
-  transform:translateX(-50%);
+width:300px;
+height:300px;
 
-  width:300px;      /* fixed preview width */
-  height: 300px;     /* fixed preview height */
+object-fit:cover;
+border-radius:10px;
 
-  max-width:none;   /* prevents inheriting parent width */
+opacity:0;
+pointer-events:none;
 
-  object-fit:cover;
-
-  border-radius:10px;
-
-  opacity:0;
-  transition:opacity .25s ease;
-
-  z-index:1000;
-}
-
-
-/* Hover (desktop) */
-.category-item:hover .category-preview{
-  opacity:1;
-  transform:translateX(-50%) scale(1);
-}
-
-/* Tap (mobile) */
-.category-tab:focus + .category-preview{
-  opacity:1;
-  transform:translateX(-50%) scale(1);
-}
-
-.category-item{
-  position:relative;
-  display:inline-block;  /* prevents stretching */
-  text-align:center;
-}
-
-.category-preview{
-  position:absolute;
-  top:160%;
-  left:50%;
-  transform:translateX(-50%) scale(.95);
-
-  width:240px;
-  border-radius:10px;
-
-  opacity:0;
-  pointer-events:none;
-
-  transition:all .25s ease;
-  z-index:1000;
+transition:opacity .25s ease;
+z-index:1000;
 }
 
 /* =============================
@@ -407,19 +369,7 @@ padding:10px 60px;
 display:none;
 }
 
-.collection-tab{
-min-width:190px;
-height:120px;
-background:#111;
-flex: 0 0 auto;
-border-radius:8px;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-cursor:pointer;
-overflow:hidden;
-}
+
 
 .collection-tab img{
 display:none;

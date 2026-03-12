@@ -69,14 +69,8 @@ main {
 ============================= */
 
 /* HERO HEADER */
-.hero-header {
-  padding: 0;
-  margin-top: -2rem;
-  justify-content: center;
-  text-align: center;
-}
 
-.lustsphere-page.hero-header {
+.hero-header {
   padding-top: 10px;
   text-align: center;
 }

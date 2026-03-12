@@ -22,46 +22,41 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 /* =======================================================
    HORIZONTAL SCROLL
    ======================================================= */
-function setupHorizontalScroll() {
+function setupHorizontalScroll(){
 
-  const rows = document.querySelectorAll(".collection-row");
+const rows = document.querySelectorAll(".collection-row");
 
-  rows.forEach(row => {
+rows.forEach(row => {
 
-    const container = row.querySelector(".collections-container");
-    const leftArrow = row.querySelector(".left-arrow");
-    const rightArrow = row.querySelector(".right-arrow");
+const container = row.querySelector(".collections-container");
+const leftArrow = row.querySelector(".left-arrow");
+const rightArrow = row.querySelector(".right-arrow");
 
-    const scrollAmount = 600;
+if(!container || !leftArrow || !rightArrow) return;
 
-    rightArrow.addEventListener("click", () => {
-      container.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth"
-      });
-    });
+const scrollAmount = 600;
 
-    leftArrow.addEventListener("click", () => {
-      container.scrollBy({
-        left: -scrollAmount,
-        behavior: "smooth"
-      });
-    });
+rightArrow.addEventListener("click", () => {
 
-  });
-
-}
-
-container.addEventListener("scroll", () => {
-
-  if(container.scrollLeft <= 0){
-    leftArrow.style.opacity = "0.3";
-  } else {
-    leftArrow.style.opacity = "1";
-  }
+container.scrollBy({
+left:scrollAmount,
+behavior:"smooth"
+});
 
 });
 
+leftArrow.addEventListener("click", () => {
+
+container.scrollBy({
+left:-scrollAmount,
+behavior:"smooth"
+});
+
+});
+
+});
+
+}
 /* =======================================================
    AGE CONFIRMATION (Homepage Only)
    ======================================================= */
@@ -238,20 +233,15 @@ tabs.forEach(tab => {
 
 document.querySelectorAll(".collection-tab").forEach(tab => {
 
-const img = tab.querySelector("img");
+  tab.addEventListener("click", () => {
 
-if(img){
-tab.style.setProperty(
-"--bg",
-`url(${img.src})`
-);
+    const link = tab.dataset.link;
 
-tab.querySelector("img").remove();
+    if(!link) return;
 
-tab.style.backgroundImage = `url(${img.src})`;
-tab.style.backgroundSize = "cover";
-tab.style.backgroundPosition = "center";
-}
+    openAdGate(link);
+
+  });
 
 });
 /* =======================================================

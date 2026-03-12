@@ -24,28 +24,43 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
    ======================================================= */
 function setupHorizontalScroll() {
 
-  $$(".collection-row").forEach(row => {
+  const rows = document.querySelectorAll(".collection-row");
 
-    const container = $(".collections-container", row);
-    const leftArrow = $(".left-arrow", row);
-    const rightArrow = $(".right-arrow", row);
+  rows.forEach(row => {
 
-    if (!container) return;
+    const container = row.querySelector(".collections-container");
+    const leftArrow = row.querySelector(".left-arrow");
+    const rightArrow = row.querySelector(".right-arrow");
 
-    const scrollAmount = 500;
+    const scrollAmount = 600;
 
-    leftArrow?.addEventListener("click", () => {
-      container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    rightArrow.addEventListener("click", () => {
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth"
+      });
     });
 
-    rightArrow?.addEventListener("click", () => {
-      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    leftArrow.addEventListener("click", () => {
+      container.scrollBy({
+        left: -scrollAmount,
+        behavior: "smooth"
+      });
     });
 
   });
 
 }
 
+container.addEventListener("scroll", () => {
+
+  if(container.scrollLeft <= 0){
+    leftArrow.style.opacity = "0.3";
+  } else {
+    leftArrow.style.opacity = "1";
+  }
+
+});
 
 /* =======================================================
    AGE CONFIRMATION (Homepage Only)

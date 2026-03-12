@@ -69,8 +69,14 @@ main {
 ============================= */
 
 /* HERO HEADER */
-
 .hero-header {
+  padding: 0;
+  margin-top: -2rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.lustsphere-page.hero-header {
   padding-top: 10px;
   text-align: center;
 }
@@ -363,7 +369,19 @@ padding:10px 60px;
 display:none;
 }
 
-
+.collection-tab{
+min-width:190px;
+height:120px;
+background:#111;
+flex: 0 0 auto;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+cursor:pointer;
+overflow:hidden;
+}
 
 .collection-tab img{
 display:none;

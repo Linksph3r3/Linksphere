@@ -4,20 +4,12 @@
 
 /* ================= CONFIG ================= */
 
-const CONFIG = {
-  REQUIRED_SECONDS: 30,
-  REQUIRED_ADS: 3,
-  GATE_VIDEOS: [
-    "iYQNU54cM_8",
-    "8xUX3D_GxBQ",
-    "qRYmz6k3bR8"
-  ]
-};
+
 
 /* ================= HELPERS ================= */
 
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+const $all = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 /* =======================================================
    HORIZONTAL SCROLL
@@ -184,56 +176,235 @@ function setupFooterModals() {
     }
   });
 }
-/* =======================================================
-   ADGATE
-   ======================================================= */
 
 /* =======================================================
-   ADGATE MODAL
-   ======================================================= */
+   YOUTUBE AD GATE
+======================================================= */
+
+/* =======================================================
+   ADVANCED YOUTUBE AD GATE
+======================================================= */
+
+const REQUIRED_SECONDS = 30;
+const RING_CIRCUMFERENCE = 251;
+
+const gateVideos = [
+"iYQNU54cM_8",
+"8xUX3D_GxBQ",
+"qRYmz6k3bR8"
+];
+
+let unlockTarget = null;
+let player;
+let watchSeconds = 0;
+let watchTimer;
+let lastTime = 0;
+let pauseTimer;
+
+/* Prevent multiple tab bypass */
+if(localStorage.getItem("gateActive") === "true"){
+  localStorage.removeItem("gateActive");
+}
+
+/* OPEN MODAL */
 
 function openAdGate(link){
 
   const modal = document.getElementById("adgate-modal");
-  const container = document.getElementById("adgate-container");
 
-  if(!modal || !container) return;
+  unlockTarget = link;
 
   modal.classList.add("active");
 
   document.body.style.overflow = "hidden";
 
-  modal.dataset.target = link;
+  localStorage.setItem("gateActive","true");
+
+  loadYouTubeGate();
 
 }
 
-/* Close button */
+/* LOAD RANDOM VIDEO */
 
-document.querySelector(".modal-close")?.addEventListener("click", () => {
+function loadYouTubeGate(){
+
+  const container = document.getElementById("youtube-gate");
+
+  const videoID =
+  gateVideos[Math.floor(Math.random()*gateVideos.length)];
+
+  container.innerHTML = `<div id="yt-player"></div>`;
+
+  player = new YT.Player("yt-player",{
+
+    height:"220",
+    width:"100%",
+    videoId:videoID,
+
+    playerVars:{
+      controls:1,
+      disablekb:1,
+      rel:0
+    },
+
+    events:{
+      onStateChange:onPlayerStateChange,
+      onReady:onPlayerReady
+    }
+
+  });
+
+}
+
+/* PLAYER READY */
+
+function onPlayerReady(){
+
+  setInterval(checkSkip,1000);
+
+}
+
+/* DETECT SKIPPING */
+
+function checkSkip(){
+
+  if(!player || !player.getCurrentTime) return;
+
+  const currentTime = player.getCurrentTime();
+
+  if(currentTime > lastTime + 2){
+
+    /* user skipped forward */
+
+    player.seekTo(lastTime);
+
+  }
+
+  lastTime = currentTime;
+
+}
+
+/* PLAYER EVENTS */
+
+function onPlayerStateChange(event){
+
+  if(event.data === YT.PlayerState.PLAYING){
+
+    clearTimeout(pauseTimer);
+
+    startWatchTimer();
+
+  }
+
+  if(event.data === YT.PlayerState.PAUSED){
+
+    clearInterval(watchTimer);
+
+    /* reset if paused too long */
+
+    pauseTimer = setTimeout(()=>{
+
+      resetGate();
+
+    },5000);
+
+  }
+
+  if(event.data === YT.PlayerState.ENDED){
+
+    clearInterval(watchTimer);
+
+  }
+
+}
+
+/* WATCH TIMER */
+
+function startWatchTimer(){
+
+  const ring = document.querySelector(".ring-progress");
+  const timeDisplay = document.querySelector(".ring-time");
+  const progress = document.getElementById("gate-progress");
+
+  clearInterval(watchTimer);
+
+  watchTimer = setInterval(()=>{
+
+    watchSeconds++;
+
+    progress.textContent =
+    `Watch time: ${watchSeconds} / ${REQUIRED_SECONDS}`;
+
+    timeDisplay.textContent =
+    REQUIRED_SECONDS - watchSeconds;
+
+    const percent = watchSeconds / REQUIRED_SECONDS;
+
+    const offset =
+    RING_CIRCUMFERENCE * (1 - percent);
+
+    ring.style.strokeDashoffset = offset;
+
+    if(watchSeconds >= REQUIRED_SECONDS){
+
+      clearInterval(watchTimer);
+
+      unlockContent();
+
+    }
+
+  },1000);
+
+}
+
+/* RESET GATE */
+
+function resetGate(){
+
+  watchSeconds = 0;
+
+  const ring = document.querySelector(".ring-progress");
+  const timeDisplay = document.querySelector(".ring-time");
+
+  ring.style.strokeDashoffset = RING_CIRCUMFERENCE;
+
+  timeDisplay.textContent = REQUIRED_SECONDS;
+
+}
+
+/* UNLOCK CONTENT */
+
+function unlockContent(){
 
   const modal = document.getElementById("adgate-modal");
 
   modal.classList.remove("active");
 
-  document.body.style.overflow = "";
+  document.body.style.overflow="";
 
-});
+  localStorage.removeItem("gateActive");
 
-/* Clicking outside modal closes it */
+  if(unlockTarget){
 
-document.getElementById("adgate-modal")?.addEventListener("click", (e) => {
-
-  if(e.target.id === "adgate-modal"){
-
-    e.currentTarget.classList.remove("active");
-
-    document.body.style.overflow = "";
+    window.open(unlockTarget,"_blank");
 
   }
 
+}
+
+/* CLOSE BUTTON */
+
+document.querySelector(".modal-close")?.addEventListener("click",()=>{
+
+  const modal = document.getElementById("adgate-modal");
+
+  modal.classList.remove("active");
+
+  document.body.style.overflow="";
+
+  clearInterval(watchTimer);
+
 });
-
-
 
 /* =======================================================
    CATEGORY PREVIEW COVER

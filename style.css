@@ -679,7 +679,85 @@ box-shadow:
   justify-content:center;
 }
 
+.gate-options{
+display:flex;
+gap:10px;
+justify-content:center;
+margin:15px 0;
+}
 
+.gate-option{
+background:#ff7b00;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+color:#fff;
+font-weight:bold;
+}
+
+.gate-option:hover{
+background:#ff9100;
+}
+
+#gate-progress{
+margin-top:10px;
+font-size:.9rem;
+color:#bbb;
+}
+
+#youtube-gate{
+margin-top:15px;
+display:none;
+}
+
+/* ============================= */
+/* YOUTUBE GATE PROGRESS RING */
+/* ============================= */
+
+.yt-gate-wrapper{
+position:relative;
+width:100%;
+max-width:420px;
+margin:0 auto;
+}
+
+.progress-ring{
+position:absolute;
+top:-18px;
+right:-18px;
+width:90px;
+height:90px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.progress-ring svg{
+transform:rotate(-90deg);
+}
+
+.ring-bg{
+fill:none;
+stroke:#2b2a2a;
+stroke-width:6;
+}
+
+.ring-progress{
+fill:none;
+stroke:#ff7b00;
+stroke-width:6;
+stroke-dasharray:251;
+stroke-dashoffset:251;
+transition:stroke-dashoffset 1s linear;
+}
+
+.ring-time{
+position:absolute;
+font-size:.9rem;
+font-weight:bold;
+color:#fff;
+}
 /* =============================
   HORIZONTAL
 ============================= */

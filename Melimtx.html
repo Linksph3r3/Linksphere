@@ -203,14 +203,33 @@
     <h2 class="modal-title">Unlock Collection</h2>
 
     <p class="modal-text">
-      Complete a short action to unlock this collection.
+      Watch at least <strong>30 seconds</strong> of the video to unlock.
     </p>
 
-    <div id="adgate-container"></div>
+    <div class="yt-gate-wrapper">
+
+      <div class="progress-ring">
+        <svg width="90" height="90">
+          <circle class="ring-bg" cx="45" cy="45" r="40"></circle>
+          <circle class="ring-progress" cx="45" cy="45" r="40"></circle>
+        </svg>
+
+        <div class="ring-time">30</div>
+      </div>
+
+      <div id="youtube-gate"></div>
+
+    </div>
+
+    <div id="gate-progress">Watch 30 seconds to unlock</div>
 
     <button class="modal-close">Close</button>
 
   </div>
+
+</div>
+
+</div>
 
 
 </div>
@@ -218,6 +237,9 @@
 <footer class="site-footer">
  <span>&copy; 2026 Linksphere. All rights reserved.</span> 
 </footer>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="script.js"></script>
 
 <script src="script.js" defer></script>
 </body>

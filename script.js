@@ -188,15 +188,12 @@ function setupFooterModals() {
    ADGATE
    ======================================================= */
 
-function openAdGate(link) {
+const modal = document.getElementById("adgate-modal");
 
-  const gate = document.getElementById("adGate");
+modal.classList.add("active");
 
-  gate.style.display = "flex";   // this centers the modal
+modal.classList.remove("active");
 
-  gate.dataset.target = link;
-
-}
 
 /* =======================================================
    CATEGORY PREVIEW COVER

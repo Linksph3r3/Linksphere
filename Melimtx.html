@@ -196,79 +196,23 @@
 
 
 <!-- AD GATE MODAL -->
-<div id="adGate" class="gate-modal" aria-hidden="true">
-<div class="gate-content" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
-<button id="gateClose" class="gate-close" aria-label="Close gate">×</button>
+<div id="adgate-modal" class="modal-overlay">
 
-<h2 id="gateTitle" class="gate-title">Unlock Collection</h2>
-<p class="gate-desc">Choose one method below to continue</span>
+  <div class="modal-box">
 
-<div class="gate-choice-buttons">
-<button id="chooseAds" class="gate-main-btn" type="button">View Ads & join Telegram</button>
-<button id="chooseVideo" class="gate-main-btn" type="button">Watch 30 Seconds</button>
-</div>
+    <h2 class="modal-title">Unlock Collection</h2>
 
-<div id="adsSection" class="gate-section" style="display:none;">
-<h3>Complete All</h3>
-<button class="ad-btn" data-url="https://otieu.com/4/10282971" type="button"> Ad 1</button>
-<button class="ad-btn" data-url="https://otieu.com/4/10282971" type="button"> Ad 2</button>
-<button class="ad-btn" data-url="https://otieu.com/4/10282971" type="button"> Ad 3</button>
-<button
-  id="joinTelegramBtn"
-  class="ad-btn telegram-btn"
-  data-url="https://t.me/+MQLUXw4TH-o0YTE8"
-  >
+    <p class="modal-text">
+      Complete a short action to unlock this collection.
+    </p>
 
-  <svg
-    width="56"
-    height="56"
-    viewBox="0 0 240 240"
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <!-- Orange circle -->
-    <circle cx="120" cy="120" r="120" fill="#FF7A00"/>
+    <div id="adgate-container"></div>
 
-    <!-- Dark grey paper plane -->
-    <path
-      d="M98.6 169.3c-3.9 0-3.2-1.5-4.5-5.2l-11.3-37.2L170 74.6"
-      fill="#2B2B2B"
-    />
-    <path
-      d="M98.6 169.3c3 0 4.3-1.4 6-3l15.8-15.4-19.7-11.9"
-      fill="#2B2B2B"
-    />
-    <path
-      d="M100.7 139l47.8 35.3c5.5 3 9.5 1.4 10.9-5.1l19.8-93.4c2-8-3-11.6-8.2-9.2L55.3 111.5c-7.9 3.1-7.8 7.5-1.4 9.4l29.7 9.3 68.9-43.5"
-      fill="#2B2B2B"
-    />
-  </svg>
-</button>
+    <button class="modal-close">Close</button>
 
-</div>
-
-<div id="videoSection" class="gate-section" style="display:none;">
+  </div>
 
 
-<div id="gateVideoWrapper" style="display:none;">
-<div id="gateVideoPlaceholder"></div>
-</div>
-
-<button id="muteBtn" class="mute-btn hidden">Mute: OFF</button>
-
-<div class="gate-countdown">
-  <span id="countdown">30</span>s
-</div>
-
-
-<div id="progressBarWrapper" class="hidden">
-<div id="progressBar"></div>
-</div>
-
-</div>
-
-<button id="gateProceed" class="gate-proceed" disabled type="button">Proceed</button>
-</div>
 </div>
 
 <footer class="site-footer">

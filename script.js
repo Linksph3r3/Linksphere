@@ -188,6 +188,16 @@ function setupFooterModals() {
    ADGATE
    ======================================================= */
 
+function openAdGate(link) {
+
+  const gate = document.getElementById("adGate");
+
+  gate.style.display = "flex";   // this centers the modal
+
+  gate.dataset.target = link;
+
+}
+
 const modal = document.getElementById("adgate-modal");
 
 modal.classList.add("active");

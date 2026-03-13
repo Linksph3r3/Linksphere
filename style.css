@@ -306,6 +306,78 @@ h1{
   transition: background var(--transition);
 }
 
+.melimtx-page.collection-tab{
+
+  flex:0 0 calc(20% - 14px); /* 5 visible */
+
+  height:220px;   /* increased height */
+  border-radius:8px;
+
+  background:#111;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:bold;
+  font-size:1.1rem;
+  text-align:center;
+
+  cursor:pointer;
+
+  transition:transform .25s ease, box-shadow .25s ease;
+
+  position:relative;
+  overflow:hidden;
+}
+
+.melimtx-page .collection-tab img{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  opacity:0;
+  transition:opacity .3s ease;
+
+  z-index:1;
+}
+
+.melimtx-page .collection-tab span{
+  position:relative;
+  z-index:2;
+
+  padding:6px 10px;
+  border-radius:4px;
+
+  background:none;
+  color:white;
+
+  transition:all .25s ease;
+}
+
+.melimtx-page .collection-tab:hover img{
+  opacity:1;
+}
+
+.collection-tab:hover{
+  transform:scale(1.08);
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.6),
+  0 0 12px rgba(255,122,0,0.6);
+
+  align-items:flex-end;
+}
+
+.melimtx-page .collection-tab:hover span{
+  background:rgba(0,0,0,0.6);
+  width:100%;
+  text-align:center;
+}
+
 .index-page .category-tab:hover {
   font-family: serif;
   font-weight: bold;

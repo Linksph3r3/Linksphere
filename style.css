@@ -520,6 +520,10 @@ box-shadow:
   z-index: 1000;
 }
 
+.modal.active{
+  display:flex;
+}
+
 .modal-content {
   background: #1b1b1b;
   border-radius: 10px;

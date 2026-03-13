@@ -11,7 +11,7 @@ function openModal(modal){
 
   if(!modal) return;
 
-  modal.style.display = "flex";
+  modal.classList.add("active");
 
   document.body.style.overflow = "hidden";
 
@@ -21,7 +21,7 @@ function closeModal(modal){
 
   if(!modal) return;
 
-  modal.style.display = "none";
+  modal.classList.remove("active");
 
   document.body.style.overflow = "";
 
@@ -412,9 +412,7 @@ document.querySelector(".modal-close")?.addEventListener("click",()=>{
 
 const modal = document.getElementById("adgate-modal");
 
-modal.classList.remove("active");
-
-document.body.style.overflow="";
+closeModal(modal);
 
 clearInterval(watchTimer);
 

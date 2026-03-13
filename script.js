@@ -188,21 +188,51 @@ function setupFooterModals() {
    ADGATE
    ======================================================= */
 
-function openAdGate(link) {
+/* =======================================================
+   ADGATE MODAL
+   ======================================================= */
 
-  const gate = document.getElementById("adGate");
+function openAdGate(link){
 
-  gate.style.display = "flex";   // this centers the modal
+  const modal = document.getElementById("adgate-modal");
+  const container = document.getElementById("adgate-container");
 
-  gate.dataset.target = link;
+  if(!modal || !container) return;
+
+  modal.classList.add("active");
+
+  document.body.style.overflow = "hidden";
+
+  modal.dataset.target = link;
 
 }
 
-const modal = document.getElementById("adgate-modal");
+/* Close button */
 
-modal.classList.add("active");
+document.querySelector(".modal-close")?.addEventListener("click", () => {
 
-modal.classList.remove("active");
+  const modal = document.getElementById("adgate-modal");
+
+  modal.classList.remove("active");
+
+  document.body.style.overflow = "";
+
+});
+
+/* Clicking outside modal closes it */
+
+document.getElementById("adgate-modal")?.addEventListener("click", (e) => {
+
+  if(e.target.id === "adgate-modal"){
+
+    e.currentTarget.classList.remove("active");
+
+    document.body.style.overflow = "";
+
+  }
+
+});
+
 
 
 /* =======================================================
@@ -268,6 +298,5 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHorizontalScroll();
   setupAgeConfirmation();
   setupFooterModals();
-  Gate.init();
 
 });

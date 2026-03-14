@@ -186,9 +186,10 @@ h1{
   margin-bottom: 10px;
 }
 
+/* =============================
+  SECTION DIVIDER
+============================= */
 
-
-/* Divider */
 
 .index-page .section-divider {
   width: 80%;
@@ -244,6 +245,27 @@ h1{
   border-radius: 3px;
 }
 
+/* ================================
+   ANGEL DIVIDER
+================================ */
+
+.angel-divider{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  margin:40px 0;
+}
+
+.angel-divider img{
+  width:700px;
+  max-width:90%;
+  height:auto;
+
+  opacity:.9;
+}
+
 /* =============================
   CATEGORY GRID
 ============================= */
@@ -271,6 +293,11 @@ h1{
   margin: 15px 0;
 }
 
+/* =============================
+  CATEGORY TAB
+============================= */
+
+/*INDEX PAGE COLLECTION TABS*/
 .index-page .category-tab {
   padding: 15px 30px;
   font-size: 16px;
@@ -282,7 +309,17 @@ h1{
   transition: background var(--transition);
 }
 
-.melimtxcollections-page .category-tab {
+.index-page .category-tab:hover {
+  font-family: serif;
+  font-weight: bold;
+background: linear-gradient(
+    90deg,
+    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+  );
+}
+
+/*LUSTSPHERE PAGE COLLECTION TABS*/
+.lustsphere-page .category-tab {
   padding: 15px 30px;
   margin: 20px auto;
   font-weight: normal;
@@ -291,90 +328,6 @@ h1{
   color: #ffffff;
   font-family: serif;
   font-weight: bold;
-}
-
-
-
-
-.melimtx-page.collection-tab{
-
-  flex:0 0 calc(20% - 14px); /* 5 visible */
-
-  height:220px;   /* increased height */
-  border-radius:8px;
-
-  background:#111;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-weight:bold;
-  font-size:1.1rem;
-  text-align:center;
-
-  cursor:pointer;
-
-  transition:transform .25s ease, box-shadow .25s ease;
-
-  position:relative;
-  overflow:hidden;
-}
-
-.melimtx-page .collection-tab img{
-  position:absolute;
-  inset:0;
-
-  width:100%;
-  height:100%;
-  object-fit:cover;
-
-  opacity:0;
-  transition:opacity .3s ease;
-
-  z-index:1;
-}
-
-.melimtx-page .collection-tab span{
-  position:relative;
-  z-index:2;
-
-  padding:6px 10px;
-  border-radius:4px;
-
-  background:none;
-  color:white;
-
-  transition:all .25s ease;
-}
-
-.melimtx-page .collection-tab:hover img{
-  opacity:1;
-}
-
-.collection-tab:hover{
-  transform:scale(1.08);
-
-  box-shadow:
-  0 10px 25px rgba(0,0,0,0.6),
-  0 0 12px rgba(255,122,0,0.6);
-
-  align-items:flex-end;
-}
-
-.melimtx-page .collection-tab:hover span{
-  background:rgba(0,0,0,0.6);
-  width:100%;
-  text-align:center;
-}
-
-.index-page .category-tab:hover {
-  font-family: serif;
-  font-weight: bold;
-background: linear-gradient(
-    90deg,
-    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
-  );
 }
 
 .lustsphere-page .category-tab:hover {
@@ -387,6 +340,18 @@ background: linear-gradient(
   color: #fff;
 }
 
+/*MELIMTX COLLECTIONS PAGE COLLECTION TABS*/
+.melimtxcollections-page .category-tab {
+  padding: 15px 30px;
+  margin: 20px auto;
+  font-weight: normal;
+  border-radius: var(--radius-md);
+  background: #000000;
+  color: #ffffff;
+  font-family: serif;
+  font-weight: bold;
+}
+
 .melimtxcollections-page .category-tab:hover {
 background: linear-gradient(
     90deg,
@@ -397,8 +362,53 @@ background: linear-gradient(
   color: #fff;
 }
 
-.category-tab:hover {
-  background: var(--color-primary);
+/*MELIMTX PAGE COLLECTION TABS*/
+.melimtx-page.collection-tab{
+  flex:0 0 calc(20% - 14px); /* 5 visible */
+  height:220px;   /* increased height */
+  border-radius:8px;
+  background:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:1.1rem;
+  text-align:center;
+  cursor:pointer;
+  transition:transform .25s ease, box-shadow .25s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.melimtx-page .collection-tab img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .3s ease;
+  z-index:1;
+}
+
+.melimtx-page .collection-tab span{
+  position:relative;
+  z-index:2;
+  padding:6px 10px;
+  border-radius:4px;
+  background:none;
+  color:white;
+  transition:all .25s ease;
+}
+
+.melimtx-page .collection-tab:hover img{
+  opacity:1;
+}
+
+.melimtx-page .collection-tab:hover span{
+  background:rgba(0,0,0,0.6);
+  width:100%;
+  text-align:center;
 }
 
 /* =============================

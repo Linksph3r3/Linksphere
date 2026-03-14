@@ -254,7 +254,6 @@ h1{
   display:flex;
   justify-content:center;
   align-items:center;
-
   margin:10px 0;
 }
 
@@ -262,7 +261,6 @@ h1{
   width:100px;
   max-width:90%;
   height:auto;
-
   opacity:.9;
 }
 
@@ -328,6 +326,7 @@ background: linear-gradient(
   color: #ffffff;
   font-family: serif;
   font-weight: bold;
+  font-style: none;
 }
 
 .lustsphere-page .category-tab:hover {

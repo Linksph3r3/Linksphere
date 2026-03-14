@@ -58,7 +58,7 @@ img {
 main {
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 12px 0;
+  padding: 0 12px 10px;
 }
 
 .melimtx-page main{
@@ -138,16 +138,6 @@ h1{
   margin-bottom: 10px;
   font-size: 14px;
   color: var(--color-muted);
-}
-
-/*LUSTSPHERE PAGE FOOTER*/
-.lustsphere-footer {
-  margin-top: 2px;
-  text-align: center;
-  justify-content: center;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #000000;
 }
 
 /* =============================

@@ -5,7 +5,7 @@ const $all = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
 /* =======================================================
    MODAL MANAGER
-   ======================================================= */
+======================================================= */
 
 function openModal(modal){
 
@@ -29,7 +29,8 @@ function closeModal(modal){
 
 /* =======================================================
    HORIZONTAL SCROLL
-   ======================================================= */
+======================================================= */
+
 function setupHorizontalScroll(){
 
 const rows = document.querySelectorAll(".collection-row");
@@ -65,138 +66,146 @@ behavior:"smooth"
 });
 
 }
+
 /* =======================================================
-   AGE CONFIRMATION (Homepage Only)
-   ======================================================= */
+   AGE CONFIRMATION
+======================================================= */
 
 function setupAgeConfirmation(){
 
-  const ageModal = $("#ageModal");
-  const ageConfirm = $("#ageConfirm");
-  const ageDecline = $("#ageDecline");
-  const openBtn = $("#open-nsfw");
+const ageModal = $("#ageModal");
+const ageConfirm = $("#ageConfirm");
+const ageDecline = $("#ageDecline");
+const openBtn = $("#open-nsfw");
 
-  if(!ageModal || !openBtn) return;
+if(!ageModal || !openBtn) return;
 
-  openBtn.addEventListener("click",(e)=>{
+openBtn.addEventListener("click",(e)=>{
 
-    e.preventDefault();
+e.preventDefault();
+openModal(ageModal);
 
-    openModal(ageModal);
+});
 
-  });
+ageConfirm?.addEventListener("click",()=>{
 
-  ageConfirm?.addEventListener("click",()=>{
+closeModal(ageModal);
+window.location.href = "LustSphere.html";
 
-    closeModal(ageModal);
+});
 
-    window.location.href = "LustSphere.html";
+ageDecline?.addEventListener("click",()=>{
 
-  });
+closeModal(ageModal);
 
-  ageDecline?.addEventListener("click",()=>{
-
-    closeModal(ageModal);
-
-  });
+});
 
 }
+
 /* =======================================================
    FOOTER INFO MODAL
-   ======================================================= */
+======================================================= */
 
-function setupFooterModals() {
+function setupFooterModals(){
 
-  const infoModal = $("#infoModal");
-  const infoTitle = $("#infoTitle");
-  const infoText = $("#infoText");
-  const infoClose = $("#infoClose");
+const infoModal = $("#infoModal");
+const infoTitle = $("#infoTitle");
+const infoText = $("#infoText");
+const infoClose = $("#infoClose");
 
-  if (!infoModal) return;
+if (!infoModal) return;
 
-  const content = {
-    about: {
-      title: "About LinkSphere",
-      text: `<p>LinkSphere is a curated link directory designed to cut through the noise.We organize quality online content into streamlined, accessible collections so users can discover what they're looking for quickly and efficiently.</p>`
-    },
-    privacy: {
-     title: "Privacy Policy",
-     text: `
-     
+const content = {
 
-     <p>LinkSphere respects your privacy.</p>
+about:{
+title:"About LinkSphere",
+text:`<p>LinkSphere is a curated link directory designed to cut through the noise.We organize quality online content into streamlined, accessible collections so users can discover what they're looking for quickly and efficiently.</p>`
+},
 
-     <h3>1. Information We Collect</h3>
-     <p>We may collect non-personal data such as browser type and anonymous usage statistics.</p>
+privacy:{
+title:"Privacy Policy",
+text:`
+<p>LinkSphere respects your privacy.</p>
 
-     <h3>2. Cookies</h3>
-     <p>We may use basic cookies for site functionality and analytics.</p>
+<h3>1. Information We Collect</h3>
+<p>We may collect non-personal data such as browser type and anonymous usage statistics.</p>
 
-     <h3>3. Third-Party Links</h3>
-     <p>We are not responsible for external site privacy practices.</p>
+<h3>2. Cookies</h3>
+<p>We may use basic cookies for site functionality and analytics.</p>
 
-     <h3>4. Data Security</h3>
-     <p>We take reasonable measures to protect site integrity.</p>
-     `
-     },
-    terms: {
-      title: "Terms & Conditions",
-      text: `
-  <p>By accessing <strong>LinkSphere</strong>, you agree to the following terms:</p>
+<h3>3. Third-Party Links</h3>
+<p>We are not responsible for external site privacy practices.</p>
 
-  <h3>1. Use of Site</h3>
-  <p>LinkSphere is a curated directory. We do not host third-party content. 
-  Users are responsible for complying with local laws when accessing external links.</p>
+<h3>4. Data Security</h3>
+<p>We take reasonable measures to protect site integrity.</p>
+`
+},
 
-  <h3>2. Age Restrictions</h3>
-  <p>Some categories may contain adult-oriented material. 
-  You must be 18 years or older to access such sections.</p>
+terms:{
+title:"Terms & Conditions",
+text:`
+<p>By accessing <strong>LinkSphere</strong>, you agree to the following terms:</p>
 
-  <h3>3. External Content Disclaimer</h3>
-  <p>We do not control or endorse third-party websites listed on this platform. 
-  Accessing external links is done at your own discretion.</p>
+<h3>1. Use of Site</h3>
+<p>LinkSphere is a curated directory. We do not host third-party content. 
+Users are responsible for complying with local laws when accessing external links.</p>
 
-  <h3>4. Intellectual Property</h3>
-  <p>All branding, layout design, and original materials on LinkSphere 
-  are protected and may not be copied without permission.</p>
+<h3>2. Age Restrictions</h3>
+<p>Some categories may contain adult-oriented material. 
+You must be 18 years or older to access such sections.</p>
 
-  <h3>5. Limitation of Liability</h3>
-  <p>LinkSphere is provided “as is” without warranties of any kind. 
-  We are not liable for damages resulting from use of external links.</p>
-  `
-    },
-    contact: {
-      title: "Contact",
-      text: `<p>Reach us at linksph3r3@gmail.com</p>`
-    }
-  };
+<h3>3. External Content Disclaimer</h3>
+<p>We do not control or endorse third-party websites listed on this platform.</p>
 
-  $all(".info-links a").forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
+<h3>4. Intellectual Property</h3>
+<p>All branding, layout design, and original materials on LinkSphere are protected.</p>
 
-      const key = link.dataset.modal;
-      if (!content[key]) return;
+<h3>5. Limitation of Liability</h3>
+<p>LinkSphere is provided “as is”.</p>
+`
+},
 
-      infoTitle.textContent = content[key].title;
-      infoText.innerHTML = content[key].text;
+contact:{
+title:"Contact",
+text:`<p>Reach us at linksph3r3@gmail.com</p>`
+}
 
-     openModal(infoModal);
-      document.body.style.overflow = "hidden";
-    });
-  });
+};
 
-  infoClose?.addEventListener("click", () => {
-    closeModal(infoModal);
-    document.body.style.overflow = "";
-  });
+$all(".info-links a").forEach(link=>{
 
-  infoModal.addEventListener("click", (e) => {
-    if (e.target === infoModal) {
-      infoModal.style.display = "none";
-      document.body.style.overflow = "";
-    }
-  });
+link.addEventListener("click",(e)=>{
+
+e.preventDefault();
+
+const key = link.dataset.modal;
+if(!content[key]) return;
+
+infoTitle.textContent = content[key].title;
+infoText.innerHTML = content[key].text;
+
+openModal(infoModal);
+
+});
+
+});
+
+infoClose?.addEventListener("click",()=>{
+
+closeModal(infoModal);
+
+});
+
+infoModal.addEventListener("click",(e)=>{
+
+if(e.target===infoModal){
+
+closeModal(infoModal);
+
+}
+
+});
+
 }
 
 /* =======================================================
@@ -219,264 +228,168 @@ let watchTimer;
 let lastTime = 0;
 let pauseTimer;
 
-/* Prevent multiple tab bypass */
-if(localStorage.getItem("gateActive") === "true"){
-  localStorage.removeItem("gateActive");
-}
-
-/* OPEN MODAL */
-
 function openAdGate(link){
 
-  const modal = document.getElementById("adgate-modal");
+const modal = document.getElementById("adgate-modal");
 
-  unlockTarget = link;
+unlockTarget = link;
 
-  openModal(modal);
+openModal(modal);
 
-  localStorage.setItem("gateActive","true");
-
-  loadYouTubeGate();
+loadYouTubeGate();
 
 }
-
-/* LOAD RANDOM VIDEO */
 
 function loadYouTubeGate(){
 
-  const container = document.getElementById("youtube-gate");
+const container = document.getElementById("youtube-gate");
 
-  const videoID =
-  gateVideos[Math.floor(Math.random()*gateVideos.length)];
+const videoID =
+gateVideos[Math.floor(Math.random()*gateVideos.length)];
 
-  container.innerHTML = `<div id="yt-player"></div>`;
+container.innerHTML = `<div id="yt-player"></div>`;
 
-  player = new YT.Player("yt-player",{
+player = new YT.Player("yt-player",{
 
-    height:"220",
-    width:"100%",
-    videoId:videoID,
+height:"220",
+width:"100%",
+videoId:videoID,
 
-    playerVars:{
-      controls:1,
-      disablekb:1,
-      rel:0
-    },
+playerVars:{
+controls:1,
+disablekb:1,
+rel:0
+},
 
-    events:{
-      onStateChange:onPlayerStateChange,
-      onReady:onPlayerReady
-    }
-
-  });
-
+events:{
+onStateChange:onPlayerStateChange,
+onReady:onPlayerReady
 }
 
-/* PLAYER READY */
+});
+
+}
 
 function onPlayerReady(){
 
-  setInterval(checkSkip,1000);
+setInterval(checkSkip,1000);
 
 }
-
-/* DETECT SKIPPING */
 
 function checkSkip(){
 
-  if(!player || !player.getCurrentTime) return;
+if(!player || !player.getCurrentTime) return;
 
-  const currentTime = player.getCurrentTime();
+const currentTime = player.getCurrentTime();
 
-  if(currentTime > lastTime + 2){
+if(currentTime > lastTime + 2){
 
-    /* user skipped forward */
-
-    player.seekTo(lastTime);
-
-  }
-
-  lastTime = currentTime;
+player.seekTo(lastTime);
 
 }
 
-/* PLAYER EVENTS */
+lastTime = currentTime;
+
+}
 
 function onPlayerStateChange(event){
 
-  if(event.data === YT.PlayerState.PLAYING){
+if(event.data === YT.PlayerState.PLAYING){
 
-    clearTimeout(pauseTimer);
-
-    startWatchTimer();
-
-  }
-
-  if(event.data === YT.PlayerState.PAUSED){
-
-    clearInterval(watchTimer);
-
-    /* reset if paused too long */
-
-    pauseTimer = setTimeout(()=>{
-
-      resetGate();
-
-    },5000);
-
-  }
-
-  if(event.data === YT.PlayerState.ENDED){
-
-    clearInterval(watchTimer);
-
-  }
+clearTimeout(pauseTimer);
+startWatchTimer();
 
 }
 
-/* WATCH TIMER */
+if(event.data === YT.PlayerState.PAUSED){
+
+clearInterval(watchTimer);
+
+pauseTimer = setTimeout(()=>{
+
+resetGate();
+
+},5000);
+
+}
+
+if(event.data === YT.PlayerState.ENDED){
+
+clearInterval(watchTimer);
+
+}
+
+}
 
 function startWatchTimer(){
 
-  const ring = document.querySelector(".ring-progress");
-  const timeDisplay = document.querySelector(".ring-time");
-  const progress = document.getElementById("gate-progress");
+const ring = document.querySelector(".ring-progress");
+const timeDisplay = document.querySelector(".ring-time");
+const progress = document.getElementById("gate-progress");
 
-  clearInterval(watchTimer);
+clearInterval(watchTimer);
 
-  watchTimer = setInterval(()=>{
+watchTimer = setInterval(()=>{
 
-    watchSeconds++;
+watchSeconds++;
 
-    progress.textContent =
-    `Watch time: ${watchSeconds} / ${REQUIRED_SECONDS}`;
+progress.textContent =
+`Watch time: ${watchSeconds} / ${REQUIRED_SECONDS}`;
 
-    timeDisplay.textContent =
-    REQUIRED_SECONDS - watchSeconds;
+timeDisplay.textContent =
+REQUIRED_SECONDS - watchSeconds;
 
-    const percent = watchSeconds / REQUIRED_SECONDS;
+const percent = watchSeconds / REQUIRED_SECONDS;
 
-    const offset =
-    RING_CIRCUMFERENCE * (1 - percent);
+const offset =
+RING_CIRCUMFERENCE * (1 - percent);
 
-    ring.style.strokeDashoffset = offset;
+ring.style.strokeDashoffset = offset;
 
-    if(watchSeconds >= REQUIRED_SECONDS){
+if(watchSeconds >= REQUIRED_SECONDS){
 
-      clearInterval(watchTimer);
+clearInterval(watchTimer);
 
-      unlockContent();
-
-    }
-
-  },1000);
+unlockContent();
 
 }
 
-/* RESET GATE */
+},1000);
+
+}
 
 function resetGate(){
 
-  watchSeconds = 0;
+watchSeconds = 0;
 
-  const ring = document.querySelector(".ring-progress");
-  const timeDisplay = document.querySelector(".ring-time");
+const ring = document.querySelector(".ring-progress");
+const timeDisplay = document.querySelector(".ring-time");
 
-  ring.style.strokeDashoffset = RING_CIRCUMFERENCE;
+ring.style.strokeDashoffset = RING_CIRCUMFERENCE;
 
-  timeDisplay.textContent = REQUIRED_SECONDS;
+timeDisplay.textContent = REQUIRED_SECONDS;
 
 }
-
-/* UNLOCK CONTENT */
 
 function unlockContent(){
-
-  const modal = document.getElementById("adgate-modal");
-
-  closeModal(modal);
-
-  localStorage.removeItem("gateActive");
-
-  if(unlockTarget){
-
-    window.open(unlockTarget,"_blank");
-
-  }
-
-}
-
-/* CLOSE BUTTON */
-
-document.querySelector(".modal-close")?.addEventListener("click",()=>{
 
 const modal = document.getElementById("adgate-modal");
 
 closeModal(modal);
 
-clearInterval(watchTimer);
+if(unlockTarget){
 
-});
+window.open(unlockTarget,"_blank");
 
-/* =======================================================
-   CATEGORY PREVIEW COVER
-   ======================================================= */
+}
 
-   let tabs;
-let preview;
-
-tabs.forEach(tab => {
-
-  // Hover for desktop
-  tab.addEventListener("mouseenter", () => {
-    const img = tab.dataset.preview;
-    preview.src = img;
-    preview.classList.add("active");
-  });
-
-  // Click for mobile
-  tab.addEventListener("click", (e) => {
-    const img = tab.dataset.preview;
-
-    if (preview.src !== img) {
-      e.preventDefault();
-      preview.src = img;
-      preview.classList.add("active");
-    }
-  });
-
-});
-
-/* =======================================================
-   COLLECTIONS
-   ======================================================= */
-
-document.querySelectorAll(".collection-tab").forEach(tab => {
-
-  tab.addEventListener("click", () => {
-
-    const link = tab.dataset.link;
-
-    if(!link) return;
-
-    openAdGate(link);
-
-  });
-
-});
-/* =======================================================
-   PAGINATION
-   ======================================================= */
-
-   function goToPage(url){
-window.location.href = url;
 }
 
 /* =======================================================
    INIT
-   ======================================================= */
+======================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
 setupHorizontalScroll();
 setupAgeConfirmation();
@@ -484,27 +397,31 @@ setupFooterModals();
 
 /* category preview */
 
-tabs = document.querySelectorAll(".category-tab");
-preview = document.getElementById("previewImage");
+const tabs = document.querySelectorAll(".category-tab");
+const preview = document.getElementById("previewImage");
 
-tabs.forEach(tab => {
+tabs.forEach(tab=>{
 
-tab.addEventListener("mouseenter", () => {
+tab.addEventListener("mouseenter",()=>{
+
 const img = tab.dataset.preview;
+
+if(!preview) return;
+
 preview.src = img;
 preview.classList.add("active");
+
 });
 
-tab.addEventListener("click", (e) => {
+tab.addEventListener("click",(e)=>{
 
 const img = tab.dataset.preview;
 
-if (preview.src !== img) {
+if(preview && preview.src!==img){
 
 e.preventDefault();
 
 preview.src = img;
-
 preview.classList.add("active");
 
 }
@@ -513,30 +430,49 @@ preview.classList.add("active");
 
 });
 
-/* modal close */
+/* collection click → ad gate */
 
-document.querySelector(".modal-close")?.addEventListener("click",()=>{
+document.querySelectorAll(".collection-tab").forEach(tab=>{
 
-const modal = document.getElementById("adgate-modal");
+tab.addEventListener("click",()=>{
 
-modal.classList.remove("active");
+const link = tab.dataset.link;
 
-document.body.style.overflow="";
+if(!link) return;
+
+openAdGate(link);
+
+});
+
+});
+
+/* modal close button */
+
+document.querySelectorAll(".modal-close").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+const modal = btn.closest(".modal-overlay, .modal");
+
+closeModal(modal);
 
 clearInterval(watchTimer);
 
 });
 
-/* Click outside modal to close */
+});
 
-  document.addEventListener("click",(e)=>{
+/* click outside modal */
 
-    if(e.target.classList.contains("modal-overlay")){
+document.addEventListener("click",(e)=>{
 
-      closeModal(e.target);
+if(e.target.classList.contains("modal-overlay") ||
+   e.target.classList.contains("modal")){
 
-    }
+closeModal(e.target);
 
-  });
+}
+
+});
 
 });

@@ -69,16 +69,10 @@ main {
     HERO (LOGO AT TOP)
 ============================= */
 
-/* HERO HEADER */
 .hero-header {
   padding: 0;
-  margin-top: -2rem;
+  margin-top: 0;
   justify-content: center;
-  text-align: center;
-}
-
-.lustsphere-page.hero-header {
-  padding-top: 10px;
   text-align: center;
 }
 
@@ -86,7 +80,6 @@ main {
   width: 420px;        /* smaller logo */
   max-width: 80%;
   margin: 0 auto;
-  
 }
 
 /* =============================
@@ -115,12 +108,12 @@ h1{
   text-align: center;
 }
 
-.site-footer {
-  margin-top: 8px;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: var(--color-muted);
+.info-links a {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: normal;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
 .info-links {
@@ -132,16 +125,35 @@ h1{
   flex-wrap: wrap;
 }
 
-.info-links a {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: normal;
-  color: var(--color-text);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
 .info-links a:hover {
   color: #FF7B00;
+}
+
+/* =============================
+   SITE FOOTERS
+============================= */
+.site-footer {
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/*LUSTSPHERE PAGE FOOTER*/
+.lustsphere-footer {
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #000000;
+}
+
+.lustsphere-footer img{
+  width:100px;
+  max-width:90%;
+  height:auto;
+  opacity:.9;
 }
 
 /* =============================
@@ -190,7 +202,7 @@ h1{
   SECTION DIVIDER
 ============================= */
 
-
+/*INDEX PAGE DIVIDER*/
 .index-page .section-divider {
   width: 80%;
   max-width: 600px;
@@ -205,6 +217,7 @@ h1{
   border-radius: 3px;
 }
 
+/*LUSTSPHERE PAGE DIVIDER*/
 .lustsphere-page .section-divider {
   width: 80%;
   max-width: 600px;
@@ -218,6 +231,7 @@ h1{
   border-radius: 3px;
 }
 
+/*MELIMTX COLLECTIONS PAGE DIVIDER*/
 .melimtxcollections-page .section-divider {
   width: 80%;
   max-width: 600px;
@@ -226,21 +240,6 @@ h1{
   background: linear-gradient(
     90deg,
     #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
-    
-  );
-  border-radius: 3px;
-}
-
-.section-divider {
-  width: 80%;
-  max-width: 600px;
-  height: 2px;
-  margin: 15px auto;
-  background: linear-gradient(
-    90deg,
-    #000,#1b1b1b,#b65302,#e66903,
-    #ffbb00,#ffffff,#ffbb00,
-    #e66903,#b65302,#1b1b1b,#000
   );
   border-radius: 3px;
 }
@@ -249,20 +248,7 @@ h1{
    ANGEL DIVIDER
 ================================ */
 
-.angel-divider{
-  width:100%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  margin:10px 0;
-}
 
-.angel-divider img{
-  width:100px;
-  max-width:90%;
-  height:auto;
-  opacity:.9;
-}
 
 /* =============================
   CATEGORY GRID
@@ -326,7 +312,7 @@ background: linear-gradient(
   color: #ffffff;
   font-family: serif;
   font-weight: bold;
-  font-style: none;
+  text-decoration: none;
 }
 
 .lustsphere-page .category-tab:hover {

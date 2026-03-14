@@ -144,6 +144,7 @@ h1{
 .lustsphere-footer {
   margin-top: 2px;
   text-align: center;
+  justify-content: center;
   margin-bottom: 10px;
   font-size: 14px;
   color: #000000;
@@ -153,7 +154,7 @@ h1{
   width:100px;
   max-width:90%;
   height:auto;
-  justify-content: center;
+  text-align: center;
   opacity:.9;
 }
 

@@ -357,11 +357,13 @@ background: linear-gradient(
 
 /*MELIMTX PAGE COLLECTION TABS*/
 .melimtx-page .collection-tab{
-  flex:0 0 calc(20% - 14px); /* 5 visible */
-  height: 200px;   /* increased height */
-  width:200px;
+  flex:0 0 calc(20% - 14px);
+  aspect-ratio:1 / 1;   /* keeps square shape */
+  max-width:200px;
+  width:100%;
   border-radius:8px;
   background:#000000;
+  margin: 10px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -805,22 +807,60 @@ font-weight:bold;
 color:#fff;
 }
 /* =============================
-  HORIZONTAL
+  HORIZONTAL SCROLL ARROWS
 ============================= */
 
-.left-arrow{
-left:30px;
-cursor: pointer;
-width: 50px;
-height:50px;
+.scroll-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  
+  width:44px;
+  height:44px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+  color:white;
+
+  background:rgba(0,0,0,0.65);
+  border:1px solid rgba(255,122,0,0.4);
+
+  border-radius:50%;
+
+  backdrop-filter:blur(6px);
+
+  cursor:pointer;
+
+  transition:all .25s ease;
+
+  z-index:20;
 }
 
-.right-arrow{
-right:30px;
-cursor: pointer;
-width: 50px;
-height:50px;
+/* LEFT */
+.left-arrow{
+  left:10px;
 }
+
+/* RIGHT */
+.right-arrow{
+  right:10px;
+}
+
+/* HOVER EFFECT */
+.scroll-arrow:hover{
+  background:#ff7b00;
+  border-color:#ff7b00;
+
+  transform:translateY(-50%) scale(1.12);
+
+  box-shadow:
+  0 0 10px rgba(255,122,0,0.8),
+  0 0 20px rgba(255,122,0,0.4);
+}
+
 /* =============================
  RESPONSIVE
 ============================= */
@@ -875,3 +915,18 @@ height:50px;
   }
 }
   
+@media (max-width:900px){
+
+  .melimtx-page .collection-tab{
+    flex:0 0 calc(33.33% - 12px); /* 3 visible */
+  }
+
+}
+
+@media (max-width:600px){
+
+  .melimtx-page .collection-tab{
+    flex:0 0 calc(50% - 10px); /* 2 visible */
+  }
+
+}

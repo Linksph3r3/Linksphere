@@ -353,7 +353,7 @@ background: linear-gradient(
   height: 200px;   /* increased height */
   width:150px;
   border-radius:8px;
-  background:#111;
+  background:#00000;
   display:flex;
   align-items:center;
   justify-content:center;

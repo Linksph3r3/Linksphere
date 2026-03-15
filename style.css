@@ -17,18 +17,26 @@
   --transition: 0.3s ease;
   --container-width: 1000px;
 }
+
+/*LUSTSPHERE PAGE*/
 .lustsphere-page{
   background-color:#ffffff;
   color:#000;
 }
 
+/*MELIMTX COLLECTIONS PAGE*/
 .melimtxcollections-page{
   background-color:#ffffff;
   color:#000;
 }
 
+/*MELIMTXTX PAGE*/
+.melimtx-page{
+  background-color: #ffffff;
+  color: #000000;
+}
 /* =============================
-   2. RESET
+   RESET
 ============================= */
 
 *,
@@ -52,7 +60,7 @@ img {
 }
 
 /* =============================
-   3. MAIN LAYOUT
+   MAIN LAYOUT
 ============================= */
 
 main {
@@ -228,11 +236,18 @@ h1{
   border-radius: 3px;
 }
 
-/* ================================
-   ANGEL DIVIDER
-================================ */
-
-
+/*MELIMTX PAGE*/
+.melimtx-page .section-divider {
+  width: 80%;
+  max-width: 600px;
+  height: 4px;
+  margin: 15px auto;
+  background: linear-gradient(
+    90deg,
+    #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
+  );
+  border-radius: 3px;
+}
 
 /* =============================
   CATEGORY GRID
@@ -333,9 +348,9 @@ background: linear-gradient(
 }
 
 /*MELIMTX PAGE COLLECTION TABS*/
-.melimtx-page.collection-tab{
+.melimtx-page .collection-tab{
   flex:0 0 calc(20% - 14px); /* 5 visible */
-  height:220px;   /* increased height */
+  height: 400px;   /* increased height */
   border-radius:8px;
   background:#111;
   display:flex;
@@ -368,6 +383,8 @@ background: linear-gradient(
   border-radius:4px;
   background:none;
   color:white;
+  font-family: serif;
+  font-weight: bold;
   transition:all .25s ease;
 }
 
@@ -379,6 +396,8 @@ background: linear-gradient(
   background:rgba(0,0,0,0.6);
   width:100%;
   text-align:center;
+  font-family: serif;
+  font-weight: bold;
 }
 
 /* =============================
@@ -483,7 +502,7 @@ z-index:10;
 
 box-shadow:
 0 10px 25px rgba(0,0,0,0.6),
-0 0 10px rgba(255,122,0,0.6);
+0 0 10px #B3004B;
 }
 /* =============================
   MODALS
@@ -607,13 +626,13 @@ box-shadow:
 }
 
 .pagination a:hover {
-  background: #ff7b00;
-  border-color: #ff7b00;
+  background: #B3004B;
+  border-color: #B3004B;
 }
 
 .pagination a.active {
-  background: #ff7b00;
-  border-color: #ff7b00;
+  background: #B3004B;
+  border-color: #B3004B;
 }
 
 /* =============================
@@ -778,12 +797,12 @@ color:#fff;
 ============================= */
 
 .left-arrow{
-left:10px;
+left:30px;
 cursor: pointer;
 }
 
 .right-arrow{
-right:10px;
+right:30px;
 cursor: pointer;
 }
 /* =============================

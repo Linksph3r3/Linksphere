@@ -350,8 +350,8 @@ background: linear-gradient(
 /*MELIMTX PAGE COLLECTION TABS*/
 .melimtx-page .collection-tab{
   flex:0 0 calc(20% - 14px); /* 5 visible */
-  height: 300px;   /* increased height */
-  width:300px;
+  height: 200px;   /* increased height */
+  width:150px;
   border-radius:8px;
   background:#111;
   display:flex;

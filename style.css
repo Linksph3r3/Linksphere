@@ -392,7 +392,9 @@ background: linear-gradient(
 .melimtx-page .collection-tab:hover span{
   background:rgba(0,0,0,0.6);
   width:100%;
-  text-align: end;
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
   font-family: serif;
   font-weight: bold;
 }

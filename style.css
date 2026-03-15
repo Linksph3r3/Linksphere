@@ -239,7 +239,9 @@ h1{
   max-width: 600px;
   height: 4px;
   margin: 15px auto;
-  background: #FF2EA8;
+  background: linear-gradient(
+    90deg,
+  #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000);
   border-radius: 3px;
 }
 

@@ -196,17 +196,21 @@ h1{
 
 /*INDEX PAGE DIVIDER*/
 .index-page .section-divider {
-  width: 80%;
-  max-width: 600px;
-  height: 2px;
-  margin: 15px auto;
+  width: 100%;
+  height: 4px;
   background: linear-gradient(
     90deg,
-    #000,#B65302,#B65302,#FF9100,
-    #FFBB00,#ffffff,#FFBB00,
-    #FF9100,#B65302,#B65302,#000
+    #ff7b00,#ffa64d,#ff7b00
   );
-  border-radius: 3px;
+  clip-path: polygon(
+    0% 50%,
+    2% 0%,
+    98% 0%,
+    100% 50%,
+    98% 100%,
+    2% 100%
+  );
+  box-shadow: 0 0 8px rgba(255,123,0,0.6);
 }
 
 /*LUSTSPHERE PAGE DIVIDER*/
@@ -235,10 +239,12 @@ h1{
 
 /*MELIMTX PAGE*/
 .melimtx-page .section-divider {
-
-  width: 100%;
+  .spear-divider {
+  width: 600px;
   height: 4px;
-  background: #ff7b00; /* change color if needed */
+ background: linear-gradient(
+    90deg,
+  #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000);
 
   clip-path: polygon(
     0% 50%,     /* left point */
@@ -248,8 +254,9 @@ h1{
     98% 100%,
     2% 100%
   );
-  margin: 60px 0;
 
+  margin: 10px 0;
+}
 }
 
 /* =============================
@@ -396,12 +403,15 @@ background: linear-gradient(
   opacity:1;
 }
 
+.melimtx-page .collection-tab:hover{
+  align-items:flex-end;
+}
+
 .melimtx-page .collection-tab:hover span{
   background:rgba(0,0,0,0.6);
   width:100%;
-  text-align: center;
-  font-family: serif;
-  font-weight: bold;
+  text-align:center;
+  padding:6px 0;
 }
 
 /* =============================

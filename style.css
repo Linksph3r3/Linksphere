@@ -32,7 +32,8 @@
 
 /*MELIMTXTX PAGE*/
 .melimtx-page{
-  background-color: #ffffff;
+  background-color:linear-gradient(
+    90deg,#000000,#ffffff,#000000);
   color: #000000;
 }
 /* =============================

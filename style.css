@@ -358,7 +358,7 @@ background: linear-gradient(
 /*MELIMTX PAGE COLLECTION TABS*/
 .melimtx-page .collection-tab{
   flex:0 0 calc(20% - 14px);
-  aspect-ratio:1 / 1;   /* keeps square shape */
+  aspect-ratio:1 / 2;   
   max-width:200px;
   width:100%;
   border-radius:8px;
@@ -826,7 +826,7 @@ color:#fff;
   color:white;
 
   background:rgba(0,0,0,0.65);
-  border:1px solid rgba(255,122,0,0.4);
+  border:1px solid #B3004B;
 
   border-radius:50%;
 
@@ -851,14 +851,14 @@ color:#fff;
 
 /* HOVER EFFECT */
 .scroll-arrow:hover{
-  background:#ff7b00;
-  border-color:#ff7b00;
+  background:#B3004B;
+  border-color:#830137;
 
   transform:translateY(-50%) scale(1.12);
 
   box-shadow:
-  0 0 10px rgba(255,122,0,0.8),
-  0 0 20px rgba(255,122,0,0.4);
+  0 0 10px #B3004B,
+  0 0 20px #830137;
 }
 
 /* =============================

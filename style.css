@@ -616,7 +616,7 @@ box-shadow:
   width: 100%;
   display: flex;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 100px;
   align-items: center;
 
   margin-top: 60px;

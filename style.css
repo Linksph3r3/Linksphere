@@ -32,8 +32,7 @@
 
 /*MELIMTXTX PAGE*/
 .melimtx-page{
-  background-color:linear-gradient(
-    90deg,#000000,#ffffff,#000000);
+  background-color:#ffffff;
   color: #000000;
 }
 /* =============================
@@ -394,8 +393,6 @@ background: linear-gradient(
   background:rgba(0,0,0,0.6);
   width:100%;
   text-align: center;
-  display: flex;
-  justify-content: flex-end;
   font-family: serif;
   font-weight: bold;
 }
@@ -502,7 +499,7 @@ z-index:10;
 
 box-shadow:
 0 10px 25px rgba(0,0,0,0.6),
-0 0 10px #B3004B;
+0 0 10px #000000;
 }
 /* =============================
   MODALS

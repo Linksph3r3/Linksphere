@@ -229,10 +229,7 @@ h1{
   max-width: 600px;
   height: 4px;
   margin: 15px auto;
-  background: linear-gradient(
-    90deg,
-    #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
-  );
+  background: #FF2EA8;
   border-radius: 3px;
 }
 
@@ -242,10 +239,7 @@ h1{
   max-width: 600px;
   height: 4px;
   margin: 15px auto;
-  background: linear-gradient(
-    90deg,
-    #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
-  );
+  background: #FF2EA8;
   border-radius: 3px;
 }
 
@@ -396,7 +390,7 @@ background: linear-gradient(
 .melimtx-page .collection-tab:hover span{
   background:rgba(0,0,0,0.6);
   width:100%;
-  text-align:center;
+  text-align: end;
   font-family: serif;
   font-weight: bold;
 }

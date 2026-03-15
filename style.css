@@ -350,7 +350,8 @@ background: linear-gradient(
 /*MELIMTX PAGE COLLECTION TABS*/
 .melimtx-page .collection-tab{
   flex:0 0 calc(20% - 14px); /* 5 visible */
-  height: 400px;   /* increased height */
+  height: 300px;   /* increased height */
+  width:300px;
   border-radius:8px;
   background:#111;
   display:flex;
@@ -799,11 +800,15 @@ color:#fff;
 .left-arrow{
 left:30px;
 cursor: pointer;
+width: 50px;
+height:50px;
 }
 
 .right-arrow{
 right:30px;
 cursor: pointer;
+width: 50px;
+height:50px;
 }
 /* =============================
  RESPONSIVE

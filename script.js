@@ -237,10 +237,17 @@ unlockTarget = link;
 openModal(modal);
 
 loadYouTubeGate();
+watchSeconds = 0;
+lastTime = 0;
+clearInterval(watchTimer);
 
 }
 
 function loadYouTubeGate(){
+
+if(player){
+player.destroy();
+}
 
 const container = document.getElementById("youtube-gate");
 
@@ -258,7 +265,10 @@ videoId:videoID,
 playerVars:{
 controls:1,
 disablekb:1,
-rel:0
+rel:0,
+autoplay:1,
+mute:1,
+modestbranding:1
 },
 
 events:{
@@ -270,9 +280,12 @@ onReady:onPlayerReady
 
 }
 
+let skipCheck;
+
 function onPlayerReady(){
 
-setInterval(checkSkip,1000);
+clearInterval(skipCheck);
+skipCheck = setInterval(checkSkip,1000);
 
 }
 
@@ -440,6 +453,17 @@ const link = tab.dataset.link;
 
 if(!link) return;
 
+const ring = document.querySelector(".ring-progress");
+const timeDisplay = document.querySelector(".ring-time");
+
+if(ring){
+ring.style.strokeDashoffset = RING_CIRCUMFERENCE;
+}
+
+if(timeDisplay){
+timeDisplay.textContent = REQUIRED_SECONDS;
+}
+
 openAdGate(link);
 
 });
@@ -458,6 +482,10 @@ closeModal(modal);
 
 clearInterval(watchTimer);
 
+if(player){
+player.pauseVideo();
+}
+
 });
 
 });
@@ -467,7 +495,7 @@ clearInterval(watchTimer);
 document.addEventListener("click",(e)=>{
 
 if(e.target.classList.contains("modal-overlay") ||
-   e.target.classList.contains("modal")){
+e.target.classList.contains("modal")){
 
 closeModal(e.target);
 

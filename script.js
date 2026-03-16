@@ -235,6 +235,14 @@ const ytGate = document.getElementById("youtube-gate");
 
 unlockTarget = link;
 
+/* reset proceed button */
+const btn = document.getElementById("proceed-btn");
+
+if(btn){
+btn.disabled = true;
+btn.classList.remove("enabled");
+}
+
 /* SHOW VIDEO CONTAINER FIRST */
 ytGate.style.display = "block";
 
@@ -294,9 +302,8 @@ function onPlayerReady(event){
 clearInterval(skipCheck);
 skipCheck = setInterval(checkSkip,1000);
 
-/* Force autoplay */
-player.mute();           // required for autoplay in browsers
-player.playVideo();      // start playback immediately
+player.mute();
+player.playVideo();
 
 setTimeout(()=>{
 player.unMute();
@@ -377,19 +384,7 @@ ring.style.strokeDashoffset = offset;
 if(watchSeconds >= REQUIRED_SECONDS){
 
 clearInterval(watchTimer);
-
 unlockContent();
-
-}
-
-if(watchSeconds >= 30){
-
-clearInterval(watchTimer);
-
-const btn = document.getElementById("proceed-btn");
-
-btn.disabled = false;
-btn.classList.add("enabled");
 
 }
 
@@ -412,25 +407,14 @@ timeDisplay.textContent = REQUIRED_SECONDS;
 
 function unlockContent(){
 
-const modal = document.getElementById("adgate-modal");
+const btn = document.getElementById("proceed-btn");
 
-closeModal(modal);
-
-if(unlockTarget){
-
-window.open(unlockTarget,"_blank");
-
+if(btn){
+btn.disabled = false;
+btn.classList.add("enabled");
 }
 
 }
-
-document.getElementById("proceed-btn").addEventListener("click",function(){
-
-if(unlockTarget){
-window.location.href = unlockTarget;
-}
-
-});
 
 /* =======================================================
    INIT
@@ -441,6 +425,22 @@ document.addEventListener("DOMContentLoaded",()=>{
 setupHorizontalScroll();
 setupAgeConfirmation();
 setupFooterModals();
+
+/* proceed button */
+
+const proceedBtn = document.getElementById("proceed-btn");
+
+if(proceedBtn){
+
+proceedBtn.addEventListener("click",()=>{
+
+if(unlockTarget){
+window.location.href = unlockTarget;
+}
+
+});
+
+}
 
 /* category preview */
 

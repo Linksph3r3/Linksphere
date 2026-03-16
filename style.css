@@ -807,6 +807,11 @@ font-size:.9rem;
 font-weight:bold;
 color:#fff;
 }
+
+#youtube-player{
+width:100%;
+aspect-ratio:16/9;
+}
 /* =============================
   HORIZONTAL SCROLL ARROWS
 ============================= */

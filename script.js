@@ -231,14 +231,21 @@ let pauseTimer;
 function openAdGate(link){
 
 const modal = document.getElementById("adgate-modal");
+const ytGate = document.getElementById("youtube-gate");
 
 unlockTarget = link;
 
+/* SHOW VIDEO CONTAINER FIRST */
+ytGate.style.display = "block";
+
 openModal(modal);
 
+/* load youtube player */
 loadYouTubeGate();
+
 watchSeconds = 0;
 lastTime = 0;
+
 clearInterval(watchTimer);
 
 }

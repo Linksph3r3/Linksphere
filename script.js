@@ -282,10 +282,18 @@ onReady:onPlayerReady
 
 let skipCheck;
 
-function onPlayerReady(){
+function onPlayerReady(event){
 
 clearInterval(skipCheck);
 skipCheck = setInterval(checkSkip,1000);
+
+/* Force autoplay */
+player.mute();           // required for autoplay in browsers
+player.playVideo();      // start playback immediately
+
+setTimeout(()=>{
+player.unMute();
+},3000);
 
 }
 

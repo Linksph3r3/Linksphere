@@ -812,6 +812,28 @@ color:#fff;
 width:100%;
 aspect-ratio:16/9;
 }
+
+.gate-proceed{
+margin-top:16px;
+background:#ff7b00;
+border:none;
+padding:12px 22px;
+border-radius:6px;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
+opacity:.4;
+transition:.25s;
+}
+
+.gate-proceed.enabled{
+opacity:1;
+cursor:pointer;
+}
+
+.gate-proceed:disabled{
+cursor:not-allowed;
+}
 /* =============================
   HORIZONTAL SCROLL ARROWS
 ============================= */

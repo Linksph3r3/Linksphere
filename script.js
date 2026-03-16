@@ -382,6 +382,17 @@ unlockContent();
 
 }
 
+if(watchSeconds >= 30){
+
+clearInterval(watchTimer);
+
+const btn = document.getElementById("proceed-btn");
+
+btn.disabled = false;
+btn.classList.add("enabled");
+
+}
+
 },1000);
 
 }
@@ -412,6 +423,14 @@ window.open(unlockTarget,"_blank");
 }
 
 }
+
+document.getElementById("proceed-btn").addEventListener("click",function(){
+
+if(unlockTarget){
+window.location.href = unlockTarget;
+}
+
+});
 
 /* =======================================================
    INIT

@@ -149,8 +149,26 @@ h1{
   color: #FF7B00;
 }
 
-
+/*LUSTSPHERE PAGE FOOTER*/
 .lustsphere-page .site-footer {
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color:#B3004B;
+}
+
+/*MELIMTX COLLECTIONS PAGE FOOTER*/
+.melimtxcollections-page .site-footer {
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color:#B3004B;
+}
+
+
+.melimtx-page .site-footer {
   margin-top: 8px;
   text-align: center;
   margin-bottom: 10px;

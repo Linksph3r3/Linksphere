@@ -140,23 +140,26 @@ h1{
 /* =============================
    SITE FOOTERS
 ============================= */
-.site-footer {
+/*HOMEPAGE FOOTER*/
+.index-page .site-footer {
   margin-top: 8px;
   text-align: center;
   margin-bottom: 10px;
   font-size: 14px;
-  color: var(--color-muted);
+  color: #FF7B00;
 }
 
 /* =============================
     CENTER GROUP
 ============================= */
 
+/*HOMEPAGE CG*/
 .index-page .center-group {
   margin-top: 200px; /* 20px from footer */
   text-align: center;
 }
 
+/*LUSTSPHERE CG*/
 .lustsphere-page .center-group {
   margin-top: 30px; 
   text-align: center;
@@ -167,6 +170,11 @@ h1{
   text-align: center;
 }
 
+/* =============================
+    CATEGORY HEADING
+============================= */
+
+/*HOMEPAGE CH*/
 .index-page .category-heading {
   font-size: 2rem;
   margin-top: 40px;
@@ -175,6 +183,7 @@ h1{
   font-weight: normal;
 }
 
+/*HOMEPAGE CH*/
 .lustsphere-page .category-heading {
   font-size: 2rem;
   margin-top: 10px;
@@ -182,7 +191,6 @@ h1{
   font-family: serif;
   font-weight:bolder;
   color: #000000;
-
 }
 
  .category-heading {
@@ -196,11 +204,11 @@ h1{
 
 /*INDEX PAGE DIVIDER*/
 .index-page .section-divider {
-  width: 100%;
-  height: 4px;
+  width: 400px;
+  height: 2px;
   background: linear-gradient(
     90deg,
-    #ff7b00,#ffa64d,#ff7b00
+    #ffffff,#ffffff,#8d8c8c,#8d8c8c,#414040,#414040,#1b1b1b,#000000,#000000,#1b1b1b,#414040,#414040,#8d8c8c,#8d8c8c,#ffffff,#ffffff
   );
   clip-path: polygon(
     0% 50%,

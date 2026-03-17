@@ -204,11 +204,11 @@ h1{
 
 /*INDEX PAGE DIVIDER*/
 .index-page .section-divider {
-  width: 100%;
+  width: 80%;
   height: 4px;
   background: linear-gradient(
     90deg,
-    #ffffff,#ffffff,#8d8c8c,#8d8c8c,#414040,#414040,#1b1b1b,#000000,#000000,#1b1b1b,#414040,#414040,#8d8c8c,#8d8c8c,#ffffff,#ffffff
+    #ffffff,#ffffff,#8d8c8c,#000000,#8d8c8c,#ffffff,#414040,#414040,#1b1b1b,#000000,#1b1b1b,#ffffff,#414040,#414040,#ffffff,#8d8c8c,#8d8c8c,#ffffff,#ffffff
   );
   clip-path: polygon(
     0% 50%,

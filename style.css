@@ -229,7 +229,7 @@ h1{
   margin: 15px auto;
   background: linear-gradient(
     90deg,
-    #ffffff,#830137,#B3004B,#FF0F6D,#FF0F6D,#FF2E8B,#000000,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#ffffff
+    #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
     
   );
   border-radius: 3px;
@@ -314,7 +314,7 @@ h1{
   font-size: 16px;
 background: linear-gradient(
     90deg,
-    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+    #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
   );
 }
 
@@ -334,7 +334,7 @@ background: linear-gradient(
 .lustsphere-page .category-tab:hover {
 background: linear-gradient(
     90deg,
-   #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+  #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
   );
   font-family:serif;
   font-weight: bold;
@@ -357,7 +357,7 @@ background: linear-gradient(
 .melimtxcollections-page .category-tab:hover {
 background: linear-gradient(
     90deg,
-   #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+   #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
   );
   font-family:serif;
   font-weight: bold;
@@ -612,7 +612,7 @@ box-shadow:
 .index-page .btn.primary:hover {
   background: linear-gradient(
     90deg,
-    #ffffff,#FF2E8B ,#FF0F6D,#FF0F6D,#B3004B,#830137,#000000
+    #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
   );
   
 }

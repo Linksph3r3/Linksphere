@@ -149,6 +149,15 @@ h1{
   color: #FF7B00;
 }
 
+
+.lustsphere-page .site-footer {
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color:#B3004B;
+}
+
 /* =============================
     CENTER GROUP
 ============================= */
@@ -208,7 +217,7 @@ h1{
   height: 4px;
   background: linear-gradient(
     90deg,
-    #ffffff,#ffffff,#8d8c8c,#000000,#8d8c8c,#ffffff,#414040,#414040,#1b1b1b,#000000,#1b1b1b,#ffffff,#414040,#414040,#ffffff,#8d8c8c,#8d8c8c,#ffffff,#ffffff
+    #ffffff,#ffffff,#8d8c8c,#1f1e1e,#8d8c8c,#ffffff,#414040,#414040,#1b1b1b,#1f1e1e,#1b1b1b,#ffffff,#414040,#414040,#ffffff,#8d8c8c,#8d8c8c,#ffffff,#ffffff
   );
   clip-path: polygon(
     0% 50%,
@@ -223,27 +232,45 @@ h1{
 
 /*LUSTSPHERE PAGE DIVIDER*/
 .lustsphere-page .section-divider {
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
   height: 4px;
-  margin: 15px auto;
+  margin: 10px;
   background: linear-gradient(
     90deg,
     #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
-    
   );
-  border-radius: 3px;
+  clip-path: polygon(
+    0% 50%,
+    2% 0%,
+    98% 0%,
+    100% 50%,
+    98% 100%,
+    2% 100%
+  );
+  
 }
+
 
 /*MELIMTX COLLECTIONS PAGE DIVIDER*/
 .melimtxcollections-page .section-divider {
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
   height: 4px;
-  margin: 15px auto;
-  background: black;
-  border-radius: 3px;
+  margin: 10px;
+  background: linear-gradient(
+    90deg,
+    #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
+  );
+  clip-path: polygon(
+    0% 50%,
+    2% 0%,
+    98% 0%,
+    100% 50%,
+    98% 100%,
+    2% 100%
+  );
+  
 }
+
 
 /*MELIMTX PAGE*/
 .melimtx-page .section-divider {

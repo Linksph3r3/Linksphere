@@ -903,8 +903,8 @@ position:absolute;
 bottom:-12px;   /* moves below player */
 right:0;
 
-width: 20px;    /* smaller size */
-height:20px;
+width: 60px;    /* smaller size */
+height:60px;
 
 display:flex;
 align-items:center;
@@ -912,8 +912,8 @@ justify-content:center;
 }
 
 .progress-ring svg{
-width:20px;
-height:20px;
+width:60px;
+height:60px;
 transform:rotate(-90deg);
 }
 

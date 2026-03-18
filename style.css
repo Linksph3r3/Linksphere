@@ -900,17 +900,28 @@ margin:0 auto;
 
 .progress-ring{
 position:absolute;
-top:-18px;
-right:-18px;
-width:45px;
-height:45px;
+bottom:-12px;   /* moves below player */
+right:0;
+
+width:60px;     /* smaller size */
+height:60px;
+
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
 .progress-ring svg{
+width:60px;
+height:60px;
 transform:rotate(-90deg);
+}
+
+.ring-time{
+position:absolute;
+font-size:.7rem;   /* smaller text */
+font-weight:bold;
+color:#fff;
 }
 
 .ring-bg{
@@ -928,13 +939,6 @@ stroke-dashoffset:251;
 transition:stroke-dashoffset 1s linear;
 }
 
-.ring-time{
-position:absolute;
-font-size:.9rem;
-font-weight:bold;
-font-family: serif;
-color:#fff;
-}
 
 #youtube-player{
 width:100%;

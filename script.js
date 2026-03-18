@@ -213,7 +213,7 @@ closeModal(infoModal);
 ======================================================= */
 
 const REQUIRED_SECONDS = 30;
-const RING_CIRCUMFERENCE = 251;
+const RING_CIRCUMFERENCE = 163;
 
 const gateVideos = [
 "iYQNU54cM_8",

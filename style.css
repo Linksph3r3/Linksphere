@@ -35,6 +35,12 @@
   background-color:#ffffff;
   color: #000000;
 }
+
+/*MIKAYLA DEMAITER PAGE*/
+.mikaylad-page{
+  background-color:#ffffff;
+  color: #000000;
+}
 /* =============================
    RESET
 ============================= */
@@ -62,21 +68,26 @@ img {
 /* =============================
    MAIN LAYOUT
 ============================= */
-
 main {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 12px 10px;
 }
 
+/*MELIMTX PAGE*/
 .melimtx-page main{
+  padding-top:0;
+  margin-top:0;
+}
+
+/*MIKAYLA DEMAITER PAGE*/
+.mikaylad-page main{
   padding-top:0;
   margin-top:0;
 }
 /* =============================
     HERO (LOGO AT TOP)
 ============================= */
-
 .hero-header {
   padding: 0;
   margin-top: 0;
@@ -89,7 +100,6 @@ main {
   max-width: 80%;
   margin: 0 auto;
 }
-
 /* =============================
     PAGE TITLE
 ============================= */
@@ -167,7 +177,7 @@ h1{
   color:#B3004B;
 }
 
-
+/*MELIMTX PAGES FOOTER*/
 .melimtx-page .site-footer {
   margin-top: 8px;
   text-align: center;
@@ -176,6 +186,14 @@ h1{
   color:#B3004B;
 }
 
+/*MIKAYLA DEMAITER PAGES FOOTER*/
+.mikaylad-page .site-footer {
+  margin-top: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color:#B3004B;
+}
 /* =============================
     CENTER GROUP
 ============================= */
@@ -290,7 +308,7 @@ h1{
 }
 
 
-/*MELIMTX PAGE*/
+/*MELIMTX PAGES*/
 .melimtx-page .section-divider {
   width: 100%;
   height: 4px;
@@ -310,10 +328,29 @@ h1{
   
 }
 
+/*MIKAYLA DEMAITER PAGES*/
+.mikaylad-page .section-divider {
+  width: 100%;
+  height: 4px;
+  margin: 10px;
+  background: linear-gradient(
+    90deg,
+    #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000
+  );
+  clip-path: polygon(
+    0% 50%,
+    2% 0%,
+    98% 0%,
+    100% 50%,
+    98% 100%,
+    2% 100%
+  );
+  
+}
 /* =============================
   CATEGORY GRID
 ============================= */
-
+/*LUSTSPHERE PAGE CG*/
 .lustsphere-page .category-grid {
   display: flex;
   justify-content: center;
@@ -322,6 +359,7 @@ h1{
   margin: 20px 0;
 }
 
+/*MELIMTX COLLECTIONS PAGE CG*/
 .melimtxcollections-page .category-grid {
   display: flex;
   justify-content: center;
@@ -462,6 +500,65 @@ background: linear-gradient(
 }
 
 .melimtx-page .collection-tab:hover span{
+  background:rgba(0,0,0,0.6);
+  width:100%;
+  text-align:center;
+  padding:6px 0;
+}
+
+/*MIKAYLA DEMAITER COLLECTION TABS*/
+.mikaylad-page .collection-tab{
+  flex:0 0 calc(20% - 14px);
+  aspect-ratio:1 / 1.5;   
+  max-width:200px;
+  width:100%;
+  border-radius:8px;
+  background:#000000;
+  margin: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:1.1rem;
+  text-align:center;
+  cursor:pointer;
+  transition:transform .25s ease, box-shadow .25s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.mikaylad-page .collection-tab img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transition:opacity .3s ease;
+  z-index:1;
+}
+
+.mikaylad-page .collection-tab span{
+  position:relative;
+  z-index:2;
+  padding:6px 10px;
+  border-radius:4px;
+  background:none;
+  color:white;
+  font-family: serif;
+  font-weight: bold;
+  transition:all .25s ease;
+}
+
+.mikaylad-page .collection-tab:hover img{
+  opacity:1;
+}
+
+.mikayla-page .collection-tab:hover{
+  align-items:flex-end;
+}
+
+.mikaylad-page .collection-tab:hover span{
   background:rgba(0,0,0,0.6);
   width:100%;
   text-align:center;
@@ -662,65 +759,16 @@ box-shadow:
   
 }
 
-/* ===============================
-   PAGINATION
-================================ */
-
-.pagination {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  border-radius: 100px;
-  align-items: center;
-
-  margin-top: 60px;
-  margin-bottom: 40px;
-}
-
-.pagination a {
-  display: inline-block;
-  padding: 10px 16px;
-  margin: 0 6px;
-
-  font-family: serif;
-  font-size: 0.9rem;
-
-  text-decoration: none;
-  color: #fff;
-
-  background: #000000;
-  border: 1px solid #000000;
-
-  transition: 0.25s ease;
-}
-
-.pagination a:hover {
-  background: #B3004B;
-  border-color: #B3004B;
-}
-
-.pagination a.active {
-  background: #B3004B;
-  border-color: #B3004B;
-}
-
-/* =============================
-  GATE MODAL
-============================= */
-/* MODAL OVERLAY */
+/* ADGATE MODAL */
 .modal-overlay{
-  position:fixed;
-  inset:0;
-
-  display:none;
-
-  justify-content:center;
-  align-items:center;
-
-  background:rgba(0,0,0,0.75);
-  backdrop-filter:blur(6px);
-
-  z-index:9999;
+position:fixed;
+inset:0;
+display:none;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(6px);
+z-index:9999;
 }
 
 /* SHOW MODAL */
@@ -730,26 +778,22 @@ box-shadow:
 
 /* MODAL BOX */
 .modal-box{
-  background:#111;
-
-  border-radius:10px;
-
-  padding:28px;
-
-  width:420px;
-  max-width:90%;
-
-  text-align:center;
-
-  border:1px solid rgba(255,122,0,0.3);
-
-  box-shadow:
-  0 0 30px rgba(255,122,0,0.2);
+background:#000000;
+border-radius:10px;
+padding:28px;
+width:420px;
+max-width:90%;
+text-align:center;
+border:1px solid #830137;
+box-shadow:0 0 30px #B3004B;
 }
 
 /* TITLE */
 .modal-title{
   font-size:1.6rem;
+  font-family: serif;
+  font-weight: bold;
+  color: #ffffff;
   margin-bottom:12px;
 }
 
@@ -757,22 +801,19 @@ box-shadow:
 .modal-text{
   font-size:.95rem;
   margin-bottom:18px;
-  color:#bbb;
+  color:#ffffff;
+  font-family: serif;
 }
 
 /* CLOSE BUTTON */
 .modal-close{
   margin-top:16px;
-
-  background:#ff7b00;
+  background:linear-gradient(90deg, #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000);
   color:white;
-
+  font-family: serif;
   border:none;
-
   padding:10px 18px;
-
   border-radius:6px;
-
   cursor:pointer;
 }
 
@@ -790,28 +831,60 @@ margin:15px 0;
 }
 
 .gate-option{
-background:#ff7b00;
+background:#8b8b8b;
 border:none;
 padding:10px 16px;
 border-radius:6px;
 cursor:pointer;
 color:#fff;
+font-family: serif;
 font-weight:bold;
 }
 
 .gate-option:hover{
-background:#ff9100;
-}
-
-#gate-progress{
-margin-top:10px;
-font-size:.9rem;
-color:#bbb;
+background: linear-gradient(90deg, #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000);
 }
 
 #youtube-gate{
 margin-top:15px;
 display:none;
+}
+
+/* ===============================
+   PAGINATION
+================================ */
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-radius: 100px;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.pagination a {
+  display: inline-block;
+  padding: 10px 16px;
+  margin: 0 6px;
+  font-family: serif;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: #fff;
+  background: #000000;
+  border: 1px solid #000000;
+  transition: 0.25s ease;
+}
+
+.pagination a:hover {
+  background: #B3004B;
+  border-color: #B3004B;
+}
+
+.pagination a.active {
+  background: #B3004B;
+  border-color: #B3004B;
 }
 
 /* ============================= */
@@ -829,8 +902,8 @@ margin:0 auto;
 position:absolute;
 top:-18px;
 right:-18px;
-width:90px;
-height:90px;
+width:45px;
+height:45px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -842,13 +915,13 @@ transform:rotate(-90deg);
 
 .ring-bg{
 fill:none;
-stroke:#2b2a2a;
+stroke:#818181;
 stroke-width:6;
 }
 
 .ring-progress{
 fill:none;
-stroke:#ff7b00;
+stroke:#B3004B;
 stroke-width:6;
 stroke-dasharray:251;
 stroke-dashoffset:251;
@@ -859,6 +932,7 @@ transition:stroke-dashoffset 1s linear;
 position:absolute;
 font-size:.9rem;
 font-weight:bold;
+font-family: serif;
 color:#fff;
 }
 
@@ -869,12 +943,13 @@ aspect-ratio:16/9;
 
 .gate-proceed{
 margin-top:16px;
-background:#ff7b00;
+background:linear-gradient(90deg, #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000);
 border:none;
 padding:12px 22px;
 border-radius:6px;
 color:#fff;
 font-weight:bold;
+font-family: serif;
 cursor:pointer;
 opacity:.4;
 transition:.25s;

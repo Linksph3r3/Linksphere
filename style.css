@@ -903,8 +903,8 @@ position:absolute;
 bottom:-12px;   /* moves below player */
 right:0;
 
-width:60px;     /* smaller size */
-height:60px;
+width: 20px;    /* smaller size */
+height:20px;
 
 display:flex;
 align-items:center;
@@ -912,8 +912,8 @@ justify-content:center;
 }
 
 .progress-ring svg{
-width:60px;
-height:60px;
+width:20px;
+height:20px;
 transform:rotate(-90deg);
 }
 
@@ -1082,11 +1082,19 @@ cursor:not-allowed;
     flex:0 0 calc(33.33% - 12px); /* 3 visible */
   }
 
+  .mikaylad-page .collection-tab{
+    flex:0 0 calc(33.33% - 12px); /* 3 visible */
+  }
+
 }
 
 @media (max-width:600px){
 
   .melimtx-page .collection-tab{
+    flex:0 0 calc(50% - 10px); /* 2 visible */
+  }
+
+  .mikaylad-page .collection-tab{
     flex:0 0 calc(50% - 10px); /* 2 visible */
   }
 

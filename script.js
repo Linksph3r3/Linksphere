@@ -213,7 +213,7 @@ closeModal(infoModal);
 ======================================================= */
 
 const REQUIRED_SECONDS = 30;
-const RING_CIRCUMFERENCE = 163;
+const RING_CIRCUMFERENCE = 251.2;
 
 const gateVideos = [
 "iYQNU54cM_8",
@@ -381,10 +381,16 @@ RING_CIRCUMFERENCE * (1 - percent);
 
 ring.style.strokeDashoffset = offset;
 
-if(watchSeconds >= REQUIRED_SECONDS){
+if (watchSeconds >= REQUIRED_SECONDS) {
 
-clearInterval(watchTimer);
-unlockContent();
+  clearInterval(watchTimer);
+
+  const btn = document.getElementById("proceed-btn");
+
+  if (btn) {
+    btn.disabled = false;
+    btn.classList.add("enabled");
+  }
 
 }
 
@@ -396,12 +402,16 @@ function resetGate(){
 
 watchSeconds = 0;
 
-const ring = document.querySelector(".ring-progress");
-const timeDisplay = document.querySelector(".ring-time");
+  const ring = document.querySelector(".ring-progress");
+  const timeDisplay = document.querySelector(".ring-time");
 
-ring.style.strokeDashoffset = RING_CIRCUMFERENCE;
+  if(ring){
+    ring.style.strokeDashoffset = RING_CIRCUMFERENCE;
+  }
 
-timeDisplay.textContent = REQUIRED_SECONDS;
+  if(timeDisplay){
+    timeDisplay.textContent = REQUIRED_SECONDS;
+  }
 
 }
 
@@ -415,6 +425,7 @@ btn.classList.add("enabled");
 }
 
 }
+
 
 /* =======================================================
    INIT

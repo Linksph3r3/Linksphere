@@ -849,6 +849,124 @@ background: linear-gradient(90deg, #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B00
 margin-top:15px;
 display:none;
 }
+/* ============================= */
+/* YOUTUBE GATE WRAPPER */
+/* ============================= */
+
+.yt-gate-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px; /* spacing between video and ring */
+}
+
+/* ============================= */
+/* VIDEO PLAYER */
+/* ============================= */
+
+#youtube-player,
+#yt-player {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ============================= */
+/* PROGRESS RING (BELOW VIDEO) */
+/* ============================= */
+
+.progress-ring {
+  position: relative; /* NOT absolute anymore */
+  
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SVG sizing must match container */
+.progress-ring svg {
+  width: 70px;
+  height: 70px;
+  transform: rotate(-90deg);
+}
+
+/* Background ring */
+.ring-bg {
+  fill: none;
+  stroke: #2a2a2a;
+  stroke-width: 6;
+}
+
+/* Progress ring (cool glow effect) */
+.ring-progress {
+  fill: none;
+  stroke: #FF2EA8;
+  stroke-width: 6;
+
+  stroke-dasharray: 251;
+  stroke-dashoffset: 251;
+
+  transition: stroke-dashoffset 1s linear;
+
+  /* 🔥 glow effect */
+  filter: drop-shadow(0 0 6px #FF2EA8)
+          drop-shadow(0 0 12px #C0008C);
+}
+
+/* Timer text */
+.ring-time {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* ============================= */
+/* PROCEED BUTTON */
+/* ============================= */
+
+.gate-proceed {
+  margin-top: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #000000,
+    #4B003C,
+    #C0008C,
+    #FF2EA8,
+    #C0008C,
+    #4B003C,
+    #000000
+  );
+
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+
+  color: #fff;
+  font-weight: bold;
+  font-family: serif;
+
+  cursor: pointer;
+
+  opacity: 0.4;
+  transition: all 0.25s ease;
+}
+
+.gate-proceed.enabled {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.gate-proceed:disabled {
+  cursor: not-allowed;
+  transform: scale(1);
+}
+
 
 /* ===============================
    PAGINATION
@@ -887,86 +1005,6 @@ display:none;
   border-color: #B3004B;
 }
 
-/* ============================= */
-/* YOUTUBE GATE PROGRESS RING */
-/* ============================= */
-
-.yt-gate-wrapper{
-position:relative;
-width:100%;
-max-width:420px;
-margin:0 auto;
-}
-
-.progress-ring{
-position:absolute;
-bottom:-12px;   /* moves below player */
-right:0;
-
-width: 60px;    /* smaller size */
-height:60px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.progress-ring svg{
-width:60px;
-height:60px;
-transform:rotate(-90deg);
-}
-
-.ring-time{
-position:absolute;
-font-size:.7rem;   /* smaller text */
-font-weight:bold;
-color:#fff;
-}
-
-.ring-bg{
-fill:none;
-stroke:#818181;
-stroke-width:6;
-}
-
-.ring-progress{
-fill:none;
-stroke:#B3004B;
-stroke-width:6;
-stroke-dasharray:251;
-stroke-dashoffset:251;
-transition:stroke-dashoffset 1s linear;
-}
-
-
-#youtube-player{
-width:100%;
-aspect-ratio:16/9;
-}
-
-.gate-proceed{
-margin-top:16px;
-background:linear-gradient(90deg, #000000,#4B003C,#C0008C,#FF2EA8,#C0008C,#4B003C,#000000);
-border:none;
-padding:12px 22px;
-border-radius:6px;
-color:#fff;
-font-weight:bold;
-font-family: serif;
-cursor:pointer;
-opacity:.4;
-transition:.25s;
-}
-
-.gate-proceed.enabled{
-opacity:1;
-cursor:pointer;
-}
-
-.gate-proceed:disabled{
-cursor:not-allowed;
-}
 /* =============================
   HORIZONTAL SCROLL ARROWS
 ============================= */

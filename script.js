@@ -3,6 +3,12 @@
 const $ = (sel, ctx = document) => ctx.querySelector(sel);
 const $all = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
+/* ================= NAVIGATION ================= */
+
+function goBack(){
+  window.history.back();
+}
+
 /* =======================================================
    MODAL MANAGER
 ======================================================= */

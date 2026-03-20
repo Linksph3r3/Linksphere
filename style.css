@@ -1137,6 +1137,12 @@ display:none;
 }
 
 /* hover effect */
+.nav-btn {
+  transform: scale(1.1);
+  background: #000000;
+  color: #ffffff;
+}
+
 .nav-btn:hover {
   transform: scale(1.1);
   background: linear-gradient(

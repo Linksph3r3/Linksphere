@@ -11,6 +11,21 @@
 
 <body class="mikaylad-page">
 
+  <!-- NAV ICONS -->
+<div class="nav-icons">
+
+  <!-- Back to Home -->
+  <a href="LustSphere.html" class="nav-btn home-btn" title="Home">
+    &#8962;
+  </a>
+
+  <!-- Back to Previous Page -->
+  <button class="nav-btn back-btn" title="Go Back" onclick="goBack()">
+    &#8592;
+  </button>
+
+</div>
+
 <main>
   
 <h1 class="page-title">Mikayla Demaiter Collections</h1>
@@ -113,7 +128,6 @@
 
 </main>
 
-
 <!-- AD GATE MODAL -->
 <div id="adgate-modal" class="modal-overlay">
 
@@ -128,14 +142,26 @@
     <div class="yt-gate-wrapper">
 
       <div class="progress-ring">
-        <svg width="90" height="90">
-          <circle class="ring-bg" cx="45" cy="45" r="26"
-cx="30"
-cy="30"></circle>
-          <circle class="ring-progress" cx="45" cy="45" r="26"
-cx="30"
-cy="30"></circle>
-        </svg>
+        <div class="progress-ring">
+  <svg viewBox="0 0 100 100">
+    
+    <!-- background circle -->
+    <circle
+      class="ring-bg"
+      cx="50"
+      cy="50"
+      r="40"
+    />
+
+    <!-- progress circle -->
+    <circle
+      class="ring-progress"
+      cx="50"
+      cy="50"
+      r="40"
+    />
+
+  </svg>
 
         <div class="ring-time">30</div>
       </div>
@@ -146,6 +172,7 @@ cy="30"></circle>
 <button id="proceed-btn" class="gate-proceed" disabled>
 Proceed
 </button>
+    <div id="gate-progress">Watch 30 seconds to unlock</div>
 
     <button class="modal-close">Close</button>
 
